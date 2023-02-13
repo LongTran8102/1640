@@ -28,6 +28,12 @@
                             <a class="nav-link" asp-controller="Categories" asp-action="Index"> Category</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" asp-controller="ApplicationUsers" asp-action="Index"> Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="AppRoles" asp-action="Index"> Roles</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Ideas</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -43,8 +49,7 @@
                         </li>
                     </ul>
                 </div>
-                <a class="nav-item text-decoration-none me-4 p-3" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                <a class="nav-item text-decoration-none h-100" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>

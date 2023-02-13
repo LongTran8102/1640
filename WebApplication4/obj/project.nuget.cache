@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZAt9CNnc0Ka84Cq5/IzkZkj87hL9M/Qw2+aBHPPzKI/T43EqGIxMJ+6zn77cw5aNfD9rjxIzzVwSqoplWj8BHg==",
+  "dgSpecHash": "EZ9npuXYdYoDjrMuvF+0970m1Da24U6ZQ8II3bpWOL1ikqVhGKiXh1UzuEZm7uH7GRtzQjcrie6r4Q0US2KGYQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\USER\\Desktop\\1640\\WebApplication4\\WebApplication4.csproj",
+  "projectFilePath": "C:\\Users\\USER\\Desktop\\Thực tế\\WebApplication4\\WebApplication4.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
