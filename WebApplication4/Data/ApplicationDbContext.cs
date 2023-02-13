@@ -11,6 +11,5 @@ namespace WebApplication4.Data
         {
         }
         public DbSet<WebApplication4.Models.Category> Category { get; set; }
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
