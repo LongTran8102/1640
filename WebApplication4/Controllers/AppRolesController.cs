@@ -31,7 +31,7 @@ namespace WebApplication4.Controllers
             {
                 _roleManager.CreateAsync(new IdentityRole(model.Name)).GetAwaiter().GetResult();
             }
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
