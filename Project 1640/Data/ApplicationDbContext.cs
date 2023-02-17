@@ -13,5 +13,6 @@ namespace Project_1640.Data
         }
         public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Department> Department { get; set; }
     }
 }
