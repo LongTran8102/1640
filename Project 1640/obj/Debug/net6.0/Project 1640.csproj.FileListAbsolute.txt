@@ -554,6 +554,7 @@ C:\Users\USER\Downloads\Code hoàn chỉnh\Project 1640\Project 1640\obj\Debug\n
 C:\Users\USER\Downloads\Code hoàn chỉnh\Project 1640\Project 1640\obj\Debug\net6.0\Project 1640.pdb
 C:\Users\USER\Downloads\Code hoàn chỉnh\Project 1640\Project 1640\obj\Debug\net6.0\Project 1640.genruntimeconfig.cache
 C:\Users\USER\Downloads\Code hoàn chỉnh\Project 1640\Project 1640\obj\Debug\net6.0\ref\Project 1640.dll
+<<<<<<< HEAD
 C:\Users\pekoi\Documents\Desktop\-1640-\Project 1640\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\pekoi\Documents\Desktop\-1640-\Project 1640\bin\Debug\net6.0\appsettings.json
 C:\Users\pekoi\Documents\Desktop\-1640-\Project 1640\bin\Debug\net6.0\Project 1640.staticwebassets.runtime.json
@@ -1110,3 +1111,5 @@ C:\Users\pekoi\Documents\Desktop\1640\Project 1640\obj\Debug\net6.0\refint\Proje
 C:\Users\pekoi\Documents\Desktop\1640\Project 1640\obj\Debug\net6.0\Project 1640.pdb
 C:\Users\pekoi\Documents\Desktop\1640\Project 1640\obj\Debug\net6.0\Project 1640.genruntimeconfig.cache
 C:\Users\pekoi\Documents\Desktop\1640\Project 1640\obj\Debug\net6.0\ref\Project 1640.dll
+=======
+>>>>>>> LongTran

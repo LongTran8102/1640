@@ -5,6 +5,7 @@
     ViewData["Title"] = "Delete";
 }
 
+<<<<<<< HEAD
 <h1>Delete</h1>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -25,4 +26,30 @@
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
+=======
+<div class="row pb-3 mx-auto w-50 border border-dark rounded-3 text-center bg-warning bg-opacity-25" style="margin-top:5.5rem; padding:1rem">
+    <h1 class="text-center mt-3">Delete</h1>
+    <h3 class="text-center">Are you sure you want to delete this role?</h3>
+    <hr />
+    <dl class="row">
+        <dt class = "col text-end" style="font-size:30px">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col" style="font-size:30px">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    <dl class="row">
+        <dd class="col align-middle" style="line-height:3rem">
+            <a asp-action="Index" class="text-decoration-none align-middle"><i class="gg-arrow-left-r d-inline-block align-middle" style="margin-bottom:0.188rem"></i>Back to List</a>
+        </dd>
+        <dt class = "col text-center">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Delete" class="btn btn-primary btn-lg" />
+            </form>
+        </dt>
+    </dl>
+>>>>>>> LongTran
 </div>

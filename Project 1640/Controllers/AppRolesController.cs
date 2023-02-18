@@ -9,7 +9,11 @@ using System.Collections.Generic;
 
 namespace Project_1640.Controllers
 {
+<<<<<<< HEAD
     //[Authorize(Roles = "Admin")]
+=======
+    
+>>>>>>> LongTran
     public class AppRolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
