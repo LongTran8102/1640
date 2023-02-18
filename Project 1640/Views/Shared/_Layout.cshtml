@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Project_1640</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Project_1640.styles.css" asp-append-version="true" />
+    <link href='https://css.gg/arrow-left-r.css' rel='stylesheet'>
+    <link href='https://css.gg/trash.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-primary bg-gradient bg-opacity-75 text-white mb-5 position-fixed w-100 " style="top:0">
+            <div class="container-fluid">
+                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-2">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="AppRoles" asp-action="Index">Role</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white " asp-action="Privacy">Staff Management</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white" href="#">Department Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Category Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Ideas</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <a class="nav-item text-decoration-none h-100 text-primary">
+                    <partial name="_LoginPartial"/>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container" style="margin-top:6rem">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
