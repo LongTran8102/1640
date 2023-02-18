@@ -10431,19 +10431,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\pekoi\\Documents\\Desktop\\1640\\Project 1640\\Project 1640.csproj",
+      "projectUniqueName": "C:\\Users\\pekoi\\Documents\\Desktop\\1640 - Department\\Project 1640\\Project 1640.csproj",
       "projectName": "Project 1640",
-      "projectPath": "C:\\Users\\pekoi\\Documents\\Desktop\\1640\\Project 1640\\Project 1640.csproj",
+      "projectPath": "C:\\Users\\pekoi\\Documents\\Desktop\\1640 - Department\\Project 1640\\Project 1640.csproj",
       "packagesPath": "C:\\Users\\pekoi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pekoi\\Documents\\Desktop\\1640\\Project 1640\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Máy tính\\Project 1640\\Project 1640\\Project 1640\\Project 1640.csproj",
-      "projectName": "Project 1640",
-      "projectPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\Project 1640\\Project 1640\\Project 1640\\Project 1640.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\Project 1640\\Project 1640\\Project 1640\\obj\\",
->>>>>>> LongTran
+      "outputPath": "C:\\Users\\pekoi\\Documents\\Desktop\\1640 - Department\\Project 1640\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -10522,11 +10514,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
->>>>>>> LongTran
       }
     }
   }
