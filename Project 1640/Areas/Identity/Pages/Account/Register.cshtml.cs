@@ -20,8 +20,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using Project_1640.Data;
-using Project_1640.Migrations;
 using Project_1640.Models;
 
 namespace Project_1640.Areas.Identity.Pages.Account
@@ -35,7 +33,6 @@ namespace Project_1640.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -43,8 +40,7 @@ namespace Project_1640.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            RoleManager<IdentityRole> roleManager,
-            ApplicationDbContext context)
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -53,7 +49,6 @@ namespace Project_1640.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _roleManager = roleManager;
-            _context = context;
         }
 
         /// <summary>
@@ -97,9 +92,6 @@ namespace Project_1640.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
-            [Display(Name = "Department Id")]
-            public int DepartmentId { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -124,33 +116,20 @@ namespace Project_1640.Areas.Identity.Pages.Account
 
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
-
-            [ValidateNever]
-            public IEnumerable<SelectListItem> DepartmentList { get; set; }
         }
 
 
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
-            List<SelectListItem> department = new List<SelectListItem> ();
-            foreach (var Department in _context.Department)
-            {
-                department.Add(new SelectListItem { Text = Department.DepartmentName, Value = Convert.ToString(Department.DepartmentId) }); 
-            }
-
             Input = new InputModel()
             {
                 RoleList = _roleManager.Roles.Select(x => x.Name).Select(i => new SelectListItem
                 {
                     Text = i,
                     Value = i
-                }),
-
-                DepartmentList = department
+                })
             };
         }
 
@@ -167,9 +146,6 @@ namespace Project_1640.Areas.Identity.Pages.Account
                 
                 user.Firstname = Input.Firstname;
                 user.Lastname = Input.Lastname;
-                user.DepartmentId = Input.DepartmentId;
-
-
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
