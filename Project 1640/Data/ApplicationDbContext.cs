@@ -13,6 +13,5 @@ namespace Project_1640.Data
         }
         public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<Project_1640.Models.Category> Category { get; set; }
-        public DbSet<Department>  Department { get; set; }
     }
 }

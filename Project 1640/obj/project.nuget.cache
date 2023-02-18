@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hAEL1R9q3qfIJYS9Q/4P6n6t4SiSSpgLGRZHYV0yysTzkCYteoF4RGl93Ecfn0Oz25ASTsceafNap4avT/Q2ug==",
+  "dgSpecHash": "upvFXhEHtrxk362LmcmMI1N/Mt0j90rt+0AqazBxDNh2nJuXWIqNDyUELclzsEr7z5rJdmdrJB54AXRtRTbwhg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\Project 1640.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\Khoa\\Project 1640\\Project 1640.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
