@@ -9,11 +9,7 @@ using System.Collections.Generic;
 
 namespace Project_1640.Controllers
 {
-<<<<<<< HEAD
-    
-=======
     //[Authorize(Roles = "Admin")]
->>>>>>> 966e45f38d108640538bfb026a22d5c4c6c4295b
     public class AppRolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

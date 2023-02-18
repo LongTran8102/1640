@@ -10431,19 +10431,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Máy tính\\Khoa\\Project 1640\\Project 1640.csproj",
-      "projectName": "Project 1640",
-      "projectPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\Khoa\\Project 1640\\Project 1640.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\Khoa\\Project 1640\\obj\\",
-=======
       "projectUniqueName": "C:\\Users\\pekoi\\Documents\\Desktop\\1640\\Project 1640\\Project 1640.csproj",
       "projectName": "Project 1640",
       "projectPath": "C:\\Users\\pekoi\\Documents\\Desktop\\1640\\Project 1640\\Project 1640.csproj",
       "packagesPath": "C:\\Users\\pekoi\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\pekoi\\Documents\\Desktop\\1640\\Project 1640\\obj\\",
->>>>>>> 966e45f38d108640538bfb026a22d5c4c6c4295b
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
