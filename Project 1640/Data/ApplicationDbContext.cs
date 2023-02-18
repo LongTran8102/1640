@@ -12,6 +12,11 @@ namespace Project_1640.Data
 
         }
         public DbSet<ApplicationUser> applicationUsers { get; set; }
+<<<<<<< HEAD
         public DbSet<Project_1640.Models.Category> Category { get; set; }
+=======
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Department> Department { get; set; }
+>>>>>>> 966e45f38d108640538bfb026a22d5c4c6c4295b
     }
 }
