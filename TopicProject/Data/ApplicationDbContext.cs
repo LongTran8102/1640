@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TopicProject.Models;
+using Project_1640.Models;
 
-namespace TopicProject.Data
+namespace Project_1640.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
         }

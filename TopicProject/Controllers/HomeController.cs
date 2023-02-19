@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using TopicProject.Models;
 
-namespace TopicProject.Controllers
+namespace Project_1640.Controllers
 {
     public class HomeController : Controller
     {

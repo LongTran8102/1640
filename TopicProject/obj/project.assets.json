@@ -10515,11 +10515,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Máy tính\\TopicProject\\TopicProject.csproj",
-      "projectName": "TopicProject",
-      "projectPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\TopicProject\\TopicProject.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\TopicProject\\Project 1640.csproj",
+      "projectName": "Project 1640",
+      "projectPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\TopicProject\\Project 1640.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\TopicProject\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\TopicProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

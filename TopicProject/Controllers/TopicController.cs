@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TopicProject.Data;
-using TopicProject.Models;
+using Project_1640.Data;
+using Project_1640.Models;
 
-namespace TopicProject.Controllers
+namespace Project_1640.Controllers
 {
     public class TopicController : Controller
     {
@@ -49,7 +49,7 @@ namespace TopicProject.Controllers
             //var topicFromDbFirst = _db.Topics.FirstOrDefault(u => u.Id == id);//
             //var topicFromDbSingle = _db.Topics.SingleOrDefault(u => u.Id == id);//
 
-            if(topicFromDb == null)
+            if (topicFromDb == null)
             {
                 return NotFound();
             }
@@ -90,12 +90,12 @@ namespace TopicProject.Controllers
             return View(topicFromDb);
         }
         //POST
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
             var obj = _db.Topics.Find(id);
-            if(obj == null)
+            if (obj == null)
             {
                 return NotFound();
             }
@@ -103,8 +103,8 @@ namespace TopicProject.Controllers
             _db.SaveChanges();
             TempData["success"] = "Topic Deleted Successfully";
             return RedirectToAction("Index");
-            }
-            
         }
-    
+
+    }
+
 }

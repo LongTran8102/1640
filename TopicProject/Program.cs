@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TopicProject.Data;
+using Project_1640.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
