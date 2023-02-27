@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "exLk/zsrWp5m2FusiiYwZDkCxwYWmnycdfH5101XgmSK1o2m4JZjSsw27IKm/jFPA1LN9u2OaPPfUtHeRaEmow==",
+  "dgSpecHash": "PZ45OFKimGHzoc0srq614KZeYYck7JNaaV7qy8/oifnH85ZDRAhKQAJ0IMdNQh04gWTNSHEXEiG4JOnKIbi7Ng==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pekoi\\Documents\\Desktop\\1640 - Topic + Front-end 2nd\\Project 1640\\Project 1640.csproj",
+  "projectFilePath": "C:\\Users\\pekoi\\Documents\\Desktop\\1640\\Project 1640\\Project 1640.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pekoi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\pekoi\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
