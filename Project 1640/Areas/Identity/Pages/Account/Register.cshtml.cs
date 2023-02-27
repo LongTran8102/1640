@@ -150,7 +150,7 @@ namespace Project_1640.Areas.Identity.Pages.Account
                     Value = i
                 }),
 
-                DepartmentList = department
+                DepartmentList = department,
             };
         }
 
@@ -168,8 +168,6 @@ namespace Project_1640.Areas.Identity.Pages.Account
                 user.Firstname = Input.Firstname;
                 user.Lastname = Input.Lastname;
                 user.DepartmentId = Input.DepartmentId;
-
-
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -195,12 +193,14 @@ namespace Project_1640.Areas.Identity.Pages.Account
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
+
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
                 }
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
@@ -217,6 +217,7 @@ namespace Project_1640.Areas.Identity.Pages.Account
             {
                 return Activator.CreateInstance<ApplicationUser>();
             }
+
             catch
             {
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
@@ -231,6 +232,7 @@ namespace Project_1640.Areas.Identity.Pages.Account
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
+
             return (IUserEmailStore<IdentityUser>)_userStore;
         }
     }

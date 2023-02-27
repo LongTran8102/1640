@@ -24,6 +24,13 @@
             </div>
 
             <div class="form-floating mt-1">
+                <select asp-for="Input.DepartmentId" asp-items="@Model.Input.DepartmentList" class="form-select" style="padding-top: .625rem" aria-required="true">
+                    <option disabled selected>Select Department</option>
+                </select>
+                <span asp-validation-for="Input.DepartmentId" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mt-1">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
                 <label asp-for="Input.Email"></label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
