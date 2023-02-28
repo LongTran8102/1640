@@ -1,25 +1,22 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Project_1640.Data;
 using Project_1640.Models;
 using System.Diagnostics;
 
 namespace Project_1640.Controllers
 {
     
-
     public class HomeController : Controller
-    {       
+    {
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
-        {            
+        {
             _logger = logger;
         }
 
         public IActionResult Index()
-        {           
+        {
             return View();
         }
 

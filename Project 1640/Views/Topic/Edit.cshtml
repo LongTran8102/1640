@@ -1,6 +1,6 @@
 ﻿@model Topic
 <form method="post" asp-action="Edit">
-    <div class="border p-3 mt-4">
+    <div class="border p-3 mt-4 mx-auto" style="width:40%">
         <div class="row pb-2">
             <h2 class="text-primary">Edit Category</h2>
             <hr/>
@@ -20,10 +20,11 @@
             <input asp-for="FinalClosureDate" class="form-control" />
             <span asp-validation-for="FinalClosureDate" class="text-danger"></span>
         </div>
-        <button type="submit" class"btn btn-primary" style="width:150px">Update</button>
-        <a asp-controller="Topic" asp-action="Index" class="btn btn-secondary" style="width:150px">
-            Back 
+        <a asp-controller="Topic" asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
+            <i class="bi bi-arrow-left-short align-middle"></i>
+            Back
         </a>
+        <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
     </div>
 </form>
 

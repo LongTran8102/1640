@@ -1,6 +1,6 @@
 ﻿@model Topic
 <form method="post">
-    <div class="border p-3 mt-4">
+    <div class="border p-3 mt-4 mx-auto" style="width:40%">
         <div class="row pb-2">
             <h2 class="text-primary">Create Topic</h2>
             <hr/> 
@@ -12,7 +12,7 @@
         </div>
         <div class="mb-3">
             <label asp-for="ClosureDate"></label>
-            <input asp-for="ClosureDate" class="form-control" />
+            <input asp-for="ClosureDate" class="form-control"/>
             <span asp-validation-for="ClosureDate" class="text-danger"></span>
         </div>
         <div class="mb-3">
@@ -20,10 +20,11 @@
             <input asp-for="FinalClosureDate" class="form-control" />
             <span asp-validation-for="FinalClosureDate" class="text-danger"></span>
         </div>
-        <button type="submit" class"btn btn-primary" style="width:150px">Create</button>
-        <a asp-controller="Topic" asp-action="Index" class="btn btn-secondary" style="width:150px">
+        <a asp-controller="Topic" asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
+            <i class="bi bi-arrow-left-short align-middle"></i>
             Back 
         </a>
+        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
     </div>
 </form>
 

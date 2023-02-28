@@ -15,49 +15,56 @@
         </div>
         <div class="col-6 text-end">
             <a asp-controller="Topic" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> &nbsp; Create New Topic
+                <i class="bi bi-plus d-inline-block align-middle" style="font-size: 1.25rem; vertical-align:0"></i>
+                Create New Topic
             </a>
         </div>
     </div>
     <br /><br />
-<table class="table table-bordered table-striped" style="width:100%">
-    <thead>
-        <tr>
-            <th>
-                Topic Name
-            </th>
-            <th>
-                Closure Date
-            </th>
-            <th>
-                Final Closure Date
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var obj in Model)
-        {
+    <table class="table table-hover" style="width:100%">
+        <thead>
             <tr>
-                <td width="30%">
-                    @obj.Name
-                </td>
-                <td width="40%">
-                    @obj.ClosureDate
-                </td>
-                <td width="40%">
-                    @obj.FinalClosureDate
-                </td>
-                <td>
-                    <div class="w-75 btn-group" role="group">
-                        <a asp-controller="Topic" asp-action="Edit" asp-route-id="@obj.Id"
-                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
-                        <a asp-controller="Topic" asp-action="Delete" asp-route-id="@obj.Id"
-                           class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
-                    </div>
-                </td>
+                <th>
+                    Topic Name
+                </th>
+                <th>
+                    Closure Date
+                </th>
+                <th>
+                    Final Closure Date
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>
+                        @obj.Name
+                    </td>
+                    <td>
+                        @obj.ClosureDate
+                    </td>
+                    <td>
+                        @obj.FinalClosureDate
+                    </td>
+                    <td width="24%" class="text-center">
+                        <div class="w-75 btn-group border-start" role="button">
+                            <a asp-controller="Topic" asp-action="Edit" asp-route-id="@obj.Id"
+                           class="btn btn-outline-primary rounded mx-3 align-middle">
+                                <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+                                Edit
+                            </a>
+                            <a asp-controller="Topic" asp-action="Delete" asp-route-id="@obj.Id"
+                           class="btn btn-outline-danger rounded">
+                                <i class="bi bi-trash align-middle d-inline-block" style="font-size:20px"></i>
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 

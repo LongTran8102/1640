@@ -4,12 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Department List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Departments" asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus d-inline-block align-middle" style="font-size: 1.25rem"></i>
+                Create New Department
+            </a>
+        </div>
+    </div>
+    <br /><br />
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
@@ -24,10 +32,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DepartmentName)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DepartmentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DepartmentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DepartmentId">Delete</a>
+            <td class="text-center">
+                <div class="btn-group border-start" role="button">
+                    <a asp-action="Edit" asp-route-id="@item.DepartmentId" class="btn btn-outline-primary rounded mx-3 align-middle">
+                    <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+                    Edit
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.DepartmentId" class="btn btn-outline-danger rounded align-middle">
+                    <i class="bi bi-trash align-middle" style="font-size:20px"></i>
+                    Delete
+                    </a>
+                </div>
             </td>
         </tr>
 }
