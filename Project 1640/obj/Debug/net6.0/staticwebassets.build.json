@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "V7oduh9flbPgsoEzDhoL1nShxCEoOob/JeG5oDJ0ghw=",
+  "Hash": "WoL/ojlae9clcK5PkVC0r1dVKj+UPqI8mdqJvPdeVZc=",
   "Source": "Project 1640",
   "BasePath": "_content/Project 1640",
   "Mode": "Default",
@@ -2242,6 +2242,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UserFiles\\c737d4fc-e8d2-4f40-9629-09fea4653f53-paste-wallpaper-20052202363313.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\f82c3714-3de8-45bc-9423-bbb4f2fd7d8f-paste-wallpaper-20052202363313.jpg",
+      "SourceId": "Project 1640",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\",
+      "BasePath": "_content/Project 1640",
+      "RelativePath": "UserFiles/f82c3714-3de8-45bc-9423-bbb4f2fd7d8f-paste-wallpaper-20052202363313.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserFiles\\f82c3714-3de8-45bc-9423-bbb4f2fd7d8f-paste-wallpaper-20052202363313.jpg"
     }
   ]
 }
