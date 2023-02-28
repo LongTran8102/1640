@@ -272,8 +272,11 @@ namespace Project_1640.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdeaId"), 1L, 1);
 
-                    b.Property<string>("FilePath")
+                    b.Property<string>("CategoryId")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdeaDescription")
@@ -281,6 +284,10 @@ namespace Project_1640.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdeaName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

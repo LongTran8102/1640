@@ -1,22 +1,12 @@
 ﻿@model Project_1640.ViewModels.IdeaViewModel
 
 @{
-    ViewBag.Title = "Create Idea";
+    ViewData["Title"] = "Index";
 }
-<form enctype="multipart/form-data" asp-controller="Idea" asp-action="Index" method="post" class="mt-5 offset-3 col-6 border border-primary pt-2 pb-2 px-2 py-2">
-    <div>
-        <label asp-for="IdeaName" class="form-label"></label>
-        <input asp-for="IdeaName" class="form-control" />
-        <span asp-validation-for="IdeaName" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="IdeaDescription" class="form-label"></label>
-        <input asp-for="IdeaDescription" class="form-control" />
-        <span asp-validation-for="IdeaDescription" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="AttachFile" class="form-label"></label>
-        <input asp-for="AttachFile" class="form-control" />
-    </div>
-    <div><button type="submit" class="btn btn-primary mt-2">Create</button></div>
-</form>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@ViewBag.UserId
