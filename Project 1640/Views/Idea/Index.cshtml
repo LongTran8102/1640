@@ -1,12 +1,62 @@
-﻿@model Project_1640.ViewModels.IdeaViewModel
+﻿@model IEnumerable<Project_1640.Models.Idea>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-@ViewBag.UserId
+<div class="row pt-4">
+    <div class="col-6">
+        <h2 class="text-primary">Department List</h2>
+    </div>    
+</div>
+<br />
+<br />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdeaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdeaDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilePath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdeaName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdeaDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FilePath)
+                </td>
+                <td class="text-center">
+                    <div class="btn-group border-start" role="button">
+                        <a asp-action="Edit" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded mx-3 align-middle">
+                            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+                            Edit
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">
+                            <i class="bi bi-trash align-middle" style="font-size:20px"></i>
+                            Details
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">
+                            <i class="bi bi-trash align-middle" style="font-size:20px"></i>
+                            Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -32,7 +32,8 @@ namespace Project_1640.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await context.Ideas.ToListAsync());
+            
         }
 
         [HttpGet]
@@ -109,7 +110,7 @@ namespace Project_1640.Controllers
 
         private string UploadFile(IFormFile formFile)
         {
-            string UniqueFileName = Guid.NewGuid().ToString() + "-" + formFile.FileName;
+            string UniqueFileName = formFile.FileName;
             string TargetPath = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", UniqueFileName);
             using (var stream = new FileStream(TargetPath, FileMode.Create))
             {
@@ -127,6 +128,57 @@ namespace Project_1640.Controllers
                     Topic_Id = Convert.ToString(topicId.Id);
                 }
             }
+        }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || context.Department == null)
+            {
+                return NotFound();
+            }
+
+            var idea = await context.Ideas
+                .FirstOrDefaultAsync(m => m.IdeaId == id);
+            if (idea == null)
+            {
+                return NotFound();
+            }
+
+            return View(idea);
+        }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || context.Ideas == null)
+            {
+                return NotFound();
+            }
+
+            var department = await context.Ideas
+                .FirstOrDefaultAsync(m => m.IdeaId == id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+
+            return View(department);
+        }
+
+        // POST: Departments/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (context.Ideas == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Department'  is null.");
+            }
+            var department = await context.Ideas.FindAsync(id);
+            if (department != null)
+            {
+                context.Ideas.Remove(department);
+            }
+
+            await context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

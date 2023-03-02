@@ -1,0 +1,36 @@
+﻿@model Project_1640.Models.Idea
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdeaName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdeaName)
+        </dd>
+        <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.IdeaDescription)
+        </dt>        
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdeaDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FilePath)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdeaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

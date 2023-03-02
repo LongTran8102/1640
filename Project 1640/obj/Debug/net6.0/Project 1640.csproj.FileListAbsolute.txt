@@ -3615,3 +3615,6 @@ C:\Users\USER\Desktop\1640\Project 1640\obj\Debug\net6.0\scopedcss\projectbundle
 C:\Users\USER\Desktop\1640\Project 1640\obj\Debug\net6.0\Project 1640.csproj.CopyComplete
 C:\Users\USER\Desktop\1640\Project 1640\obj\Debug\net6.0\Project 1640.genruntimeconfig.cache
 C:\Users\USER\Desktop\1640\Project 1640\obj\Debug\net6.0\ref\Project 1640.dll
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\MailKit.dll
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\MimeKit.dll
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\BouncyCastle.Crypto.dll
