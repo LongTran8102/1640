@@ -7,8 +7,12 @@ using Project_1640.Data;
 using Project_1640.Migrations;
 using Project_1640.Models;
 using Project_1640.ViewModels;
+using System.Net.Mail;
 using System.Security.Claims;
 using Idea = Project_1640.Models.Idea;
+using MailKit.Net.Smtp;
+using MimeKit;
+using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace Project_1640.Controllers
 {
@@ -26,12 +30,11 @@ namespace Project_1640.Controllers
             webHostEnvironment = _webHostEnvironment;
             context = _context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-
-            
             return View();
         }
+
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Create()
@@ -41,8 +44,9 @@ namespace Project_1640.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IdeaViewModel model, int id)
+        public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, int id)
         {
+            //Create Idea
             GetTopicId(id);
             DropDownList();            
             Idea idea = new Idea()
@@ -61,6 +65,34 @@ namespace Project_1640.Controllers
 
             context.Ideas.Add(idea);
             context.SaveChanges();
+
+            //Send Mail
+            var userId = userManager.GetUserId(HttpContext.User); 
+            foreach (var user in context.Users)
+            {
+                if(user.Id == userId)
+                {
+                    emailData.To = user.Email;
+                }
+            }
+
+            emailData.From = "luandtgcs200115@fpt.edu.vn";
+            emailData.Password = "Conso123!";
+            emailData.Body = "Thanks for submitting";
+
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse(emailData.From));
+            email.To.Add(MailboxAddress.Parse(emailData.To));
+            email.Subject = "Create Idea Success Notification";
+            email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = emailData.Body };
+
+            using var smtp = new SmtpClient();
+            //smtp.Connect("smtp.ethereal.email", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            smtp.Authenticate(emailData.From, emailData.Password);
+            smtp.Send(email);
+            smtp.Disconnect(true);
+
             return RedirectToAction("Index");
 
         }

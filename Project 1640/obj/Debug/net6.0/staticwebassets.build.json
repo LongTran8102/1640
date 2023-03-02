@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wOmLrlVQbzGZVOJHB+EDVwuSfaMVNVyAt4zshC47JOo=",
+  "Hash": "+ckt+ZJBjhBndvq+LyzT8M/5VxsCIKnMWSer0VYa0Yg=",
   "Source": "Project 1640",
   "BasePath": "_content/Project 1640",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "Project 1640\\wwwroot",
       "Source": "Project 1640",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "Pattern": "**"
     }
@@ -1037,10 +1037,10 @@
       "OriginalItemSpec": "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\6.0.14\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Project 1640.styles.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Project 1640.styles.css",
       "SourceId": "Project 1640",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "Project 1640.styles.css",
       "AssetKind": "All",
@@ -1051,13 +1051,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Project 1640.styles.css"
+      "OriginalItemSpec": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Project 1640.styles.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Project 1640.bundle.scp.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Project 1640.bundle.scp.css",
       "SourceId": "Project 1640",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "Project 1640.bundle.scp.css",
       "AssetKind": "All",
@@ -1068,13 +1068,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Project 1640.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Project 1640.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\css\\site.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -1088,10 +1088,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\favicon.ico",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -1105,10 +1105,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\js\\site.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -1122,10 +1122,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -1139,10 +1139,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -1156,10 +1156,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -1173,10 +1173,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -1190,10 +1190,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -1207,10 +1207,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -1224,10 +1224,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -1241,10 +1241,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -1258,10 +1258,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -1275,10 +1275,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -1292,10 +1292,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -1309,10 +1309,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -1326,10 +1326,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -1343,10 +1343,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -1360,10 +1360,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -1377,10 +1377,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -1394,10 +1394,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -1411,10 +1411,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -1428,10 +1428,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -1445,10 +1445,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -1462,10 +1462,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -1479,10 +1479,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -1496,10 +1496,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -1513,10 +1513,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -1530,10 +1530,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -1547,10 +1547,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -1564,10 +1564,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -1581,10 +1581,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -1598,10 +1598,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -1615,10 +1615,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -1632,10 +1632,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -1649,10 +1649,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -1666,10 +1666,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -1683,10 +1683,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -1700,10 +1700,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -1717,10 +1717,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -1734,10 +1734,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -1751,10 +1751,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -1768,10 +1768,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -1785,10 +1785,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -1802,10 +1802,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -1819,10 +1819,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -1836,10 +1836,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -1853,10 +1853,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -1870,10 +1870,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -1887,10 +1887,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -1904,10 +1904,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -1921,10 +1921,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -1938,10 +1938,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -1955,10 +1955,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -1972,10 +1972,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -1989,10 +1989,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -2006,10 +2006,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -2023,10 +2023,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -2040,10 +2040,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -2057,10 +2057,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -2074,10 +2074,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -2091,12 +2091,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\12b5b9e8-bf54-419f-a5c4-cc3dc3470bd0-paste-wallpaper-20052202363313.jpg",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\UserFiles\\3741f7ed-ae3c-4482-b07f-c687a1f72af7-InkedERD.jpg",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/12b5b9e8-bf54-419f-a5c4-cc3dc3470bd0-paste-wallpaper-20052202363313.jpg",
+      "RelativePath": "UserFiles/3741f7ed-ae3c-4482-b07f-c687a1f72af7-InkedERD.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2105,15 +2105,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\12b5b9e8-bf54-419f-a5c4-cc3dc3470bd0-paste-wallpaper-20052202363313.jpg"
+      "OriginalItemSpec": "wwwroot\\UserFiles\\3741f7ed-ae3c-4482-b07f-c687a1f72af7-InkedERD.jpg"
     },
     {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\15001f9e-25a0-4803-86d6-b8169cd04787-InkedERD.jpg",
+      "Identity": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\UserFiles\\46b9403b-6601-4180-b0f7-708ebed78c20-InkedERD.jpg",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/15001f9e-25a0-4803-86d6-b8169cd04787-InkedERD.jpg",
+      "RelativePath": "UserFiles/46b9403b-6601-4180-b0f7-708ebed78c20-InkedERD.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2122,330 +2122,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\15001f9e-25a0-4803-86d6-b8169cd04787-InkedERD.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\24b9ca30-a9c7-4762-95a2-3627f7bc4e6a-Topup Grade Guide.docx",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/24b9ca30-a9c7-4762-95a2-3627f7bc4e6a-Topup Grade Guide.docx",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\24b9ca30-a9c7-4762-95a2-3627f7bc4e6a-Topup Grade Guide.docx"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\3f05663d-4b37-439f-9eb2-c21ca5aba6a7-KĨ-NĂNG-BIÊN-PHIÊN-DỊCH.docx",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/3f05663d-4b37-439f-9eb2-c21ca5aba6a7-KĨ-NĂNG-BIÊN-PHIÊN-DỊCH.docx",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\3f05663d-4b37-439f-9eb2-c21ca5aba6a7-KĨ-NĂNG-BIÊN-PHIÊN-DỊCH.docx"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\4bb03b4b-0578-4313-a273-d2f6e46751a2-InkedERD.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/4bb03b4b-0578-4313-a273-d2f6e46751a2-InkedERD.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\4bb03b4b-0578-4313-a273-d2f6e46751a2-InkedERD.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\533c75fd-a6a4-479f-be7f-cdb7bc4aee18-paste-wallpaper-20052202363313.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/533c75fd-a6a4-479f-be7f-cdb7bc4aee18-paste-wallpaper-20052202363313.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\533c75fd-a6a4-479f-be7f-cdb7bc4aee18-paste-wallpaper-20052202363313.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\57b8bb4a-9aaa-4f68-afe5-4d55b3a37973-Nhận xét của cơ quan thực tập - Trần Phan Phi Long - GCS200214.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/57b8bb4a-9aaa-4f68-afe5-4d55b3a37973-Nhận xét của cơ quan thực tập - Trần Phan Phi Long - GCS200214.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\57b8bb4a-9aaa-4f68-afe5-4d55b3a37973-Nhận xét của cơ quan thực tập - Trần Phan Phi Long - GCS200214.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\6603354f-6742-4982-8ca3-43294c545ec2-paste-wallpaper-20052202363313.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/6603354f-6742-4982-8ca3-43294c545ec2-paste-wallpaper-20052202363313.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\6603354f-6742-4982-8ca3-43294c545ec2-paste-wallpaper-20052202363313.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\801a1e36-729d-4571-ac02-7ea1dafe1d98-CamScanner-12-30-2022-13.41.pdf",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/801a1e36-729d-4571-ac02-7ea1dafe1d98-CamScanner-12-30-2022-13.41.pdf",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\801a1e36-729d-4571-ac02-7ea1dafe1d98-CamScanner-12-30-2022-13.41.pdf"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\84b71d36-2030-46de-b8bb-02be1253e9f8-CamScanner-12-30-2022-13.41.pdf",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/84b71d36-2030-46de-b8bb-02be1253e9f8-CamScanner-12-30-2022-13.41.pdf",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\84b71d36-2030-46de-b8bb-02be1253e9f8-CamScanner-12-30-2022-13.41.pdf"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\8b6a2681-c483-4fc1-9044-0348df738798-paste-wallpaper-20052202363313.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/8b6a2681-c483-4fc1-9044-0348df738798-paste-wallpaper-20052202363313.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\8b6a2681-c483-4fc1-9044-0348df738798-paste-wallpaper-20052202363313.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\92dd70e3-8d65-47a4-a109-56572ed51863-paste-wallpaper-20052202363313.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/92dd70e3-8d65-47a4-a109-56572ed51863-paste-wallpaper-20052202363313.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\92dd70e3-8d65-47a4-a109-56572ed51863-paste-wallpaper-20052202363313.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\9b10f02d-d884-4004-9126-1cf857661171-COMP1640 Coursework 2023.01.doc",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/9b10f02d-d884-4004-9126-1cf857661171-COMP1640 Coursework 2023.01.doc",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\9b10f02d-d884-4004-9126-1cf857661171-COMP1640 Coursework 2023.01.doc"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\b03e616a-76d3-4142-b120-2ac670706084-InkedERD.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/b03e616a-76d3-4142-b120-2ac670706084-InkedERD.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\b03e616a-76d3-4142-b120-2ac670706084-InkedERD.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\b1368f6a-2df7-4f68-9b86-70189d193495-CamScanner-12-30-2022-13.41.pdf",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/b1368f6a-2df7-4f68-9b86-70189d193495-CamScanner-12-30-2022-13.41.pdf",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\b1368f6a-2df7-4f68-9b86-70189d193495-CamScanner-12-30-2022-13.41.pdf"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\c737d4fc-e8d2-4f40-9629-09fea4653f53-paste-wallpaper-20052202363313.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/c737d4fc-e8d2-4f40-9629-09fea4653f53-paste-wallpaper-20052202363313.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\c737d4fc-e8d2-4f40-9629-09fea4653f53-paste-wallpaper-20052202363313.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\c9286d0a-05f8-40c8-888f-7de9bac377cf-InkedERD.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/c9286d0a-05f8-40c8-888f-7de9bac377cf-InkedERD.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\c9286d0a-05f8-40c8-888f-7de9bac377cf-InkedERD.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\d0f4d348-a679-4dd1-97d4-9a45364baf1c-InkedERD.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/d0f4d348-a679-4dd1-97d4-9a45364baf1c-InkedERD.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\d0f4d348-a679-4dd1-97d4-9a45364baf1c-InkedERD.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\d570546f-709c-4b31-84e7-445267ed8577-InkedERD.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/d570546f-709c-4b31-84e7-445267ed8577-InkedERD.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\d570546f-709c-4b31-84e7-445267ed8577-InkedERD.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\f2e3649e-81a9-45a1-8cd1-a615b31aa8bf-InkedERD.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/f2e3649e-81a9-45a1-8cd1-a615b31aa8bf-InkedERD.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\f2e3649e-81a9-45a1-8cd1-a615b31aa8bf-InkedERD.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\UserFiles\\f82c3714-3de8-45bc-9423-bbb4f2fd7d8f-paste-wallpaper-20052202363313.jpg",
-      "SourceId": "Project 1640",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\USER\\Downloads\\Long\\Long\\Project 1640\\wwwroot\\",
-      "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/f82c3714-3de8-45bc-9423-bbb4f2fd7d8f-paste-wallpaper-20052202363313.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\f82c3714-3de8-45bc-9423-bbb4f2fd7d8f-paste-wallpaper-20052202363313.jpg"
+      "OriginalItemSpec": "wwwroot\\UserFiles\\46b9403b-6601-4180-b0f7-708ebed78c20-InkedERD.jpg"
     }
   ]
 }

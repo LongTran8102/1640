@@ -976,12 +976,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Project 1640.bundle.scp.css))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\12b5b9e8-bf54-419f-a5c4-cc3dc3470bd0-paste-wallpaper-20052202363313.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\3741f7ed-ae3c-4482-b07f-c687a1f72af7-InkedERD.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Project 1640</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/12b5b9e8-bf54-419f-a5c4-cc3dc3470bd0-paste-wallpaper-20052202363313.jpg</RelativePath>
+      <RelativePath>UserFiles/3741f7ed-ae3c-4482-b07f-c687a1f72af7-InkedERD.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -990,14 +990,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\12b5b9e8-bf54-419f-a5c4-cc3dc3470bd0-paste-wallpaper-20052202363313.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\3741f7ed-ae3c-4482-b07f-c687a1f72af7-InkedERD.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\15001f9e-25a0-4803-86d6-b8169cd04787-InkedERD.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\46b9403b-6601-4180-b0f7-708ebed78c20-InkedERD.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Project 1640</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/15001f9e-25a0-4803-86d6-b8169cd04787-InkedERD.jpg</RelativePath>
+      <RelativePath>UserFiles/46b9403b-6601-4180-b0f7-708ebed78c20-InkedERD.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1006,311 +1006,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\15001f9e-25a0-4803-86d6-b8169cd04787-InkedERD.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\24b9ca30-a9c7-4762-95a2-3627f7bc4e6a-Topup Grade Guide.docx))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/24b9ca30-a9c7-4762-95a2-3627f7bc4e6a-Topup Grade Guide.docx</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\24b9ca30-a9c7-4762-95a2-3627f7bc4e6a-Topup Grade Guide.docx))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\3f05663d-4b37-439f-9eb2-c21ca5aba6a7-KĨ-NĂNG-BIÊN-PHIÊN-DỊCH.docx))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/3f05663d-4b37-439f-9eb2-c21ca5aba6a7-KĨ-NĂNG-BIÊN-PHIÊN-DỊCH.docx</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\3f05663d-4b37-439f-9eb2-c21ca5aba6a7-KĨ-NĂNG-BIÊN-PHIÊN-DỊCH.docx))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\4bb03b4b-0578-4313-a273-d2f6e46751a2-InkedERD.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/4bb03b4b-0578-4313-a273-d2f6e46751a2-InkedERD.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\4bb03b4b-0578-4313-a273-d2f6e46751a2-InkedERD.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\533c75fd-a6a4-479f-be7f-cdb7bc4aee18-paste-wallpaper-20052202363313.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/533c75fd-a6a4-479f-be7f-cdb7bc4aee18-paste-wallpaper-20052202363313.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\533c75fd-a6a4-479f-be7f-cdb7bc4aee18-paste-wallpaper-20052202363313.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\57b8bb4a-9aaa-4f68-afe5-4d55b3a37973-Nhận xét của cơ quan thực tập - Trần Phan Phi Long - GCS200214.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/57b8bb4a-9aaa-4f68-afe5-4d55b3a37973-Nhận xét của cơ quan thực tập - Trần Phan Phi Long - GCS200214.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\57b8bb4a-9aaa-4f68-afe5-4d55b3a37973-Nhận xét của cơ quan thực tập - Trần Phan Phi Long - GCS200214.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\6603354f-6742-4982-8ca3-43294c545ec2-paste-wallpaper-20052202363313.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/6603354f-6742-4982-8ca3-43294c545ec2-paste-wallpaper-20052202363313.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\6603354f-6742-4982-8ca3-43294c545ec2-paste-wallpaper-20052202363313.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\801a1e36-729d-4571-ac02-7ea1dafe1d98-CamScanner-12-30-2022-13.41.pdf))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/801a1e36-729d-4571-ac02-7ea1dafe1d98-CamScanner-12-30-2022-13.41.pdf</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\801a1e36-729d-4571-ac02-7ea1dafe1d98-CamScanner-12-30-2022-13.41.pdf))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\84b71d36-2030-46de-b8bb-02be1253e9f8-CamScanner-12-30-2022-13.41.pdf))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/84b71d36-2030-46de-b8bb-02be1253e9f8-CamScanner-12-30-2022-13.41.pdf</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\84b71d36-2030-46de-b8bb-02be1253e9f8-CamScanner-12-30-2022-13.41.pdf))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\8b6a2681-c483-4fc1-9044-0348df738798-paste-wallpaper-20052202363313.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/8b6a2681-c483-4fc1-9044-0348df738798-paste-wallpaper-20052202363313.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\8b6a2681-c483-4fc1-9044-0348df738798-paste-wallpaper-20052202363313.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\92dd70e3-8d65-47a4-a109-56572ed51863-paste-wallpaper-20052202363313.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/92dd70e3-8d65-47a4-a109-56572ed51863-paste-wallpaper-20052202363313.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\92dd70e3-8d65-47a4-a109-56572ed51863-paste-wallpaper-20052202363313.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\9b10f02d-d884-4004-9126-1cf857661171-COMP1640 Coursework 2023.01.doc))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/9b10f02d-d884-4004-9126-1cf857661171-COMP1640 Coursework 2023.01.doc</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\9b10f02d-d884-4004-9126-1cf857661171-COMP1640 Coursework 2023.01.doc))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\b03e616a-76d3-4142-b120-2ac670706084-InkedERD.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/b03e616a-76d3-4142-b120-2ac670706084-InkedERD.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\b03e616a-76d3-4142-b120-2ac670706084-InkedERD.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\b1368f6a-2df7-4f68-9b86-70189d193495-CamScanner-12-30-2022-13.41.pdf))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/b1368f6a-2df7-4f68-9b86-70189d193495-CamScanner-12-30-2022-13.41.pdf</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\b1368f6a-2df7-4f68-9b86-70189d193495-CamScanner-12-30-2022-13.41.pdf))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\c737d4fc-e8d2-4f40-9629-09fea4653f53-paste-wallpaper-20052202363313.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/c737d4fc-e8d2-4f40-9629-09fea4653f53-paste-wallpaper-20052202363313.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\c737d4fc-e8d2-4f40-9629-09fea4653f53-paste-wallpaper-20052202363313.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\c9286d0a-05f8-40c8-888f-7de9bac377cf-InkedERD.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/c9286d0a-05f8-40c8-888f-7de9bac377cf-InkedERD.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\c9286d0a-05f8-40c8-888f-7de9bac377cf-InkedERD.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\d0f4d348-a679-4dd1-97d4-9a45364baf1c-InkedERD.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/d0f4d348-a679-4dd1-97d4-9a45364baf1c-InkedERD.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\d0f4d348-a679-4dd1-97d4-9a45364baf1c-InkedERD.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\d570546f-709c-4b31-84e7-445267ed8577-InkedERD.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/d570546f-709c-4b31-84e7-445267ed8577-InkedERD.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\d570546f-709c-4b31-84e7-445267ed8577-InkedERD.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\f2e3649e-81a9-45a1-8cd1-a615b31aa8bf-InkedERD.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/f2e3649e-81a9-45a1-8cd1-a615b31aa8bf-InkedERD.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\f2e3649e-81a9-45a1-8cd1-a615b31aa8bf-InkedERD.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\f82c3714-3de8-45bc-9423-bbb4f2fd7d8f-paste-wallpaper-20052202363313.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Project 1640</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Project 1640</BasePath>
-      <RelativePath>UserFiles/f82c3714-3de8-45bc-9423-bbb4f2fd7d8f-paste-wallpaper-20052202363313.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\f82c3714-3de8-45bc-9423-bbb4f2fd7d8f-paste-wallpaper-20052202363313.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UserFiles\46b9403b-6601-4180-b0f7-708ebed78c20-InkedERD.jpg))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>
