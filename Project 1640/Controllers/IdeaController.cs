@@ -14,6 +14,7 @@ using MailKit.Net.Smtp;
 using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 using Microsoft.Extensions.Hosting;
+using Org.BouncyCastle.Asn1.BC;
 
 namespace Project_1640.Controllers
 {
@@ -206,21 +207,10 @@ namespace Project_1640.Controllers
                     Topic_Id = Convert.ToString(topicId.Id);
                 }
             }
-        }
-        public async Task<IActionResult> Details(int? id)
+        }        
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || context.Department == null)
-            {
-                return NotFound();
-            }
-
-            var idea = await context.Ideas
-                .FirstOrDefaultAsync(m => m.IdeaId == id);
-            if (idea == null)
-            {
-                return NotFound();
-            }
-
+            var idea = GetIdeaByID(id);            
             return View(idea);
         }
         
