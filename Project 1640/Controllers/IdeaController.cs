@@ -2,10 +2,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Project_1640.Data;
+using Project_1640.Migrations;
 using Project_1640.Models;
 using Project_1640.ViewModels;
 using System.Security.Claims;
+using Idea = Project_1640.Models.Idea;
 
 namespace Project_1640.Controllers
 {
@@ -14,6 +17,8 @@ namespace Project_1640.Controllers
         public readonly IWebHostEnvironment webHostEnvironment;        
         public readonly ApplicationDbContext context;
         public readonly UserManager<IdentityUser> userManager;
+
+        public static string Topic_Id;
 
         public IdeaController(IWebHostEnvironment _webHostEnvironment, ApplicationDbContext _context, UserManager<IdentityUser> _userManager)
         {
@@ -24,23 +29,25 @@ namespace Project_1640.Controllers
         public IActionResult Index()
         {
 
-            ViewBag.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
             return View();
         }
         [HttpGet]
-        public IActionResult Create()
-        {
+        [Authorize]
+        public async Task<IActionResult> Create()
+        {           
             DropDownList();
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(IdeaViewModel model)
+        public async Task<IActionResult> Create(IdeaViewModel model, int id)
         {
-            DropDownList();
+            GetTopicId(id);
+            DropDownList();            
             Idea idea = new Idea()
             {
-
+                TopicId = Topic_Id,
                 IdeaName = model.IdeaName,
                 IdeaDescription = model.IdeaDescription,
                 CategoryId = model.CategoryId, 
@@ -54,7 +61,7 @@ namespace Project_1640.Controllers
 
             context.Ideas.Add(idea);
             context.SaveChanges();
-            return RedirectToAction("Create");
+            return RedirectToAction("Index");
 
         }
         
@@ -68,9 +75,6 @@ namespace Project_1640.Controllers
             ViewBag.CategoryList = category;
         }
 
-
-
-
         private string UploadFile(IFormFile formFile)
         {
             string UniqueFileName = Guid.NewGuid().ToString() + "-" + formFile.FileName;
@@ -80,6 +84,17 @@ namespace Project_1640.Controllers
                 formFile.CopyTo(stream);
             }
             return UniqueFileName;
+        }
+        
+        public void GetTopicId (int id)
+        {
+            foreach(var topicId in context.Topics)
+            {
+                if(topicId.Id == id)
+                {
+                    Topic_Id = Convert.ToString(topicId.Id);
+                }
+            }
         }
     }
 }

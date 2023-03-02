@@ -18,17 +18,19 @@ namespace Project_1640.Controllers
             return View(objTopicList);
         }
         //GET
+
         public IActionResult Create()
         {
             return View();
         }
+
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Topic obj)
         {
             if (ModelState.IsValid)
-            {
+            { 
                 _db.Topics.Add(obj);
                 _db.SaveChanges();
                 TempData["success"] = "Topic Created Successfully";
@@ -45,9 +47,6 @@ namespace Project_1640.Controllers
                 return NotFound();
             }
             var topicFromDb = _db.Topics.Find(id);
-            //if the boiz need, can add//
-            //var topicFromDbFirst = _db.Topics.FirstOrDefault(u => u.Id == id);//
-            //var topicFromDbSingle = _db.Topics.SingleOrDefault(u => u.Id == id);//
 
             if(topicFromDb == null)
             {
@@ -78,9 +77,6 @@ namespace Project_1640.Controllers
                 return NotFound();
             }
             var topicFromDb = _db.Topics.Find(id);
-            //if the boiz need, can add//
-            //var topicFromDbFirst = _db.Topics.FirstOrDefault(u => u.Id == id);//
-            //var topicFromDbSingle = _db.Topics.SingleOrDefault(u => u.Id == id);//
 
             if (topicFromDb == null)
             {
