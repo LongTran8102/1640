@@ -13,6 +13,7 @@ using Idea = Project_1640.Models.Idea;
 using MailKit.Net.Smtp;
 using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
+using Microsoft.Extensions.Hosting;
 
 namespace Project_1640.Controllers
 {
@@ -23,6 +24,7 @@ namespace Project_1640.Controllers
         public readonly UserManager<IdentityUser> userManager;
 
         public static string Topic_Id;
+        public static string Idea_Id;
 
         public IdeaController(IWebHostEnvironment _webHostEnvironment, ApplicationDbContext _context, UserManager<IdentityUser> _userManager)
         {
@@ -97,7 +99,80 @@ namespace Project_1640.Controllers
             return RedirectToAction("Index");
 
         }
-        
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var idea = GetIdeaByID(id);            
+            EditIdeaViewModel model = new()
+            {                
+                IdeaName = idea.IdeaName,
+                IdeaDescription = idea.IdeaDescription,
+                CategoryId = idea.CategoryId,
+                UserId = userManager.GetUserId(HttpContext.User),
+                ExsitingFile = idea.FilePath
+            };
+            DropDownList();
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(EditIdeaViewModel model)
+        {           
+            DropDownList();
+                Idea idea = GetIdeaByID(model.ID);
+                idea.IdeaName = model.IdeaName;
+                idea.IdeaDescription = model.IdeaDescription;               
+                idea.CategoryId = model.CategoryId;
+                if (model.AttachFile != null)
+                {
+                    if (idea.FilePath != null)
+                    {
+                        string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
+                        System.IO.File.Delete(ExitingFile);
+                    }
+                    idea.FilePath = UploadFile(model.AttachFile);
+                }
+                var SelectedIdea = context.Ideas.Attach(idea);
+                SelectedIdea.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                context.SaveChanges();
+                
+                return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            if (id == null || context.Ideas == null)
+            {
+                return NotFound();
+            }
+
+            var idea = GetIdeaByID(id);
+            if (idea == null)
+            {
+                return NotFound();
+            }
+
+            return View(idea);
+        }
+        [HttpPost,ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirm(int id)
+        {
+            Idea idea = GetIdeaByID(id);
+            if (idea.FilePath != null)
+            {
+                string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
+                System.IO.File.Delete(ExitingFile);
+            }
+            Idea SelectedIdea = context.Ideas.FirstOrDefault(x => x.IdeaId == id);
+            if (SelectedIdea != null)
+            {
+                context.Ideas.Remove(SelectedIdea);
+                context.SaveChanges();
+               
+            }            
+            return RedirectToAction("index");
+        }
         public void DropDownList()
         {
             List<SelectListItem> category = new List<SelectListItem>();
@@ -118,7 +193,10 @@ namespace Project_1640.Controllers
             }
             return UniqueFileName;
         }
-        
+        public Idea GetIdeaByID(int id)
+        {
+            return context.Ideas.FirstOrDefault(x => x.IdeaId == id);
+        }
         public void GetTopicId (int id)
         {
             foreach(var topicId in context.Topics)
@@ -145,40 +223,6 @@ namespace Project_1640.Controllers
 
             return View(idea);
         }
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || context.Ideas == null)
-            {
-                return NotFound();
-            }
-
-            var department = await context.Ideas
-                .FirstOrDefaultAsync(m => m.IdeaId == id);
-            if (department == null)
-            {
-                return NotFound();
-            }
-
-            return View(department);
-        }
-
-        // POST: Departments/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (context.Ideas == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Department'  is null.");
-            }
-            var department = await context.Ideas.FindAsync(id);
-            if (department != null)
-            {
-                context.Ideas.Remove(department);
-            }
-
-            await context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        
     }
 }

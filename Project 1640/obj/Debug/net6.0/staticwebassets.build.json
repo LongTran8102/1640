@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1DjKwG0bfMTDv2S+dGiJOrj6LlIRt7Egz8cq4KFfKoE=",
+  "Hash": "tAMc6DGN8T4KHrj4ze2vHUJi1zRHSsY6W6JfTsXH368=",
   "Source": "Project 1640",
   "BasePath": "_content/Project 1640",
   "Mode": "Default",
@@ -2142,12 +2142,12 @@
       "OriginalItemSpec": "wwwroot\\UserFiles\\46b9403b-6601-4180-b0f7-708ebed78c20-InkedERD.jpg"
     },
     {
-      "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\KĨ-NĂNG-BIÊN-PHIÊN-DỊCH.docx",
+      "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\paste-wallpaper-20052202363313.jpg",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/KĨ-NĂNG-BIÊN-PHIÊN-DỊCH.docx",
+      "RelativePath": "UserFiles/paste-wallpaper-20052202363313.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2156,7 +2156,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\KĨ-NĂNG-BIÊN-PHIÊN-DỊCH.docx"
+      "OriginalItemSpec": "wwwroot\\UserFiles\\paste-wallpaper-20052202363313.jpg"
     }
   ]
 }
