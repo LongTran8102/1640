@@ -24,6 +24,19 @@
         <label asp-for="AttachFile" class="form-label"></label>
         <input asp-for="AttachFile" class="form-control" />
     </div>
+    <div>
+        <input asp-for="TermsConditions" type="checkbox" />
+        <label asp-for="TermsConditions"></label>
+        <br /><span asp-validation-for="TermsConditions" class="text-danger"></span>
+    </div>
     <div><button type="submit" class="btn btn-primary mt-2">Create</button></div>
 </form>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
+<script type="text/javascript">
+    (function ($) {
+        $.validator.unobtrusive.adapters.addBool("checkboxrequired", "required");
+    }(jQuery));
+</script>
 

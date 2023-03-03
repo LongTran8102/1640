@@ -33,9 +33,10 @@ namespace Project_1640.Controllers
             webHostEnvironment = _webHostEnvironment;
             context = _context;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? pageNumber)
         {
-            return View(await context.Ideas.ToListAsync());
+            int pageSize = 5;
+            return View(PaginatedList<Idea>.Create(context.Ideas.ToList(), pageNumber ?? 1, pageSize));
         }
 
         public async Task<IActionResult> Details(int id)

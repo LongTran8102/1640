@@ -13,5 +13,10 @@ namespace Project_1640.Models
         public string TopicId { get; set; }
 
         public string? FilePath { get; set; }
+
+        internal Task<List<Idea>> ToListAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

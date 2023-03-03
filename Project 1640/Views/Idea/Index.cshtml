@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Project_1640.Models.Idea>
+﻿@model PaginatedList<Project_1640.Models.Idea>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,13 +16,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdeaName)
+                @Html.DisplayName("IdeaName")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdeaDescription)
+                @Html.DisplayName("IdeaDescription")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FilePath)
+                @Html.DisplayName("FilePath")
             </th>
             <th></th>
         </tr>
@@ -64,3 +64,13 @@
         }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex+1)" class="btn btn-default @nextDisabled">
+    Next
+</a>
