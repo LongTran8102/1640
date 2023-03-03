@@ -1,4 +1,6 @@
-﻿namespace Project_1640.ViewModels
+﻿using Project_1640.Models;
+
+namespace Project_1640.ViewModels
 {
     public class IdeaViewModel
     {

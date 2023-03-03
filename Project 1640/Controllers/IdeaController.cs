@@ -25,7 +25,7 @@ namespace Project_1640.Controllers
         public readonly UserManager<IdentityUser> userManager;
 
         public static string Topic_Id;
-        public static string Idea_Id;
+        public static string Topic_Name;
 
         public IdeaController(IWebHostEnvironment _webHostEnvironment, ApplicationDbContext _context, UserManager<IdentityUser> _userManager)
         {
@@ -36,13 +36,19 @@ namespace Project_1640.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await context.Ideas.ToListAsync());
-            
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            GetTopicName(id);
+            var idea = GetIdeaByID(id);
+            return View(idea);
         }
 
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Create()
-        {           
+        {
             DropDownList();
             return View();
         }
@@ -194,25 +200,33 @@ namespace Project_1640.Controllers
             }
             return UniqueFileName;
         }
+
         public Idea GetIdeaByID(int id)
         {
             return context.Ideas.FirstOrDefault(x => x.IdeaId == id);
         }
+
         public void GetTopicId (int id)
         {
-            foreach(var topicId in context.Topics)
+            foreach(var topic in context.Topics)
             {
-                if(topicId.Id == id)
+                if(topic.Id == id)
                 {
-                    Topic_Id = Convert.ToString(topicId.Id);
+                    Topic_Id = Convert.ToString(topic.Id);
                 }
             }
-        }        
-        public async Task<IActionResult> Details(int id)
-        {
-            var idea = GetIdeaByID(id);            
-            return View(idea);
         }
-        
+
+        public void GetTopicName(int id)
+        {
+            foreach(var topic in context.Topics)
+            {
+                if (topic.Id == id)
+                {
+                    Topic_Name = topic.Name;
+                }
+            }
+            ViewBag.TopicName = Topic_Name;
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Project_1640.Data;
 using Project_1640.Models;
+using Project_1640.ViewModels;
 
 namespace Project_1640.Controllers
 {
@@ -17,8 +19,8 @@ namespace Project_1640.Controllers
             IEnumerable<Topic> objTopicList = _db.Topics;
             return View(objTopicList);
         }
-        //GET
 
+        //GET
         public IActionResult Create()
         {
             return View();
@@ -100,7 +102,32 @@ namespace Project_1640.Controllers
             TempData["success"] = "Topic Deleted Successfully";
             return RedirectToAction("Index");
             }
-            
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _db.Topics == null)
+            {
+                return NotFound();
+            }
+
+            var topic = await _db.Topics.FirstOrDefaultAsync(m => m.Id == id);
+            List<Idea> ideas = new List<Idea>();
+
+            foreach (var idea in _db.Ideas)
+            {
+                if (id == Convert.ToInt32(idea.TopicId))
+                {
+                    ideas.Add(idea);
+                }
+            }
+
+            IdeaTopicViewModel model = new IdeaTopicViewModel();
+            model.Topics = topic;
+            model.Ideas = ideas;
+
+
+            return View(model);
         }
-    
+
+    }
+
 }
