@@ -15,6 +15,7 @@ using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 using Microsoft.Extensions.Hosting;
 using Org.BouncyCastle.Asn1.BC;
+using System.Text;
 
 namespace Project_1640.Controllers
 {
@@ -36,6 +37,7 @@ namespace Project_1640.Controllers
         public IActionResult Index(string term="", string orderBy="", int currentPage=1)
         {
             term = string.IsNullOrEmpty(term) ? "": term.ToLower();
+
             var ideaData = new IdeaViewModel();
             ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
            
@@ -59,10 +61,12 @@ namespace Project_1640.Controllers
                     break;
 
             }
+
             var totalRecords = ideas.Count();
             var pageSize = 5;
             var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
             ideas = ideas.Skip((currentPage - 1) * pageSize).Take(pageSize);
+
             ideaData.Ideas = ideas;
             //int pageSize = 5;
             //return View(PaginatedList<Idea>.Create(context.Ideas.ToList(), pageNumber ?? 1, pageSize));
@@ -72,6 +76,7 @@ namespace Project_1640.Controllers
             ideaData.PageSize = pageSize;
             ideaData.Term = term;
             ideaData.OrderBy = orderBy;
+
             return View(ideaData);
         }
 
@@ -89,13 +94,15 @@ namespace Project_1640.Controllers
             DropDownList();
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, int id)
         {
             //Create Idea
             GetTopicId(id);
-            DropDownList();            
+            DropDownList();  
+            
             Idea idea = new Idea()
             {
                 TopicId = Topic_Id,
@@ -115,10 +122,123 @@ namespace Project_1640.Controllers
             context.SaveChanges();
 
             //Send Mail
-            var userId = userManager.GetUserId(HttpContext.User); 
+            SendMail(emailData);
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var idea = GetIdeaByID(id);
+            DropDownList();
+  
+            EditIdeaViewModel model = new()
+            {                
+                IdeaName = idea.IdeaName,
+                IdeaDescription = idea.IdeaDescription,
+                CategoryId = idea.CategoryId,
+                UserId = userManager.GetUserId(HttpContext.User),
+                ExsitingFile = idea.FilePath
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(EditIdeaViewModel model)
+        {           
+            DropDownList();
+
+            Idea idea = GetIdeaByID(model.ID);
+            idea.IdeaName = model.IdeaName;
+            idea.IdeaDescription = model.IdeaDescription;               
+            idea.CategoryId = model.CategoryId;
+
+            if (model.AttachFile != null)
+            {
+                if (idea.FilePath != null)
+                {
+                    string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
+                    System.IO.File.Delete(ExitingFile);
+                }
+                idea.FilePath = UploadFile(model.AttachFile);
+            }
+
+            var SelectedIdea = context.Ideas.Attach(idea);
+            SelectedIdea.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+            context.SaveChanges();     
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            if (id == null || context.Ideas == null)
+            {
+                return NotFound();
+            }
+
+            var idea = GetIdeaByID(id);
+
+            if (idea == null)
+            {
+                return NotFound();
+            }
+            return View(idea);
+        }
+
+        [HttpPost,ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirm(int id)
+        {
+            Idea idea = GetIdeaByID(id);
+
+            if (idea.FilePath != null)
+            {
+                string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
+                System.IO.File.Delete(ExitingFile);
+            }
+            
+            if (idea != null)
+            {
+                context.Ideas.Remove(idea);
+                context.SaveChanges();
+            }            
+            return RedirectToAction("index");
+        }
+
+        public void DropDownList()
+        {
+            List<SelectListItem> category = new List<SelectListItem>();
+
+            foreach (var cat in context.Category)
+            {
+                category.Add(new SelectListItem { Text = cat.CategoryName, Value = Convert.ToString(cat.CategoryId) });
+            }
+            ViewBag.CategoryList = category;
+        }
+
+        private string UploadFile(IFormFile formFile)
+        {
+            string UniqueFileName = formFile.FileName;
+            string TargetPath = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", UniqueFileName);
+
+            using (var stream = new FileStream(TargetPath, FileMode.Create))
+            {
+                formFile.CopyTo(stream);
+            }
+            return UniqueFileName;
+        }
+
+        public void SendMail (Email emailData)
+        {
+            var userId = userManager.GetUserId(HttpContext.User);
+
             foreach (var user in context.Users)
             {
-                if(user.Id == userId)
+                if (user.Id == userId)
                 {
                     emailData.To = user.Email;
                 }
@@ -135,108 +255,10 @@ namespace Project_1640.Controllers
             email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = emailData.Body };
 
             using var smtp = new SmtpClient();
-            //smtp.Connect("smtp.ethereal.email", 587, MailKit.Security.SecureSocketOptions.StartTls);
             smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
             smtp.Authenticate(emailData.From, emailData.Password);
             smtp.Send(email);
             smtp.Disconnect(true);
-
-            return RedirectToAction("Index");
-
-        }
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            var idea = GetIdeaByID(id);            
-            EditIdeaViewModel model = new()
-            {                
-                IdeaName = idea.IdeaName,
-                IdeaDescription = idea.IdeaDescription,
-                CategoryId = idea.CategoryId,
-                UserId = userManager.GetUserId(HttpContext.User),
-                ExsitingFile = idea.FilePath
-            };
-            DropDownList();
-            return View(model);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(EditIdeaViewModel model)
-        {           
-            DropDownList();
-                Idea idea = GetIdeaByID(model.ID);
-                idea.IdeaName = model.IdeaName;
-                idea.IdeaDescription = model.IdeaDescription;               
-                idea.CategoryId = model.CategoryId;
-                if (model.AttachFile != null)
-                {
-                    if (idea.FilePath != null)
-                    {
-                        string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
-                        System.IO.File.Delete(ExitingFile);
-                    }
-                    idea.FilePath = UploadFile(model.AttachFile);
-                }
-                var SelectedIdea = context.Ideas.Attach(idea);
-                SelectedIdea.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                context.SaveChanges();
-                
-                return RedirectToAction("Index");
-        }
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            if (id == null || context.Ideas == null)
-            {
-                return NotFound();
-            }
-
-            var idea = GetIdeaByID(id);
-            if (idea == null)
-            {
-                return NotFound();
-            }
-
-            return View(idea);
-        }
-        [HttpPost,ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirm(int id)
-        {
-            Idea idea = GetIdeaByID(id);
-            if (idea.FilePath != null)
-            {
-                string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
-                System.IO.File.Delete(ExitingFile);
-            }
-            
-            if (idea != null)
-            {
-                context.Ideas.Remove(idea);
-                context.SaveChanges();
-               
-            }            
-            return RedirectToAction("index");
-        }
-        public void DropDownList()
-        {
-            List<SelectListItem> category = new List<SelectListItem>();
-            foreach (var cat in context.Category)
-            {
-                category.Add(new SelectListItem { Text = cat.CategoryName, Value = Convert.ToString(cat.CategoryId) });
-            }
-            ViewBag.CategoryList = category;
-        }
-
-        private string UploadFile(IFormFile formFile)
-        {
-            string UniqueFileName = formFile.FileName;
-            string TargetPath = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", UniqueFileName);
-            using (var stream = new FileStream(TargetPath, FileMode.Create))
-            {
-                formFile.CopyTo(stream);
-            }
-            return UniqueFileName;
         }
 
         public Idea GetIdeaByID(int id)
@@ -265,6 +287,46 @@ namespace Project_1640.Controllers
                 }
             }
             ViewBag.TopicName = Topic_Name;
+        }
+
+        public FileResult CSVFile(int id)
+        {
+            //Find idea
+            List<Idea> ideaList = new List<Idea>(); 
+
+            foreach(var idea in context.Ideas)
+            {
+                if(Convert.ToInt32(idea.TopicId) == id)
+                {
+                    ideaList.Add(idea);
+                }
+            }
+
+            string CSV = string.Empty;
+            string[] columnName = new string[] { "IdeaId","IdeaName","IdeaDescription","CreatedDate","CategoryId","TopicId","FilePath"};
+
+            foreach(var column in columnName)
+            {
+                CSV += column + ',';
+            }
+
+            CSV += "\r\n";
+
+            foreach (var idea in ideaList)
+            {
+                CSV += idea.IdeaId.ToString().Replace(",",",") + ',';
+                CSV += idea.IdeaName.Replace(",", ",") + ',';
+                CSV += idea.IdeaDescription.Replace(",", ",") + ',';
+                CSV += idea.CreatedDate.ToString().Replace(",", ",") + ',';
+                CSV += idea.CategoryId.Replace(",", ",") + ',';
+                CSV += idea.TopicId.Replace(",", ",") + ',';
+                CSV += idea.FilePath.Replace(",", ",") + ',';
+
+                CSV += "\r\n";
+            }
+
+            byte[] bytes = Encoding.UTF8.GetBytes(CSV);
+            return File(bytes, "text/csv", "IdeasList.csv");
         }
     }
 }

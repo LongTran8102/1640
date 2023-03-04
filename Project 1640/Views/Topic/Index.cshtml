@@ -70,6 +70,11 @@
                                 <i class="bi bi-trash align-middle d-inline-block" style="font-size:20px"></i>
                                 Create idea
                             </a>
+                            <a asp-controller="Idea" asp-action="CSVFile" asp-route-id="@obj.Id"
+                                class="btn btn-outline-danger rounded">
+                                <i class="bi bi-trash align-middle d-inline-block" style="font-size:20px"></i>
+                                Downdload CSV
+                            </a>
                         </div>
                     </td>
                 </tr>
