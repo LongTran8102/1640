@@ -15,6 +15,7 @@ using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 using Microsoft.Extensions.Hosting;
 using Org.BouncyCastle.Asn1.BC;
+using System.Text;
 
 namespace Project_1640.Controllers
 {
@@ -73,40 +74,15 @@ namespace Project_1640.Controllers
             {
                 idea.FilePath = UploadFile(model.AttachFile);
             }
-
             context.Ideas.Add(idea);
             context.SaveChanges();
 
-            //Send Mail
-            var userId = userManager.GetUserId(HttpContext.User); 
-            foreach (var user in context.Users)
-            {
-                if(user.Id == userId)
-                {
-                    emailData.To = user.Email;
-                }
-            }
-
-            emailData.From = "luandtgcs200115@fpt.edu.vn";
-            emailData.Password = "Conso123!";
-            emailData.Body = "Thanks for submitting";
-
-            var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(emailData.From));
-            email.To.Add(MailboxAddress.Parse(emailData.To));
-            email.Subject = "Create Idea Success Notification";
-            email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = emailData.Body };
-
-            using var smtp = new SmtpClient();
-            //smtp.Connect("smtp.ethereal.email", 587, MailKit.Security.SecureSocketOptions.StartTls);
-            smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-            smtp.Authenticate(emailData.From, emailData.Password);
-            smtp.Send(email);
-            smtp.Disconnect(true);
+            SendMail(emailData, id);
 
             return RedirectToAction("Index");
 
         }
+
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -162,6 +138,7 @@ namespace Project_1640.Controllers
 
             return View(idea);
         }
+
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirm(int id)
@@ -172,13 +149,12 @@ namespace Project_1640.Controllers
                 string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
                 System.IO.File.Delete(ExitingFile);
             }
-            Idea SelectedIdea = context.Ideas.FirstOrDefault(x => x.IdeaId == id);
-            if (SelectedIdea != null)
+            if (idea != null)
             {
-                context.Ideas.Remove(SelectedIdea);
+                context.Ideas.Remove(idea);
                 context.SaveChanges();
-               
-            }            
+            }     
+            
             return RedirectToAction("index");
         }
         public void DropDownList()
@@ -200,6 +176,36 @@ namespace Project_1640.Controllers
                 formFile.CopyTo(stream);
             }
             return UniqueFileName;
+        }
+
+        public void SendMail(Email emailData, int id)
+        {
+            //Send Mail
+            var userId = userManager.GetUserId(HttpContext.User);
+            foreach (var user in context.Users)
+            {
+                if (user.Id == userId)
+                {
+                    emailData.To = user.Email;
+                }
+            }
+
+            emailData.From = "luandtgcs200115@fpt.edu.vn";
+            emailData.Password = "Conso123!";
+            emailData.Body = "Thanks for submitting";
+
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse(emailData.From));
+            email.To.Add(MailboxAddress.Parse(emailData.To));
+            email.Subject = "Create Idea Success Notification";
+            email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = emailData.Body };
+
+            using var smtp = new SmtpClient();
+            //smtp.Connect("smtp.ethereal.email", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            smtp.Authenticate(emailData.From, emailData.Password);
+            smtp.Send(email);
+            smtp.Disconnect(true);
         }
 
         public Idea GetIdeaByID(int id)
@@ -228,6 +234,44 @@ namespace Project_1640.Controllers
                 }
             }
             ViewBag.TopicName = Topic_Name;
+        }
+
+        [HttpGet]
+        public FileResult DownloadCSV(int id)
+        {
+            //Take all idea in topic
+            List<Idea> ideaList = new List<Idea>();
+            foreach (var idea in context.Ideas)
+            {
+                if (id == Convert.ToInt32(idea.TopicId))
+                {
+                    ideaList.Add(idea);
+                }
+            }
+
+            //Add to csv and print csv
+            string csv = string.Empty;
+            string[] ColumnName = new string[] { "IdeaId", "IdeaName", "CreatedDate", "IdeaDescription", "CategoryId ", "TopicId", "FilePath" };
+            foreach(string columnName in ColumnName)
+            {
+                csv += columnName + ','; 
+            }
+            csv += "\r\n";
+            foreach(var idea in ideaList)
+            {
+                csv += idea.IdeaId.ToString().Replace(',', ',') + ',';
+                csv += idea.IdeaName.Replace(',', ',') + ',';
+                csv += idea.CreatedDate.ToString().Replace(',', ',') + ',';
+                csv += idea.IdeaDescription.Replace(',', ',') + ',';
+                csv += idea.CategoryId.Replace(',', ',') + ',';
+                csv += idea.TopicId.Replace(',', ',') + ',';
+                csv += idea.FilePath.Replace(',', ',') + ',';
+
+                csv += "\r\n";
+            }
+
+            byte[] bytes = Encoding.UTF8.GetBytes(csv);
+            return File(bytes, "text/csv", "Idea.csv");
         }
     }
 }

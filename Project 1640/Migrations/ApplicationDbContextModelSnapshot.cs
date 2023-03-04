@@ -264,6 +264,45 @@ namespace Project_1640.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("Project_1640.Models.Idea", b =>
+                {
+                    b.Property<int>("IdeaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdeaId"), 1L, 1);
+
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FilePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdeaDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdeaName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TopicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdeaId");
+
+                    b.ToTable("Ideas");
+                });
+
             modelBuilder.Entity("Project_1640.Models.Topic", b =>
                 {
                     b.Property<int>("Id")

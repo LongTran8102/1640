@@ -124,7 +124,6 @@ namespace Project_1640.Controllers
             model.Topics = topic;
             model.Ideas = ideas;
 
-
             return View(model);
         }
 

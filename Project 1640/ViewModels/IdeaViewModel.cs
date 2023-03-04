@@ -11,6 +11,7 @@ namespace Project_1640.ViewModels
         public string CategoryId { get; set; }   
         public string UserId { get; set; }        
         public IFormFile AttachFile { get; set; }
+
         [Display(Name = "I accept the above terms and conditions.")]
         [CheckBoxRequired(ErrorMessage = "Please accept the terms and condition.")]
         public bool TermsConditions { get; set; }

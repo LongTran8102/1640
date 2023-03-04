@@ -25,24 +25,6 @@ namespace Project_1640.Controllers
               return View(await _context.Department.ToListAsync());
         }
 
-        // GET: Departments/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Department == null)
-            {
-                return NotFound();
-            }
-
-            var department = await _context.Department
-                .FirstOrDefaultAsync(m => m.DepartmentId == id);
-            if (department == null)
-            {
-                return NotFound();
-            }
-
-            return View(department);
-        }
-
         // GET: Departments/Create
         public IActionResult Create()
         {
