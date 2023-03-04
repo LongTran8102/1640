@@ -33,10 +33,46 @@ namespace Project_1640.Controllers
             webHostEnvironment = _webHostEnvironment;
             context = _context;
         }
-        public IActionResult Index(int? pageNumber)
+        public IActionResult Index(string term="", string orderBy="", int currentPage=1)
         {
-            int pageSize = 5;
-            return View(PaginatedList<Idea>.Create(context.Ideas.ToList(), pageNumber ?? 1, pageSize));
+            term = string.IsNullOrEmpty(term) ? "": term.ToLower();
+            var ideaData = new IdeaViewModel();
+            ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
+           
+            var ideas = (from idea in context.Ideas
+                         where term == "" || idea.IdeaName.ToLower().StartsWith(term)
+                         select new Idea
+                         {
+                             IdeaName = idea.IdeaName,
+                             IdeaDescription = idea.IdeaDescription,
+                             FilePath=idea.FilePath,
+                             CreatedDate=idea.CreatedDate
+                         });
+            
+            switch (orderBy)
+            {
+                case "date_desc":
+                    ideas = ideas.OrderBy(a => a.CreatedDate);
+                    break;                
+                default:
+                    ideas = ideas.OrderByDescending(a => a.CreatedDate);
+                    break;
+
+            }
+            var totalRecords = ideas.Count();
+            var pageSize = 5;
+            var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
+            ideas = ideas.Skip((currentPage - 1) * pageSize).Take(pageSize);
+            ideaData.Ideas = ideas;
+            //int pageSize = 5;
+            //return View(PaginatedList<Idea>.Create(context.Ideas.ToList(), pageNumber ?? 1, pageSize));
+            ideaData.Ideas = ideas;
+            ideaData.CurrentPage = currentPage;
+            ideaData.TotalPages = totalPages;
+            ideaData.PageSize = pageSize;
+            ideaData.Term = term;
+            ideaData.OrderBy = orderBy;
+            return View(ideaData);
         }
 
         public async Task<IActionResult> Details(int id)
@@ -66,7 +102,8 @@ namespace Project_1640.Controllers
                 IdeaName = model.IdeaName,
                 IdeaDescription = model.IdeaDescription,
                 CategoryId = model.CategoryId, 
-                UserId = userManager.GetUserId(HttpContext.User),     
+                UserId = userManager.GetUserId(HttpContext.User),   
+                CreatedDate = DateTime.Now
             };
 
             if (model.AttachFile != null)
@@ -172,10 +209,10 @@ namespace Project_1640.Controllers
                 string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
                 System.IO.File.Delete(ExitingFile);
             }
-            Idea SelectedIdea = context.Ideas.FirstOrDefault(x => x.IdeaId == id);
-            if (SelectedIdea != null)
+            
+            if (idea != null)
             {
-                context.Ideas.Remove(SelectedIdea);
+                context.Ideas.Remove(idea);
                 context.SaveChanges();
                
             }            

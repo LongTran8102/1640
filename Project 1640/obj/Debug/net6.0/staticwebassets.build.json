@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ya18glK2gVg9BF7/giJc93ozWvv6tHrGgRGEZCgLeoo=",
+  "Hash": "0IxgKNFD7oMvlsjtS+jReSxywCYekI/mAKdgRCLZQ0s=",
   "Source": "Project 1640",
   "BasePath": "_content/Project 1640",
   "Mode": "Default",
@@ -2091,12 +2091,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\~$MP1640 Coursework 2023.01.doc",
+      "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\COMP1640 Coursework 2023.01.doc",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\",
       "BasePath": "_content/Project 1640",
-      "RelativePath": "UserFiles/~$MP1640 Coursework 2023.01.doc",
+      "RelativePath": "UserFiles/COMP1640 Coursework 2023.01.doc",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2105,7 +2105,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserFiles\\~$MP1640 Coursework 2023.01.doc"
+      "OriginalItemSpec": "wwwroot\\UserFiles\\COMP1640 Coursework 2023.01.doc"
     },
     {
       "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\InkedInkedInkedERD.jpg",
@@ -2123,6 +2123,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UserFiles\\InkedInkedInkedERD.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\Loadsummary.docx",
+      "SourceId": "Project 1640",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\",
+      "BasePath": "_content/Project 1640",
+      "RelativePath": "UserFiles/Loadsummary.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserFiles\\Loadsummary.docx"
     },
     {
       "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\Topup Grade Guide.docx",
