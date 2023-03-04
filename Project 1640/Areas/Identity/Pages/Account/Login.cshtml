@@ -1,0 +1,55 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+<body style="background:linear-gradient(90deg, rgba(213, 184, 255, 1),cyan)">
+    <div class="row">
+        <div class="col">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                 class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col row w-50 rounded-3 text-center" style="padding:1rem">
+            <h1>@ViewData["Title"]</h1>
+            <div class="col-md-center">
+                <section>
+                    <form id="account" method="post">
+                        <hr />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-floating mt-1">
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                            <label asp-for="Input.Email" class="form-label"></label>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mt-1">
+                            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                            <label asp-for="Input.Password" class="form-label"></label>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="text-start mt-3">
+                            <div class="checkbox">
+                                <label asp-for="Input.RememberMe" class="form-label">
+                                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary rounded-pill mt-3">Log in</button>
+                        </div>
+                        <div style="margin-top: 0.875rem">
+                            <p>
+                                <a id="forgot-password" class="text-muted" asp-page="./ForgotPassword">Forgot your password?</a>
+                            </p>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+        </div>
+    </div>
+</body>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

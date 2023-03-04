@@ -1,0 +1,113 @@
+﻿@model Project_1640.ViewModels.IdeaViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row pt-4">
+    <div class="col-6">
+        <h2 class="text-primary">Idea List</h2>
+        <form asp-action="Index">
+        <div class="row">
+            <div class="col-md-8">
+                <input name="term" class="form-control" placeholder="Search by Idea Name"/>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-info">Search</button>
+            </div>
+        </div>
+        </form>
+    </div>    
+</div>
+<br />
+<br />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("IdeaName")
+            </th>
+            <th>
+                @Html.DisplayName("IdeaDescription")
+            </th>
+            <th>
+                @Html.DisplayName("FilePath")
+            </th>
+            <th>
+                <a href="/Idea/Index?orderBy=@Model.CreatedDateSortOrder">@Html.DisplayName("CreatedDate")</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Ideas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdeaName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdeaDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FilePath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td class="text-center">
+                    <div class="btn-group border-start" role="button">
+                        <a asp-action="Edit" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded mx-3 align-middle">
+                            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+                            Edit
+                        </a>
+                        <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">
+                            <i class="bi bi-trash align-middle" style="font-size:20px"></i>
+                            Details
+                        </a>
+                        <a asp-action="Delete" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">
+                            <i class="bi bi-trash align-middle" style="font-size:20px"></i>
+                            Delete
+                        </a>                        
+                     </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @if (Model.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/Idea/Index?term=@Model.Term&orderBy=>@Model.OrderBy&currentPage=@(Model.CurrentPage-1)" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @for(int i = 1; i <= Model.TotalPages; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="page-item"><a class="page-link active text-danger" href="/Idea/Index?term=@Model.Term&orderBy=>@Model.OrderBy&currentPage=@i">@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="/Idea/Index?term=@Model.Term&orderBy=>@Model.OrderBy&currentPage=@i">@i</a></li>
+                }
+            }
+            
+            @if (Model.CurrentPage < Model.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/Idea/Index?term=@Model.Term&orderBy=>@Model.OrderBy&currentPage=@(Model.CurrentPage+1)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+

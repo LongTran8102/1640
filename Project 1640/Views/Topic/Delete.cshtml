@@ -1,0 +1,34 @@
+﻿@model Topic
+<form method="post" asp-action="Delete">
+    <input asp-for="Id" hidden />
+    <div class="border p-3 mt-4 mx-auto" style="width:40%">
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete Category</h2>
+            <hr/>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" disabled class="form-control"/>
+            
+        </div>
+        <div class="mb-3">
+            <label asp-for="ClosureDate"></label>
+            <input asp-for="ClosureDate" disabled class="form-control" />
+            
+        </div>
+        <div class="mb-3">
+            <label asp-for="FinalClosureDate"></label>
+            <input asp-for="FinalClosureDate" disabled class="form-control" />
+
+        </div>
+        <a asp-controller="Topic" asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
+            <i class="bi bi-arrow-left-short align-middle"></i>
+            Back
+        </a>
+        <button type="submit" class="btn btn-secondary" style="width:150px">
+            <i class="gg-trash d-inline-block" style="margin-right: .4rem"></i>
+            Delete
+        </button>
+    </div>
+</form>
+

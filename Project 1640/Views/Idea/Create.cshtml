@@ -1,0 +1,39 @@
+﻿@model Project_1640.ViewModels.IdeaViewModel
+
+@{
+    ViewBag.Title = "Create Idea";
+}
+
+
+<form enctype="multipart/form-data" asp-controller="Idea" asp-action="Create" method="post" class="mt-5 offset-3 col-6 border border-primary pt-2 pb-2 px-2 py-2">
+    <div>
+        <label asp-for="IdeaName" class="form-label"></label>
+        <input asp-for="IdeaName" class="form-control" />
+        <span asp-validation-for="IdeaName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="IdeaDescription" class="form-label"></label>
+        <input asp-for="IdeaDescription" class="form-control" />
+        <span asp-validation-for="IdeaDescription" class="text-danger"></span>
+    </div>
+  
+    <div>
+        <label asp-for="CategoryId" class="form-label"></label>
+        <select asp-for=CategoryId asp-items="@ViewBag.CategoryList" class="form-select"><option disabled selected>--Please select category--</option></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="AttachFile" class="form-label"></label>
+        <input asp-for="AttachFile" class="form-control" />
+    </div>
+    <div>
+        <input asp-for="TermsConditions" type="checkbox" />
+        <label asp-for="TermsConditions"></label>
+        <br /><span asp-validation-for="TermsConditions" class="text-danger"></span>
+
+    </div>
+    <p class ="text-danger">@ViewBag.FailAccept</p>
+    <div><button type="submit" class="btn btn-primary mt-2">Create</button></div>
+</form>
+
+

@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
+
+@{
+    ViewData["Title"] = "Application Roles";
+}
+<h1 class="text-center" style="margin-top:11rem">Roles List</h1>
+<p class="float-end ">
+    <a asp-action="Create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+        <i class="bi bi-plus d-inline-block align-middle" style="font-size: 1.25rem"></i>
+        Create Role
+    </a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model=>model.Name)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="align-middle">@Html.DisplayFor(modelItem=>item.Name)</td>
+                <td class="text-center">
+                    <a class="btn btn-outline-danger align-middle" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash align-middle d-inline-block" style="font-size:20px"></i>Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
