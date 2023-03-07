@@ -16,6 +16,7 @@ namespace Project_1640.Data
         public DbSet<Department> Department { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Idea> Ideas { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
     }
 }

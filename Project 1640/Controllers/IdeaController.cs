@@ -16,12 +16,15 @@ using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 using Microsoft.Extensions.Hosting;
 using Org.BouncyCastle.Asn1.BC;
 using System.Text;
+using DocumentFormat.OpenXml.Spreadsheet;
+using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
 
 namespace Project_1640.Controllers
 {
     public class IdeaController : Controller
     {
-        public readonly IWebHostEnvironment webHostEnvironment;        
+        public readonly IWebHostEnvironment webHostEnvironment;
         public readonly ApplicationDbContext context;
         public readonly UserManager<IdentityUser> userManager;
 
@@ -34,29 +37,29 @@ namespace Project_1640.Controllers
             webHostEnvironment = _webHostEnvironment;
             context = _context;
         }
-        public IActionResult Index(string term="", string orderBy="", int currentPage=1)
+        public IActionResult Index(string term = "", string orderBy = "", int currentPage = 1)
         {
-            term = string.IsNullOrEmpty(term) ? "": term.ToLower();
+            term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
 
             var ideaData = new IdeaViewModel();
             ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
-           
+
             var ideas = (from idea in context.Ideas
                          where term == "" || idea.IdeaName.ToLower().StartsWith(term)
                          select new Idea
                          {
                              IdeaName = idea.IdeaName,
                              IdeaDescription = idea.IdeaDescription,
-                             FilePath=idea.FilePath,
-                             CreatedDate=idea.CreatedDate,
-                             IdeaId=idea.IdeaId
+                             FilePath = idea.FilePath,
+                             CreatedDate = idea.CreatedDate,
+                             IdeaId = idea.IdeaId
                          });
-            
+
             switch (orderBy)
             {
                 case "date_desc":
                     ideas = ideas.OrderBy(a => a.CreatedDate);
-                    break;                
+                    break;
                 default:
                     ideas = ideas.OrderByDescending(a => a.CreatedDate);
                     break;
@@ -104,7 +107,7 @@ namespace Project_1640.Controllers
             GetTopicId(id);
             DropDownList();
 
-            if(model.TermsConditions==true)
+            if (model.TermsConditions == true)
             {
                 Idea idea = new Idea()
                 {
@@ -142,9 +145,9 @@ namespace Project_1640.Controllers
         {
             var idea = GetIdeaByID(id);
             DropDownList();
-  
+
             EditIdeaViewModel model = new()
-            {                
+            {
                 IdeaName = idea.IdeaName,
                 IdeaDescription = idea.IdeaDescription,
                 CategoryId = idea.CategoryId,
@@ -157,12 +160,12 @@ namespace Project_1640.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(EditIdeaViewModel model)
-        {           
+        {
             DropDownList();
 
             Idea idea = GetIdeaByID(model.ID);
             idea.IdeaName = model.IdeaName;
-            idea.IdeaDescription = model.IdeaDescription;               
+            idea.IdeaDescription = model.IdeaDescription;
             idea.CategoryId = model.CategoryId;
 
             if (model.AttachFile != null)
@@ -178,7 +181,7 @@ namespace Project_1640.Controllers
             var SelectedIdea = context.Ideas.Attach(idea);
             SelectedIdea.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
-            context.SaveChanges();     
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -199,7 +202,7 @@ namespace Project_1640.Controllers
             return View(idea);
         }
 
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirm(int id)
         {
@@ -210,12 +213,12 @@ namespace Project_1640.Controllers
                 string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
                 System.IO.File.Delete(ExitingFile);
             }
-            
+
             if (idea != null)
             {
                 context.Ideas.Remove(idea);
                 context.SaveChanges();
-            }            
+            }
             return RedirectToAction("index");
         }
 
@@ -242,7 +245,7 @@ namespace Project_1640.Controllers
             return UniqueFileName;
         }
 
-        public void SendMail (Email emailData)
+        public void SendMail(Email emailData)
         {
             var userId = userManager.GetUserId(HttpContext.User);
 
@@ -276,11 +279,11 @@ namespace Project_1640.Controllers
             return context.Ideas.FirstOrDefault(x => x.IdeaId == id);
         }
 
-        public void GetTopicId (int id)
+        public void GetTopicId(int id)
         {
-            foreach(var topic in context.Topics)
+            foreach (var topic in context.Topics)
             {
-                if(topic.Id == id)
+                if (topic.Id == id)
                 {
                     Topic_Id = Convert.ToString(topic.Id);
                 }
@@ -289,7 +292,7 @@ namespace Project_1640.Controllers
 
         public void GetTopicName(int id)
         {
-            foreach(var topic in context.Topics)
+            foreach (var topic in context.Topics)
             {
                 if (topic.Id == id)
                 {
@@ -302,20 +305,20 @@ namespace Project_1640.Controllers
         public FileResult CSVFile(int id)
         {
             //Find idea
-            List<Idea> ideaList = new List<Idea>(); 
+            List<Idea> ideaList = new List<Idea>();
 
-            foreach(var idea in context.Ideas)
+            foreach (var idea in context.Ideas)
             {
-                if(Convert.ToInt32(idea.TopicId) == id)
+                if (Convert.ToInt32(idea.TopicId) == id)
                 {
                     ideaList.Add(idea);
                 }
             }
 
             string CSV = string.Empty;
-            string[] columnName = new string[] { "IdeaId","IdeaName","IdeaDescription","CreatedDate","CategoryId","TopicId","FilePath"};
+            string[] columnName = new string[] { "IdeaId", "IdeaName", "IdeaDescription", "CreatedDate", "CategoryId", "TopicId", "FilePath" };
 
-            foreach(var column in columnName)
+            foreach (var column in columnName)
             {
                 CSV += column + ',';
             }
@@ -324,19 +327,66 @@ namespace Project_1640.Controllers
 
             foreach (var idea in ideaList)
             {
-                CSV += idea.IdeaId.ToString().Replace(",",",") + ',';
+                CSV += idea.IdeaId.ToString().Replace(",", ",") + ',';
                 CSV += idea.IdeaName.Replace(",", ",") + ',';
                 CSV += idea.IdeaDescription.Replace(",", ",") + ',';
                 CSV += idea.CreatedDate.ToString().Replace(",", ",") + ',';
                 CSV += idea.CategoryId.Replace(",", ",") + ',';
                 CSV += idea.TopicId.Replace(",", ",") + ',';
-                CSV += idea.FilePath.Replace(",", ",") + ',';
+                CSV += idea.FilePath?.Replace(",", ",") + ',';
 
                 CSV += "\r\n";
             }
 
             byte[] bytes = Encoding.UTF8.GetBytes(CSV);
             return File(bytes, "text/csv", "IdeasList.csv");
+        }
+
+        public IActionResult ExcelFile(int id)
+        {
+            //Find idea
+            List<Idea> ideaList = new List<Idea>();
+
+            foreach (var idea in context.Ideas)
+            {
+                if (Convert.ToInt32(idea.TopicId) == id)
+                {
+                    ideaList.Add(idea);
+                }
+            }
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Topic");
+                var currentRow = 1;
+
+                //Add title
+                worksheet.Cell(currentRow, 1).Value = "IdeaId";
+                worksheet.Cell(currentRow, 2).Value = "IdeaName";
+                worksheet.Cell(currentRow, 3).Value = "IdeaDescription";
+                worksheet.Cell(currentRow, 4).Value = "CreatedDate";
+                worksheet.Cell(currentRow, 5).Value = "CategoryId";
+                worksheet.Cell(currentRow, 6).Value = "FilePath";
+
+                //Add details
+                foreach (var idea in ideaList)
+                {
+                    currentRow++;
+                    worksheet.Cell(currentRow, 1).Value = idea.IdeaId;
+                    worksheet.Cell(currentRow, 2).Value = idea.IdeaName;
+                    worksheet.Cell(currentRow, 3).Value = idea.IdeaDescription;
+                    worksheet.Cell(currentRow, 4).Value = idea.CreatedDate;
+                    worksheet.Cell(currentRow, 5).Value = idea.CategoryId;
+                    worksheet.Cell(currentRow, 6).Value = idea.FilePath;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content,"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","Topic.xlsx");
+                }
+            }
         }
     }
 }

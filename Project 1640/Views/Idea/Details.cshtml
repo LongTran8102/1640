@@ -41,4 +41,12 @@
         <i class="bi bi-arrow-left-short align-middle"></i>
         Back
     </a>
+    <div>
+    <a asp-action="Edit" asp-route-id="@Model.IdeaId">Edit</a> |
+    <a asp-action="Create" asp-controller="Comments" asp-route-id="@Model.IdeaId" class="btn btn-outline-primary rounded mx-3 align-middle">
+        <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+         Create Comment
+    </a>
+    <a asp-action="Index">Back to List</a>
+    </div>
 </div>

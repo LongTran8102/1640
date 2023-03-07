@@ -62,6 +62,15 @@
                     <td>
                     @Html.DisplayFor(modelItem => item.FilePath)
                     </td>
+                    <td>
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@item.IdeaId">Edit</a> |
+                        <a asp-action="Create" asp-controller="Comments" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded mx-3 align-middle">
+                            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+                            Create Comment
+                        </a>
+                    </div>
+                    </td>
                     <td></td>
                 </tr>
         }
