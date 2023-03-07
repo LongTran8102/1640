@@ -35,7 +35,7 @@
                 @Html.DisplayName("FilePath")
             </th>
             <th>
-                <a href="/Idea/Index?orderBy=@Model.CreatedDateSortOrder">@Html.DisplayName("CreatedDate")</a>
+                @Html.DisplayName("CreatedDate")
             </th>
             <th></th>
         </tr>
@@ -57,13 +57,13 @@
                     @Html.DisplayFor(modelItem => item.CreatedDate)
                 </td>
                 <td class="text-center">
-                    <div class="btn-group border-start" role="button">
-                        <a asp-action="Edit" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded mx-3 align-middle">
+                    <div class="border-start" role="button">
+                        <a asp-action="Edit" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded align-middle">
                             <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
                             Edit
                         </a>
-                        <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">
-                            <i class="bi bi-trash align-middle" style="font-size:20px"></i>
+                        <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
+                            <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
                             Details
                         </a>
                         <a asp-action="Delete" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">

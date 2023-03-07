@@ -48,31 +48,26 @@
                     <td>
                         @obj.FinalClosureDate
                     </td>
-                    <td width="24%" class="text-center">
-                        <div class="w-75 btn-group border-start" role="button">
+                    <td class="text-center">
+                        <div class="border-start" role="button">
+                            <a asp-controller="Topic" asp-action="Details" asp-route-id="@obj.Id"
+                           class="btn btn-outline-info rounded align-middle" style="font-size:20px">
+                                <i class="bi bi-info-circle"></i>
+                                Detail
+                            </a>
                             <a asp-controller="Topic" asp-action="Edit" asp-route-id="@obj.Id"
-                                class="btn btn-outline-primary rounded mx-3 align-middle">
+                           class="btn btn-outline-primary rounded align-middle">
                                 <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
                                 Edit
                             </a>
-                            <a asp-controller="Topic" asp-action="Details" asp-route-id="@obj.Id"
-                                class="btn btn-outline-danger rounded">
-                                <i class="bi bi-trash align-middle d-inline-block" style="font-size:20px"></i>
-                                Details
-                            </a>
                             <a asp-controller="Topic" asp-action="Delete" asp-route-id="@obj.Id"
-                                class="btn btn-outline-danger rounded">
+                           class="btn btn-outline-danger rounded align-middle">
                                 <i class="bi bi-trash align-middle d-inline-block" style="font-size:20px"></i>
                                 Delete
                             </a>
-                            <a asp-controller="Idea" asp-action="Create"asp-route-id="@obj.Id" 
-                                class="btn btn-outline-danger rounded">
-                                <i class="bi bi-trash align-middle d-inline-block" style="font-size:20px"></i>
-                                Create idea
-                            </a>
                             <a asp-controller="Idea" asp-action="CSVFile" asp-route-id="@obj.Id"
-                                class="btn btn-outline-danger rounded">
-                                <i class="bi bi-trash align-middle d-inline-block" style="font-size:20px"></i>
+                                class="btn btn-outline-primary rounded align-middle">
+                                <i class="bi bi-cloud-arrow-down align-middle d-inline-block" style="font-size:20px"></i>
                                 Downdload CSV
                             </a>
                         </div>

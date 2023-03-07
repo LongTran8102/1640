@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/XOCZtn4Gpxic6b/adipcpr6IbvwwRal963GH6wMF68=",
+  "Hash": "oDF0elFVFxc8BhWaXtgnf1bisajQT2258Gmbny+5rRo=",
   "Source": "Project 1640",
   "BasePath": "_content/Project 1640",
   "Mode": "Default",
@@ -2278,6 +2278,23 @@
       "OriginalItemSpec": "wwwroot\\UserFiles\\9b10f02d-d884-4004-9126-1cf857661171-COMP1640 Coursework 2023.01.doc"
     },
     {
+      "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\a (2).jpg",
+      "SourceId": "Project 1640",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\",
+      "BasePath": "_content/Project 1640",
+      "RelativePath": "UserFiles/a (2).jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserFiles\\a (2).jpg"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\b1368f6a-2df7-4f68-9b86-70189d193495-CamScanner-12-30-2022-13.41.pdf",
       "SourceId": "Project 1640",
       "SourceType": "Discovered",
@@ -2361,6 +2378,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UserFiles\\f82c3714-3de8-45bc-9423-bbb4f2fd7d8f-paste-wallpaper-20052202363313.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\IdeasList.csv",
+      "SourceId": "Project 1640",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\",
+      "BasePath": "_content/Project 1640",
+      "RelativePath": "UserFiles/IdeasList.csv",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserFiles\\IdeasList.csv"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\images.jfif",
+      "SourceId": "Project 1640",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\",
+      "BasePath": "_content/Project 1640",
+      "RelativePath": "UserFiles/images.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserFiles\\images.jfif"
     },
     {
       "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\InkedInkedInkedERD.jpg",
