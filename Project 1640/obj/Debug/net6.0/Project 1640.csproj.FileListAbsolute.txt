@@ -3628,3 +3628,10 @@ C:\Users\USER\Desktop\1640\Project 1640\bin\Debug\net6.0\Irony.dll
 C:\Users\USER\Desktop\1640\Project 1640\bin\Debug\net6.0\SixLabors.Fonts.dll
 C:\Users\USER\Desktop\1640\Project 1640\bin\Debug\net6.0\System.IO.Packaging.dll
 C:\Users\USER\Desktop\1640\Project 1640\bin\Debug\net6.0\XLParser.dll
+C:\Users\pekoi\Documents\Desktop\1640\Project 1640\bin\Debug\net6.0\ClosedXML.dll
+C:\Users\pekoi\Documents\Desktop\1640\Project 1640\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\Users\pekoi\Documents\Desktop\1640\Project 1640\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\Users\pekoi\Documents\Desktop\1640\Project 1640\bin\Debug\net6.0\Irony.dll
+C:\Users\pekoi\Documents\Desktop\1640\Project 1640\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\Users\pekoi\Documents\Desktop\1640\Project 1640\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\Users\pekoi\Documents\Desktop\1640\Project 1640\bin\Debug\net6.0\XLParser.dll

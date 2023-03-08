@@ -101,7 +101,7 @@ namespace Project_1640.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, int id)
+        public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, Idea idea, int id)
         {
             //Create Idea
             GetTopicId(id);
@@ -109,15 +109,13 @@ namespace Project_1640.Controllers
 
             if (model.TermsConditions == true)
             {
-                Idea idea = new Idea()
-                {
-                    TopicId = Topic_Id,
-                    IdeaName = model.IdeaName,
-                    IdeaDescription = model.IdeaDescription,
-                    CategoryId = model.CategoryId,
-                    UserId = userManager.GetUserId(HttpContext.User),
-                    CreatedDate = DateTime.Now
-                };
+
+                idea.TopicId = Topic_Id;
+                idea.IdeaName = model.IdeaName;
+                idea.IdeaDescription = model.IdeaDescription;
+                idea.CategoryId = model.CategoryId;
+                idea.UserId = userManager.GetUserId(HttpContext.User);
+                idea.CreatedDate = DateTime.Now;
 
                 if (model.AttachFile != null)
                 {
@@ -128,7 +126,7 @@ namespace Project_1640.Controllers
                 context.SaveChanges();
 
                 //Send Mail
-                //SendMail(emailData);
+                SendMail(emailData, idea);
                 return RedirectToAction("Index");
             }
             else
@@ -219,7 +217,7 @@ namespace Project_1640.Controllers
                 context.Ideas.Remove(idea);
                 context.SaveChanges();
             }
-            return RedirectToAction("index");
+            return RedirectToAction("Index");
         }
 
         public void DropDownList()
@@ -245,7 +243,7 @@ namespace Project_1640.Controllers
             return UniqueFileName;
         }
 
-        public void SendMail(Email emailData)
+        public void SendMail(Email emailData, Idea idea)
         {
             var userId = userManager.GetUserId(HttpContext.User);
 
@@ -257,9 +255,23 @@ namespace Project_1640.Controllers
                 }
             }
 
+            string topicName = null;
+            foreach(var topic in context.Topics)
+            {
+                if(topic.Id == Convert.ToInt32(idea.TopicId))
+                {
+                    topicName = topic.Name;
+                }
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("In the topic " + $"{topicName}"
+                + "</br>"+ "You had upload the idea " + $"{idea.IdeaName}" + " successfully.");
+
+
             emailData.From = "luandtgcs200115@fpt.edu.vn";
             emailData.Password = "Conso123!";
-            emailData.Body = "Thanks for submitting";
+            emailData.Body = stringBuilder.ToString();
 
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(emailData.From));
