@@ -72,8 +72,6 @@ namespace Project_1640.Controllers
             ideas = ideas.Skip((currentPage - 1) * pageSize).Take(pageSize);
 
             ideaData.Ideas = ideas;
-            //int pageSize = 5;
-            //return View(PaginatedList<Idea>.Create(context.Ideas.ToList(), pageNumber ?? 1, pageSize));
             ideaData.Ideas = ideas;
             ideaData.CurrentPage = currentPage;
             ideaData.TotalPages = totalPages;
@@ -109,7 +107,6 @@ namespace Project_1640.Controllers
 
             if (model.TermsConditions == true)
             {
-
                 idea.TopicId = Topic_Id;
                 idea.IdeaName = model.IdeaName;
                 idea.IdeaDescription = model.IdeaDescription;
@@ -123,17 +120,18 @@ namespace Project_1640.Controllers
                 }
 
                 context.Ideas.Add(idea);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
 
                 //Send Mail
-                SendMail(emailData, idea);
+                SendMailCreateIdea(emailData, idea);
                 return RedirectToAction("Index");
             }
+
             else
             {
                 ViewBag.FailAccept = "Please accept Term & Condition";
-
             }
+
             return View();
 
         }
@@ -150,7 +148,7 @@ namespace Project_1640.Controllers
                 IdeaDescription = idea.IdeaDescription,
                 CategoryId = idea.CategoryId,
                 UserId = userManager.GetUserId(HttpContext.User),
-                ExsitingFile = idea.FilePath
+                ExsitingFile = idea.FilePath,
             };
             return View(model);
         }
@@ -243,19 +241,21 @@ namespace Project_1640.Controllers
             return UniqueFileName;
         }
 
-        public void SendMail(Email emailData, Idea idea)
+        public void SendMailCreateIdea(Email emailData, Idea idea)
         {
+            //Take submiter details
             var userId = userManager.GetUserId(HttpContext.User);
-
-            foreach (var user in context.Users)
+            ApplicationUser user = new ApplicationUser();
+            foreach (var users in context.applicationUsers)
             {
-                if (user.Id == userId)
+                if (users.Id == userId)
                 {
-                    emailData.To = user.Email;
+                    emailData.To = users.Email;
+                    user = users;
                 }
             }
 
-            string topicName = null;
+            string topicName = "";
             foreach(var topic in context.Topics)
             {
                 if(topic.Id == Convert.ToInt32(idea.TopicId))
@@ -264,26 +264,81 @@ namespace Project_1640.Controllers
                 }
             }
 
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("In the topic " + $"{topicName}"
-                + "</br>"+ "You had upload the idea " + $"{idea.IdeaName}" + " successfully.");
+            string categoryName = "";
+            foreach (var category in context.Category)
+            {
+                if (category.CategoryId == Convert.ToInt32(idea.CategoryId))
+                {
+                    categoryName = category.CategoryName;
+                }
+            }
 
+            //Format email form
+            string BodyMessage =
+                "You had create a new idea in topic " + $"{topicName}" + " successfully\r\n" +
+                "<table style=\"border: 1px solid;\">\r\n" +
+                "   <tr style=\"border: 1px solid;\">\r\n " +
+                "       <td style=\"border: 1px solid;\">\r\n" +
+                "           Submitter\r\n" +
+                "       </td>\r\n" +
+                "       <td style=\"border: 1px solid;\">\r\n" +
+                $"         {user.Firstname}\r\n" +
+                "       </td>\r\n" +
+                "   </tr>\r\n" +
+                "   <tr style=\"border: 1px solid;\">\r\n " +
+                "       <td style=\"border: 1px solid;\">\r\n" +
+                "           Category\r\n" +
+                "       </td>\r\n" +
+                "       <td style=\"border: 1px solid;\">\r\n" +
+                $"         {categoryName}\r\n" +
+                "       </td>\r\n" +
+                "   </tr>\r\n" +
+                "   <tr style=\"border: 1px solid;\">\r\n " +
+                "       <td style=\"border: 1px solid;\">\r\n" +
+                "           Created Date\r\n" +
+                "       </td>\r\n" +
+                "       <td style=\"border: 1px solid;\">\r\n" +
+                $"         {idea.CreatedDate}\r\n" +
+                "       </td>\r\n" +
+                "   </tr>\r\n" +
+                "   <tr style=\"border: 1px solid;\">\r\n " +
+                "       <td style=\"border: 1px solid;\">\r\n" +
+                "           File Path\r\n" +
+                "       </td>\r\n" +
+                "       <td style=\"border: 1px solid;\">\r\n" +
+                $"         {idea.IdeaDescription}\r\n" +
+                "       </td>\r\n" +
+                "   </tr>\r\n" +
+                "   <tr style=\"border: 1px solid;\">\r\n " +
+                "       <td style=\"border: 1px solid;\">\r\n" +
+                "           File Path\r\n" +
+                "       </td>\r\n" +
+                "       <td style=\"border: 1px solid;\">\r\n" +
+                $"         {idea.FilePath}\r\n" +
+                "       </td>\r\n" +
+                "   </tr>\r\n" +
+                "</table>";
 
+            //Input email details
             emailData.From = "luandtgcs200115@fpt.edu.vn";
             emailData.Password = "Conso123!";
-            emailData.Body = stringBuilder.ToString();
+            emailData.Body = BodyMessage;
 
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(emailData.From));
-            email.To.Add(MailboxAddress.Parse(emailData.To));
-            email.Subject = "Create Idea Success Notification";
-            email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = emailData.Body };
+            {
+                email.From.Add(MailboxAddress.Parse(emailData.From));
+                email.To.Add(MailboxAddress.Parse(emailData.To));
+                email.Subject = "Create Idea Success Notification";
+                email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = emailData.Body };
+            }
 
             using var smtp = new SmtpClient();
-            smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-            smtp.Authenticate(emailData.From, emailData.Password);
-            smtp.Send(email);
-            smtp.Disconnect(true);
+            {
+                smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+                smtp.Authenticate(emailData.From, emailData.Password);
+                smtp.Send(email);
+                smtp.Disconnect(true);
+            }
         }
 
         public Idea GetIdeaByID(int id)
