@@ -7,10 +7,10 @@ using Project_1640.Data;
 using Project_1640.Migrations;
 using Project_1640.Models;
 using Project_1640.ViewModels;
-using System.Net.Mail;
 using System.Security.Claims;
 using Idea = Project_1640.Models.Idea;
 using MailKit.Net.Smtp;
+using System.Net.Mail;
 using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 using Microsoft.Extensions.Hosting;
@@ -275,7 +275,7 @@ namespace Project_1640.Controllers
 
             //Format email form
             string BodyMessage =
-                "You had create a new idea in topic " + $"{topicName}" + " successfully\r\n" +
+                "You had create a new idea in topic " + $"{topicName}" + " successfully\r\n\r\n" +
                 "<table style=\"border: 1px solid;\">\r\n" +
                 "   <tr style=\"border: 1px solid;\">\r\n " +
                 "       <td style=\"border: 1px solid;\">\r\n" +
@@ -303,7 +303,7 @@ namespace Project_1640.Controllers
                 "   </tr>\r\n" +
                 "   <tr style=\"border: 1px solid;\">\r\n " +
                 "       <td style=\"border: 1px solid;\">\r\n" +
-                "           File Path\r\n" +
+                "           Idea Description\r\n" +
                 "       </td>\r\n" +
                 "       <td style=\"border: 1px solid;\">\r\n" +
                 $"         {idea.IdeaDescription}\r\n" +

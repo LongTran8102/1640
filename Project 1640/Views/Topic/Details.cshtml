@@ -64,10 +64,13 @@
                     </td>
                     <td>
                     <div>
-                        <a asp-action="Edit" asp-route-id="@item.IdeaId">Edit</a> |
+                        <a asp-action="Edit" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded mx-3 align-middle">
+                            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+                            Edit
+                        </a>
                         <a asp-action="Create" asp-controller="Comments" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded mx-3 align-middle">
                             <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
-                            Create Comment
+                            Comment
                         </a>
                     </div>
                     </td>
