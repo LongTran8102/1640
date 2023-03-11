@@ -20,6 +20,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
 using Comment = Project_1640.Models.Comment;
+using DocumentFormat.OpenXml.ExtendedProperties;
 
 namespace Project_1640.Controllers
 {
@@ -87,19 +88,33 @@ namespace Project_1640.Controllers
         {
             var idea = GetIdeaByID(id);
             List<Comment> comments = new List<Comment>();
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            foreach(var user in context.applicationUsers)
+            {
+                users.Add(user);
+            }
+
             foreach (var comment in context.Comments)
             {
                 if (comment.IdeaId == idea.IdeaId)
-                { 
+                {
+                    foreach(var user in users)
+                    {
+                        if (user.Id == comment.UserId)
+                        {
+                            comment.IdeaId = idea.IdeaId;
+                            comment.UserId = user.Firstname;
+                        }
+                    }
                     comments.Add(comment); 
                 }
-
             }
             
         CommentViewModel viewModel = new CommentViewModel();
-        viewModel.Ideas = idea;
-        viewModel.Comments = comments;
-            return View(viewModel);
+            viewModel.Ideas = idea;
+            viewModel.Comments = comments;
+
+        return View(viewModel);
         }
 
         [HttpGet]
