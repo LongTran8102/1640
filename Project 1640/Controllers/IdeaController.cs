@@ -19,6 +19,7 @@ using System.Text;
 using DocumentFormat.OpenXml.Spreadsheet;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
+using Comment = Project_1640.Models.Comment;
 
 namespace Project_1640.Controllers
 {
@@ -81,12 +82,24 @@ namespace Project_1640.Controllers
 
             return View(ideaData);
         }
-
+        [Authorize]
         public async Task<IActionResult> Details(int id)
         {
-            GetTopicName(id);
             var idea = GetIdeaByID(id);
-            return View(idea);
+            List<Comment> comments = new List<Comment>();
+            foreach (var comment in context.Comments)
+            {
+                if (comment.IdeaId == idea.IdeaId)
+                { 
+                    comments.Add(comment); 
+                }
+
+            }
+            
+        CommentViewModel viewModel = new CommentViewModel();
+        viewModel.Ideas = idea;
+        viewModel.Comments = comments;
+            return View(viewModel);
         }
 
         [HttpGet]

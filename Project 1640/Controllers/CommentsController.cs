@@ -55,7 +55,7 @@ namespace Project_1640.Controllers
         // POST: Comments/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Comment comment,int id)
+        public async Task<IActionResult> Create(Comment comment, int id)
         {
             comment.UserId = _userManager.GetUserId(HttpContext.User);
             comment.IdeaId = id;
@@ -64,7 +64,7 @@ namespace Project_1640.Controllers
             _context.Add(comment);
             await _context.SaveChangesAsync();
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         // GET: Comments/Edit/5
