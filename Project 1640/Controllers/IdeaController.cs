@@ -21,6 +21,7 @@ using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
 using Comment = Project_1640.Models.Comment;
 using DocumentFormat.OpenXml.ExtendedProperties;
+using System;
 
 namespace Project_1640.Controllers
 {
@@ -89,7 +90,7 @@ namespace Project_1640.Controllers
             var idea = GetIdeaByID(id);
             List<Comment> comments = new List<Comment>();
             List<ApplicationUser> users = new List<ApplicationUser>();
-            foreach(var user in context.applicationUsers)
+            foreach (var user in context.applicationUsers)
             {
                 users.Add(user);
             }
@@ -98,7 +99,7 @@ namespace Project_1640.Controllers
             {
                 if (comment.IdeaId == idea.IdeaId)
                 {
-                    foreach(var user in users)
+                    foreach (var user in users)
                     {
                         if (user.Id == comment.UserId)
                         {
@@ -106,15 +107,15 @@ namespace Project_1640.Controllers
                             comment.UserId = user.Firstname;
                         }
                     }
-                    comments.Add(comment); 
+                    comments.Add(comment);
                 }
             }
-            
-        CommentViewModel viewModel = new CommentViewModel();
+
+            CommentViewModel viewModel = new CommentViewModel();
             viewModel.Ideas = idea;
             viewModel.Comments = comments;
 
-        return View(viewModel);
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -268,7 +269,27 @@ namespace Project_1640.Controllers
             }
             return UniqueFileName;
         }
+        public IActionResult DownloadFile(int id)
+        {
+            Idea idea = GetIdeaByID(id);
 
+            if (idea.FilePath != null)
+            {
+               var path = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
+                var memory=new MemoryStream();
+                using (var stream =new FileStream(path, FileMode.Open)) 
+                {
+                    stream.CopyTo(memory);
+                }
+                memory.Position = 0;
+                var contentType = "APPLICATION/octet-stream";
+                var fileName=Path.GetFileName(path);
+                return File(memory,contentType,fileName);
+            }
+            return RedirectToAction("Index");
+
+
+        }        
         public void SendMailCreateIdea(Email emailData, Idea idea)
         {
             //Take submiter details

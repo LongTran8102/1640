@@ -69,8 +69,12 @@
                         <a asp-action="Delete" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">
                             <i class="bi bi-trash align-middle" style="font-size:20px"></i>
                             Delete
-                        </a>                        
-                     </div>
+                        </a>
+                        <a asp-action="DownloadFile" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">
+                            <i class="bi bi-trash align-middle" style="font-size:20px"></i>
+                            Download File
+                        </a>
+                    </div>
                 </td>
             </tr>
         }

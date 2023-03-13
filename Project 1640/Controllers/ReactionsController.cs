@@ -59,7 +59,7 @@ namespace Project_1640.Controllers
             return RedirectToAction("Details");
         }
 
-        public async Task<IActionResult> Dislike(int id, int DisLike = 0)
+        /*public async Task<IActionResult> Dislike(int id, int DisLike = 0)
         {
             int count = 0;
             if()
@@ -97,7 +97,7 @@ namespace Project_1640.Controllers
 
             // Redirect back to the idea details page
             return RedirectToAction("Details");
-        }
+        }*/
 
         public int GetAllLike(int id, int Like = 0)
         {
