@@ -8,7 +8,7 @@ namespace Project_1640.Models
     {
         [Key]
         public int ReactionId { get; set; }
-        public bool React { get; set; }
+        public bool? React { get; set; }
         public string UserId { get; set; }
         public int IdeaId { get; set; }
     }

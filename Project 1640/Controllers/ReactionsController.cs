@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project_1640.Data;
 using Project_1640.Models;
@@ -8,149 +9,144 @@ namespace Project_1640.Controllers
 {
     public class ReactionsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public ReactionsController(ApplicationDbContext context)
+        private readonly ApplicationDbContext context;
+        public readonly UserManager<IdentityUser> userManager;
+
+        public ReactionsController(ApplicationDbContext _context, UserManager<IdentityUser> _userManager)
         {
-            _context = context;
+            context = _context;
+            userManager = _userManager;
         }
 
-        public async Task<IActionResult> Like(int id, int Like = 0)
+        public async Task<IActionResult> Like(int id, Idea idea, Reaction reaction)
         {
-            int count = 0;
             // Get the current user's ID
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            List<Reaction> reactionList = new List<Reaction>();
-            foreach (var reaction in _context.Reactions)
+            var userId = userManager.GetUserId(HttpContext.User);
+            foreach (var ideas in context.Ideas)
             {
-                reactionList.Add(reaction);
-            }
-
-            // Check if the user has already upvoted the idea
-            var existingVote = await _context.Reactions.SingleOrDefaultAsync(v => v.UserId.ToString() == userId && v.IdeaId == id);
-
-            if (existingVote != null)
-            {
-                foreach (var reaction in _context.Reactions)
+                if(ideas.IdeaId == id)
                 {
-                    if(reaction.UserId == userId)
-                    {
-                        reaction.React = true;
-                    }
+                    idea = ideas;
                 }
             }
-            else
+            int count = 0;
+            foreach (var react in context.Reactions)
             {
-                // User has not upvoted this idea, so record their upvote
-                var react = new Reaction
+                if (idea.IdeaId == react.IdeaId && react.UserId == userId)
+                {
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Reaction Reaction = new Reaction()
                 {
                     UserId = Convert.ToString(userId),
                     IdeaId = id,
                     React = true,
                 };
-                _context.Reactions.Add(react);
-
-            }
-
-            await _context.SaveChangesAsync();
-            GetAllLike(id, Like);
-
-            // Redirect back to the idea details page
-            return RedirectToAction("Details");
-        }
-
-        /*public async Task<IActionResult> Dislike(int id, int DisLike = 0)
-        {
-            int count = 0;
-            if()
-            // Get the current user's ID
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            // Check if the user has already upvoted the idea
-            var existingVote = await _context.Reactions.SingleOrDefaultAsync(v => v.UserId.ToString() == userId && v.IdeaId == id);
-
-            if (existingVote != null)
-            {
-                foreach (var reaction in _context.Reactions)
-                {
-                    if (reaction.UserId == userId)
-                    {
-                        reaction.React = false;
-                    }
-                }
+                context.Reactions.Add(Reaction);
             }
             else
             {
-                // User has not downvoted this idea, so record their upvote
-                var react = new Reaction
+                foreach (var react in context.Reactions)
+                {
+                    if (idea.IdeaId == react.IdeaId && userId == react.UserId)
+                    {
+                        reaction = react;
+                        if (react.React == false)
+                        {
+                            reaction.React = true;
+                        }
+                        else if (react.React == true)
+                        {
+                            reaction.React = null;
+                        }
+                        else
+                        {
+                            reaction.React = true;
+                        }
+                    }
+                }
+                foreach (var react in context.Reactions)
+                {
+                    if (reaction.IdeaId == react.IdeaId && reaction.UserId == react.UserId)
+                    {
+                        react.React = reaction.React;
+                        context.Reactions.Update(react);
+                    }
+                }
+            }
+
+            await context.SaveChangesAsync();
+            return RedirectToRoute(new { controller = "Idea", action = "Details", id});
+        }
+
+        public async Task<IActionResult> Dislike(int id, Idea idea, Reaction reaction)
+        {
+            // Get the current user's ID
+            var userId = userManager.GetUserId(HttpContext.User);
+
+            foreach (var ideas in context.Ideas)
+            {
+                if (ideas.IdeaId == id)
+                {
+                    idea = ideas;
+                }
+            }
+
+            int count = 0;
+
+            foreach (var react in context.Reactions)
+            {
+                if (idea.IdeaId == react.IdeaId && react.UserId == userId)
+                {
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Reaction Reaction = new Reaction()
                 {
                     UserId = Convert.ToString(userId),
                     IdeaId = id,
                     React = false,
                 };
-
-                _context.Reactions.Add(react);
+                context.Reactions.Add(Reaction);
             }
-
-            await _context.SaveChangesAsync();
-            GetAllDisLike(id, DisLike);
-
-            // Redirect back to the idea details page
-            return RedirectToAction("Details");
-        }*/
-
-        public int GetAllLike(int id, int Like = 0)
-        {
-            Idea Idea = new Idea();
-
-            foreach (var idea in _context.Ideas)
+            else
             {
-                if (idea.IdeaId == id)
+                foreach (var react in context.Reactions)
                 {
-                    Idea = idea;
-                }
-            }
-
-            foreach (var react in _context.Reactions)
-            {
-                if (Idea.IdeaId == react.IdeaId)
-                {
-                    if (react.React == false)
+                    if (idea.IdeaId == react.IdeaId && userId == react.UserId)
                     {
-                        Like++;
+                        reaction = react;
+                        if (react.React == null)
+                        {
+                            reaction.React = false;
+                        }
+                        else if (react.React == true)
+                        {
+                            reaction.React = false;
+                        }
+                        else
+                        {
+                            reaction.React = null;
+                        }
+                    }
+                }
+                foreach (var react in context.Reactions)
+                {
+                    if (reaction.IdeaId == react.IdeaId && reaction.UserId == react.UserId)
+                    {
+                        react.React = reaction.React;
+                        context.Reactions.Update(reaction);
                     }
                 }
             }
 
-            ViewBag.Like = Like;
-            return Like;
-        }
-
-        public int GetAllDisLike(int id, int DisLike = 0)
-        {
-            Idea Idea = new Idea();
-
-            foreach (var idea in _context.Ideas)
-            {
-                if (idea.IdeaId == id)
-                {
-                    Idea = idea;
-                }
-            }
-
-            foreach (var react in _context.Reactions)
-            {
-                if (Idea.IdeaId == react.IdeaId)
-                {
-                    if (react.React == false)
-                    {
-                        DisLike++;
-                    }
-                }
-            }
-            ViewBag.DisLike = DisLike;
-
-            return DisLike;
+            await context.SaveChangesAsync();
+            return RedirectToRoute(new { controller = "Idea", action = "Details", id});
         }
     }
 }

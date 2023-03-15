@@ -46,24 +46,44 @@
             <th>
                 FilePath
             </th>
+            <th>
+                Like
+            </th>
+            <th>
+                Dislike
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Ideas)
         {
-                <tr>
-                    <td>
+            <tr>
+                <td>
                     @Html.DisplayFor(modelItem => item.IdeaName)
-                    </td>
-                    <td>
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.IdeaDescription)
-                    </td>
-                    <td>
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.FilePath)
-                    </td>
-                    <td>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalLike)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalDislike)
+                </td>
+                <td>
                     <div>
+                        <a asp-action="Like" asp-controller="Reactions" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded mx-3 align-middle">
+                            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+                            Like
+                        </a>
+                        <a asp-action="DisLike" asp-controller="Reactions" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded mx-3 align-middle">
+                            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+                            Dislike
+                        </a>
                         <a asp-action="Edit" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded mx-3 align-middle">
                             <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
                             Edit
@@ -75,7 +95,7 @@
                     </div>
                     </td>
                     <td></td>
-                </tr>
+            </tr>
         }
     </tbody>
 </table>

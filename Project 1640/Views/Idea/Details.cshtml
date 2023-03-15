@@ -17,10 +17,10 @@
             @Html.DisplayFor(model => model.Ideas.IdeaName)
         </dd>
         <dt class = "col-sm-2">
-            Topic Name
-        </dt>        
+            @Html.DisplayNameFor(model => model.Ideas.TopicId)
+        </dt>
         <dd class="col-sm-10">
-            @ViewBag.TopicName
+            @Html.DisplayFor(model => model.Ideas.TopicId)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Ideas.IdeaDescription)
@@ -33,6 +33,18 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.FilePath)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ideas.TotalLike)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ideas.TotalLike)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ideas.TotalDislike)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ideas.TotalDislike)
         </dd>
     </dl>
 </div>

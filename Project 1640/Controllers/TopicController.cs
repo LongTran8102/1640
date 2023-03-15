@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DocumentFormat.OpenXml.InkML;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project_1640.Data;
+using Project_1640.Migrations;
 using Project_1640.Models;
 using Project_1640.ViewModels;
 
@@ -102,7 +104,7 @@ namespace Project_1640.Controllers
             TempData["success"] = "Topic Deleted Successfully";
             return RedirectToAction("Index");
             }
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null || _db.Topics == null)
             {
@@ -110,24 +112,21 @@ namespace Project_1640.Controllers
             }
 
             var topic = await _db.Topics.FirstOrDefaultAsync(m => m.Id == id);
-            List<Idea> ideas = new List<Idea>();
+            List<Idea> ideaList = new List<Idea>();
 
-            foreach (var idea in _db.Ideas)
+            foreach (var ideas in _db.Ideas)
             {
-                if (id == Convert.ToInt32(idea.TopicId))
+                if (id == Convert.ToInt32(ideas.TopicId))
                 {
-                    ideas.Add(idea);
+                    ideaList.Add(ideas);
                 }
             }
 
             IdeaTopicViewModel model = new IdeaTopicViewModel();
             model.Topics = topic;
-            model.Ideas = ideas;
-
+            model.Ideas = ideaList;
 
             return View(model);
         }
-
     }
-
 }

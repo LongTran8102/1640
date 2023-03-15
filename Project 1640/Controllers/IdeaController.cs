@@ -22,6 +22,10 @@ using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
 using Comment = Project_1640.Models.Comment;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using System;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using Topic = Project_1640.Models.Topic;
+using DocumentFormat.OpenXml.InkML;
+using Org.BouncyCastle.Crypto;
 
 namespace Project_1640.Controllers
 {
@@ -55,7 +59,9 @@ namespace Project_1640.Controllers
                              IdeaDescription = idea.IdeaDescription,
                              FilePath = idea.FilePath,
                              CreatedDate = idea.CreatedDate,
-                             IdeaId = idea.IdeaId
+                             IdeaId = idea.IdeaId,
+                             TotalLike = idea.TotalLike,
+                             TotalDislike = idea.TotalDislike,
                          });
 
             switch (orderBy)
@@ -85,9 +91,9 @@ namespace Project_1640.Controllers
             return View(ideaData);
         }
         [Authorize]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id, Idea idea, Reaction reaction)
         {
-            var idea = GetIdeaByID(id);
+            idea = GetIdeaByID(id);
             List<Comment> comments = new List<Comment>();
             List<ApplicationUser> users = new List<ApplicationUser>();
             foreach (var user in context.applicationUsers)
@@ -111,6 +117,30 @@ namespace Project_1640.Controllers
                 }
             }
 
+            int like = 0;
+            int dislike = 0;
+
+            foreach (var react in context.Reactions)
+            {
+                if (idea.IdeaId == react.IdeaId)
+                {
+                    if (react.React == true)
+                    {
+                        like++;
+                    }
+                    if (react.React == false)
+                    {
+                        dislike++;
+                    }
+                }
+            }
+
+            idea.TotalLike = like ;
+            idea.TotalDislike = dislike;
+
+            context.Ideas.Update(idea);
+            await context.SaveChangesAsync();
+
             CommentViewModel viewModel = new CommentViewModel();
             viewModel.Ideas = idea;
             viewModel.Comments = comments;
@@ -128,7 +158,7 @@ namespace Project_1640.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, Idea idea, int id)
+        public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, Idea idea, Topic topic, int id)
         {
             //Create Idea
             GetTopicId(id);
@@ -153,7 +183,7 @@ namespace Project_1640.Controllers
 
                 //Send Mail
                 SendMailCreateIdea(emailData, idea);
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Topic", topic);
             }
 
             else

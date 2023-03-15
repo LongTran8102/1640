@@ -64,7 +64,7 @@ namespace Project_1640.Controllers
             _context.Add(comment);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            return RedirectToRoute(new { controller = "Idea", action = "Details", id });
         }
 
         // GET: Comments/Edit/5
