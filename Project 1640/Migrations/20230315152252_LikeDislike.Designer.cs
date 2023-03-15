@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project_1640.Data;
 
@@ -11,9 +12,10 @@ using Project_1640.Data;
 namespace Project_1640.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230315152252_LikeDislike")]
+    partial class LikeDislike
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,7 +249,33 @@ namespace Project_1640.Migrations
                     b.ToTable("Categories");
                 });
 
-           
+            modelBuilder.Entity("Project_1640.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"), 1L, 1);
+
+                    b.Property<DateTime>("CommentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CommentText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdeaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CommentId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Project_1640.Models.Department", b =>
                 {
                     b.Property<int>("DepartmentId")
@@ -264,7 +292,74 @@ namespace Project_1640.Migrations
 
                     b.ToTable("Departments");
                 });
-                                   
+
+            modelBuilder.Entity("Project_1640.Models.Idea", b =>
+                {
+                    b.Property<int>("IdeaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdeaId"), 1L, 1);
+
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FilePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdeaDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdeaName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TopicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TotalDislike")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TotalLike")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdeaId");
+
+                    b.ToTable("Ideas");
+                });
+
+            modelBuilder.Entity("Project_1640.Models.Reaction", b =>
+                {
+                    b.Property<int>("ReactionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReactionId"), 1L, 1);
+
+                    b.Property<int>("IdeaId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("React")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReactionId");
+
+                    b.ToTable("Reaction");
+                });
 
             modelBuilder.Entity("Project_1640.Models.Topic", b =>
                 {

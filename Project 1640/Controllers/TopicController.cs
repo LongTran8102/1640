@@ -1,18 +1,23 @@
 ﻿using DocumentFormat.OpenXml.InkML;
+using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Utilities.Zlib;
 using Project_1640.Data;
 using Project_1640.Migrations;
 using Project_1640.Models;
 using Project_1640.ViewModels;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Project_1640.Controllers
 {
     public class TopicController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public TopicController(ApplicationDbContext db)
+        private IHostingEnvironment _oIHostingEnvironment;
+        public TopicController(ApplicationDbContext db, IHostingEnvironment oIHostingEnvironment)
         {
+            _oIHostingEnvironment = oIHostingEnvironment;
             _db = db;
         }
 
@@ -127,6 +132,58 @@ namespace Project_1640.Controllers
             model.Ideas = ideaList;
 
             return View(model);
+        }
+        public FileResult ZipFile(int id)
+        {
+            var webRoot = _oIHostingEnvironment.WebRootPath;
+            var fileName = "MyZip.zip";
+            var tempOutput = webRoot + "UserFiles" + fileName;
+            using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
+            {
+                oZipOutputStream.SetLevel(9);
+                byte[] buffer = new byte[4096];
+                var FileList = new List<string>();
+                foreach (var idea in _db.Ideas)
+                {
+                    if (Convert.ToInt32(idea.TopicId) == id)
+                    {
+                        if (idea.FilePath != null)
+                        {
+                            FileList.Add(webRoot + "/UserFiles/" + idea.FilePath);
+                        }
+                    }
+                }
+                for (int i = 0; i < FileList.Count; i++)
+                {
+                    ZipEntry entry = new ZipEntry(Path.GetFileName(FileList[i]));
+                    entry.DateTime = DateTime.Now;
+                    entry.IsUnicodeText = true;
+                    oZipOutputStream.PutNextEntry(entry);
+                    using (FileStream oFileStream = System.IO.File.OpenRead(FileList[i]))
+                    {
+                        int sourceBytes;
+                        do
+                        {
+                            sourceBytes = oFileStream.Read(buffer, 0, buffer.Length);
+                            oZipOutputStream.Write(buffer, 0, sourceBytes);
+                        } while (sourceBytes > 0);
+                    }
+                }
+                oZipOutputStream.Finish();
+                oZipOutputStream.Flush();
+                oZipOutputStream.Close();
+            }
+            byte[] finalResult = System.IO.File.ReadAllBytes(tempOutput);
+            if (System.IO.File.Exists(tempOutput))
+            {
+                System.IO.File.Delete(tempOutput);
+            }
+            if (finalResult == null || !finalResult.Any())
+            {
+                throw new Exception(String.Format("Nothing found"));
+            }
+            return File(finalResult, "application/zip", fileName);
+
         }
     }
 }

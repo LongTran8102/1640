@@ -2261,6 +2261,22 @@
           }
         }
       },
+      "SharpZipLib.NETStandard/1.0.7": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/ICSharpCode.SharpZipLib.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.3/ICSharpCode.SharpZipLib.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
+        }
+      },
       "SixLabors.Fonts/1.0.0-beta18": {
         "type": "package",
         "compile": {
@@ -6900,6 +6916,24 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
+    "SharpZipLib.NETStandard/1.0.7": {
+      "sha512": "mYKPizF2CY32RQB8FITYy0e30gVgItFA63SFquruaxq+votwL1T+yOfssK10v4enBcxklr8ks48hS1emw5TTXg==",
+      "type": "package",
+      "path": "sharpziplib.netstandard/1.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/ICSharpCode.SharpZipLib.dll",
+        "lib/net45/ICSharpCode.SharpZipLib.pdb",
+        "lib/net45/ICSharpCode.SharpZipLib.xml",
+        "lib/netstandard1.3/ICSharpCode.SharpZipLib.deps.json",
+        "lib/netstandard1.3/ICSharpCode.SharpZipLib.dll",
+        "lib/netstandard1.3/ICSharpCode.SharpZipLib.pdb",
+        "lib/netstandard1.3/ICSharpCode.SharpZipLib.xml",
+        "sharpziplib.netstandard.1.0.7.nupkg.sha512",
+        "sharpziplib.netstandard.nuspec"
+      ]
+    },
     "SixLabors.Fonts/1.0.0-beta18": {
       "sha512": "evykNmy/kEE9EAEKgZm3MNUYXuMHFfmcLUNPw7Ho5q7OI96GFkkIxBm+QaKOTPBKw+L0AjKOs+ArVg8P40Ac9g==",
       "type": "package",
@@ -10785,28 +10819,24 @@
       "Microsoft.EntityFrameworkCore >= 6.0.14",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.14",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.12"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.12",
+      "SharpZipLib.NETStandard >= 1.0.7"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pekoi\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pekoi\\Documents\\Desktop\\1640\\Project 1640\\Project 1640.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\Project 1640.csproj",
       "projectName": "Project 1640",
-      "projectPath": "C:\\Users\\pekoi\\Documents\\Desktop\\1640\\Project 1640\\Project 1640.csproj",
-      "packagesPath": "C:\\Users\\pekoi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pekoi\\Documents\\Desktop\\1640\\Project 1640\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\Project 1640.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\pekoi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10865,6 +10895,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.12, )"
+          },
+          "SharpZipLib.NETStandard": {
+            "target": "Package",
+            "version": "[1.0.7, )"
           }
         },
         "imports": [
@@ -10886,7 +10920,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
