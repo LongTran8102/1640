@@ -17,14 +17,17 @@
             </div>
             
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary mb-3" />
+                <input type="submit" value="Send" class="btn btn-primary mb-3" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
+            <i class="bi bi-arrow-left-short align-middle"></i>
+            Back
+        </a>
 </div>
 
 @section Scripts {

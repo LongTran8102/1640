@@ -22,7 +22,7 @@
 </div>
 <br />
 <br />
-<table class="table table-hover">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -47,7 +47,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.IdeaName)
                 </td>
-                <td>
+                <td width="30%">
                     @Html.DisplayFor(modelItem => item.IdeaDescription)
                 </td>
                 <td>
@@ -58,10 +58,6 @@
                 </td>
                 <td class="text-center">
                     <div class="border-start" role="button">
-                        <a asp-action="Edit" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded align-middle">
-                            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
-                            Edit
-                        </a>
                         <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
                             <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
                             Details
