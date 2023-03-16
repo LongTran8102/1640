@@ -295,7 +295,7 @@ namespace Project_1640.Controllers
                 }
                 memory.Position = 0;
                 var contentType = "APPLICATION/octet-stream";
-                var fileName=Path.GetFileName(path);
+                var fileName = Path.GetFileName(path);
                 return File(memory,contentType,fileName);
             }
             return RedirectToAction("Index");
@@ -410,89 +410,6 @@ namespace Project_1640.Controllers
                 if (topic.Id == id)
                 {
                     Topic_Id = Convert.ToString(topic.Id);
-                }
-            }
-        }
-
-        //Download CSV File 
-        public FileResult CSVFile(int id)
-        {
-            //Find idea
-            List<Idea> ideaList = new List<Idea>();
-            foreach (var idea in context.Ideas)
-            {
-                if (Convert.ToInt32(idea.TopicId) == id)
-                {
-                    ideaList.Add(idea);
-                }
-            }
-            string CSV = string.Empty;
-            string[] columnName = new string[] { "IdeaId", "IdeaName", "IdeaDescription", "CreatedDate", "CategoryId", "TopicId", "FilePath, Like, Dislike" };
-            foreach (var column in columnName)
-            {
-                CSV += column + ',';
-            }
-            CSV += "\r\n";
-            foreach (var idea in ideaList)
-            {
-                CSV += idea.IdeaId.ToString().Replace(",", ",") + ',';
-                CSV += idea.IdeaName.Replace(",", ",") + ',';
-                CSV += idea.IdeaDescription.Replace(",", ",") + ',';
-                CSV += idea.CreatedDate.ToString().Replace(",", ",") + ',';
-                CSV += idea.CategoryId.Replace(",", ",") + ',';
-                CSV += idea.TopicId.Replace(",", ",") + ',';
-                CSV += idea.FilePath?.Replace(",", ",") + ',';
-                CSV += idea.TotalLike?.ToString().Replace(",", ",") + ',';
-                CSV += idea.TotalDislike?.ToString().Replace(",", ",") + ',';
-                CSV += "\r\n";
-            }
-            byte[] bytes = Encoding.UTF8.GetBytes(CSV);
-            return File(bytes, "text/csv", "IdeasList.csv");
-        }
-
-        //Download Excel File 
-        public IActionResult ExcelFile(int id)
-        {
-            //Find idea
-            List<Idea> ideaList = new List<Idea>();
-            foreach (var idea in context.Ideas)
-            {
-                if (Convert.ToInt32(idea.TopicId) == id)
-                {
-                    ideaList.Add(idea);
-                }
-            }
-            using (var workbook = new XLWorkbook())
-            {
-                var worksheet = workbook.Worksheets.Add("Topic");
-                var currentRow = 1;
-                //Add title
-                worksheet.Cell(currentRow, 1).Value = "IdeaId";
-                worksheet.Cell(currentRow, 2).Value = "IdeaName";
-                worksheet.Cell(currentRow, 3).Value = "IdeaDescription";
-                worksheet.Cell(currentRow, 4).Value = "CreatedDate";
-                worksheet.Cell(currentRow, 5).Value = "CategoryId";
-                worksheet.Cell(currentRow, 6).Value = "FilePath";
-                worksheet.Cell(currentRow, 5).Value = "Like";
-                worksheet.Cell(currentRow, 6).Value = "Dislike";
-                //Add details
-                foreach (var idea in ideaList)
-                {
-                    currentRow++;
-                    worksheet.Cell(currentRow, 1).Value = idea.IdeaId;
-                    worksheet.Cell(currentRow, 2).Value = idea.IdeaName;
-                    worksheet.Cell(currentRow, 3).Value = idea.IdeaDescription;
-                    worksheet.Cell(currentRow, 4).Value = idea.CreatedDate;
-                    worksheet.Cell(currentRow, 5).Value = idea.CategoryId;
-                    worksheet.Cell(currentRow, 6).Value = idea.FilePath;
-                    worksheet.Cell(currentRow, 7).Value = idea.TotalLike;
-                    worksheet.Cell(currentRow, 8).Value = idea.TotalDislike;
-                }
-                using (var stream = new MemoryStream())
-                {
-                    workbook.SaveAs(stream);
-                    var content = stream.ToArray();
-                    return File(content,"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","Topic.xlsx");
                 }
             }
         }
