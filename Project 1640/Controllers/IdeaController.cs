@@ -462,7 +462,7 @@ namespace Project_1640.Controllers
             }
 
             string CSV = string.Empty;
-            string[] columnName = new string[] { "IdeaId", "IdeaName", "IdeaDescription", "CreatedDate", "CategoryId", "TopicId", "FilePath" };
+            string[] columnName = new string[] { "IdeaId", "IdeaName", "IdeaDescription", "CreatedDate", "CategoryId", "TopicId", "FilePath, Like, Dislike" };
 
             foreach (var column in columnName)
             {
@@ -480,6 +480,8 @@ namespace Project_1640.Controllers
                 CSV += idea.CategoryId.Replace(",", ",") + ',';
                 CSV += idea.TopicId.Replace(",", ",") + ',';
                 CSV += idea.FilePath?.Replace(",", ",") + ',';
+                CSV += idea.TotalLike?.ToString().Replace(",", ",") + ',';
+                CSV += idea.TotalDislike?.ToString().Replace(",", ",") + ',';
 
                 CSV += "\r\n";
             }
@@ -513,7 +515,8 @@ namespace Project_1640.Controllers
                 worksheet.Cell(currentRow, 4).Value = "CreatedDate";
                 worksheet.Cell(currentRow, 5).Value = "CategoryId";
                 worksheet.Cell(currentRow, 6).Value = "FilePath";
-
+                worksheet.Cell(currentRow, 5).Value = "Like";
+                worksheet.Cell(currentRow, 6).Value = "Dislike";
                 //Add details
                 foreach (var idea in ideaList)
                 {
@@ -524,6 +527,8 @@ namespace Project_1640.Controllers
                     worksheet.Cell(currentRow, 4).Value = idea.CreatedDate;
                     worksheet.Cell(currentRow, 5).Value = idea.CategoryId;
                     worksheet.Cell(currentRow, 6).Value = idea.FilePath;
+                    worksheet.Cell(currentRow, 7).Value = idea.TotalLike;
+                    worksheet.Cell(currentRow, 8).Value = idea.TotalDislike;
                 }
 
                 using (var stream = new MemoryStream())
