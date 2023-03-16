@@ -6,6 +6,5 @@ namespace Project_1640.ViewModels
     { 
         public Topic Topics { get; set; }
         public List<Idea>? Ideas { get; set; }
-
     }
 }

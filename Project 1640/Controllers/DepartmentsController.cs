@@ -19,20 +19,19 @@ namespace Project_1640.Controllers
             _context = context;
         }
 
-        // GET: Departments
+        // GET Departments
         public async Task<IActionResult> Index()
         {
               return View(await _context.Department.ToListAsync());
         }
 
-        // GET: Departments/Create
+        //GET Create Department
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Departments/Create
-
+        //POST Create Department
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DepartmentId,DepartmentName")] Department department)
@@ -46,14 +45,13 @@ namespace Project_1640.Controllers
             return View(department);
         }
 
-        // GET: Departments/Edit/5
+        //GET Edit Department
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Department == null)
             {
                 return NotFound();
             }
-
             var department = await _context.Department.FindAsync(id);
             if (department == null)
             {
@@ -62,7 +60,7 @@ namespace Project_1640.Controllers
             return View(department);
         }
 
-        // POST: Departments/Edit/5
+        //POST Edit Department
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DepartmentId,DepartmentName")] Department department)
@@ -71,7 +69,6 @@ namespace Project_1640.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -95,25 +92,22 @@ namespace Project_1640.Controllers
             return View(department);
         }
 
-        // GET: Departments/Delete/5
+        //GET Delete Department
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Department == null)
             {
                 return NotFound();
             }
-
-            var department = await _context.Department
-                .FirstOrDefaultAsync(m => m.DepartmentId == id);
+            var department = await _context.Department.FirstOrDefaultAsync(m => m.DepartmentId == id);
             if (department == null)
             {
                 return NotFound();
             }
-
             return View(department);
         }
 
-        // POST: Departments/Delete/5
+        //POST Delete Department
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -127,11 +121,11 @@ namespace Project_1640.Controllers
             {
                 _context.Department.Remove(department);
             }
-            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+        //Check department exist
         private bool DepartmentExists(int id)
         {
           return _context.Department.Any(e => e.DepartmentId == id);

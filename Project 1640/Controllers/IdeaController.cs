@@ -8,22 +8,22 @@ using Project_1640.Migrations;
 using Project_1640.Models;
 using Project_1640.ViewModels;
 using System.Security.Claims;
-using Idea = Project_1640.Models.Idea;
 using MailKit.Net.Smtp;
 using System.Net.Mail;
 using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
+using Idea = Project_1640.Models.Idea;
+using Comment = Project_1640.Models.Comment;
+using Topic = Project_1640.Models.Topic;
 using Microsoft.Extensions.Hosting;
 using Org.BouncyCastle.Asn1.BC;
 using System.Text;
 using DocumentFormat.OpenXml.Spreadsheet;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
-using Comment = Project_1640.Models.Comment;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using System;
 using DocumentFormat.OpenXml.Drawing.Charts;
-using Topic = Project_1640.Models.Topic;
 using DocumentFormat.OpenXml.InkML;
 using Org.BouncyCastle.Crypto;
 
@@ -44,26 +44,25 @@ namespace Project_1640.Controllers
             webHostEnvironment = _webHostEnvironment;
             context = _context;
         }
+
+        //Pagination Page and Search
         public IActionResult Index(string term = "", string orderBy = "", int currentPage = 1)
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
-
             var ideaData = new IdeaViewModel();
             ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
-
             var ideas = (from idea in context.Ideas
                          where term == "" || idea.IdeaName.ToLower().StartsWith(term)
                          select new Idea
                          {
+                             IdeaId = idea.IdeaId,
                              IdeaName = idea.IdeaName,
                              IdeaDescription = idea.IdeaDescription,
                              FilePath = idea.FilePath,
                              CreatedDate = idea.CreatedDate,
-                             IdeaId = idea.IdeaId,
                              TotalLike = idea.TotalLike,
                              TotalDislike = idea.TotalDislike,
                          });
-
             switch (orderBy)
             {
                 case "date_desc":
@@ -72,14 +71,11 @@ namespace Project_1640.Controllers
                 default:
                     ideas = ideas.OrderByDescending(a => a.CreatedDate);
                     break;
-
             }
-
             var totalRecords = ideas.Count();
             var pageSize = 5;
             var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
             ideas = ideas.Skip((currentPage - 1) * pageSize).Take(pageSize);
-
             ideaData.Ideas = ideas;
             ideaData.Ideas = ideas;
             ideaData.CurrentPage = currentPage;
@@ -87,9 +83,9 @@ namespace Project_1640.Controllers
             ideaData.PageSize = pageSize;
             ideaData.Term = term;
             ideaData.OrderBy = orderBy;
-
             return View(ideaData);
         }
+        
         [Authorize]
         public async Task<IActionResult> Details(int id, Idea idea, Reaction reaction)
         {
@@ -100,7 +96,6 @@ namespace Project_1640.Controllers
             {
                 users.Add(user);
             }
-
             foreach (var comment in context.Comments)
             {
                 if (comment.IdeaId == idea.IdeaId)
@@ -116,10 +111,8 @@ namespace Project_1640.Controllers
                     comments.Add(comment);
                 }
             }
-
             int like = 0;
             int dislike = 0;
-
             foreach (var react in context.Reactions)
             {
                 if (idea.IdeaId == react.IdeaId)
@@ -134,20 +127,17 @@ namespace Project_1640.Controllers
                     }
                 }
             }
-
             idea.TotalLike = like ;
             idea.TotalDislike = dislike;
-
             context.Ideas.Update(idea);
             await context.SaveChangesAsync();
-
             CommentViewModel viewModel = new CommentViewModel();
             viewModel.Ideas = idea;
             viewModel.Comments = comments;
-
             return View(viewModel);
         }
 
+        //GET Create Idea
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Create()
@@ -156,6 +146,7 @@ namespace Project_1640.Controllers
             return View();
         }
 
+        //POST Create Idea
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, Idea idea, Topic topic, int id)
@@ -163,7 +154,6 @@ namespace Project_1640.Controllers
             //Create Idea
             GetTopicId(id);
             DropDownList();
-
             if (model.TermsConditions == true)
             {
                 idea.TopicId = Topic_Id;
@@ -172,29 +162,24 @@ namespace Project_1640.Controllers
                 idea.CategoryId = model.CategoryId;
                 idea.UserId = userManager.GetUserId(HttpContext.User);
                 idea.CreatedDate = DateTime.Now;
-
                 if (model.AttachFile != null)
                 {
                     idea.FilePath = UploadFile(model.AttachFile);
                 }
-
                 context.Ideas.Add(idea);
                 await context.SaveChangesAsync();
-
                 //Send Mail
                 SendMailCreateIdea(emailData, idea);
                 return RedirectToAction("Details", "Topic", topic);
             }
-
             else
             {
                 ViewBag.FailAccept = "Please accept Term & Condition";
             }
-
             return View();
-
         }
 
+        //GET Edit Idea
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -203,6 +188,7 @@ namespace Project_1640.Controllers
 
             EditIdeaViewModel model = new()
             {
+                IdeaId = idea.IdeaId,
                 IdeaName = idea.IdeaName,
                 IdeaDescription = idea.IdeaDescription,
                 CategoryId = idea.CategoryId,
@@ -212,17 +198,16 @@ namespace Project_1640.Controllers
             return View(model);
         }
 
+        //POST Edit Idea
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(EditIdeaViewModel model)
         {
             DropDownList();
-
             Idea idea = GetIdeaByID(model.ID);
             idea.IdeaName = model.IdeaName;
             idea.IdeaDescription = model.IdeaDescription;
             idea.CategoryId = model.CategoryId;
-
             if (model.AttachFile != null)
             {
                 if (idea.FilePath != null)
@@ -232,14 +217,13 @@ namespace Project_1640.Controllers
                 }
                 idea.FilePath = UploadFile(model.AttachFile);
             }
-
             var SelectedIdea = context.Ideas.Attach(idea);
             SelectedIdea.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        //GET Delete Idea
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -247,9 +231,7 @@ namespace Project_1640.Controllers
             {
                 return NotFound();
             }
-
             var idea = GetIdeaByID(id);
-
             if (idea == null)
             {
                 return NotFound();
@@ -257,18 +239,17 @@ namespace Project_1640.Controllers
             return View(idea);
         }
 
+        //POST Delete Idea
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirm(int id)
         {
             Idea idea = GetIdeaByID(id);
-
             if (idea.FilePath != null)
             {
                 string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
                 System.IO.File.Delete(ExitingFile);
             }
-
             if (idea != null)
             {
                 context.Ideas.Remove(idea);
@@ -277,10 +258,10 @@ namespace Project_1640.Controllers
             return RedirectToAction("Index");
         }
 
+        //Take Category Dropdown List
         public void DropDownList()
         {
             List<SelectListItem> category = new List<SelectListItem>();
-
             foreach (var cat in context.Category)
             {
                 category.Add(new SelectListItem { Text = cat.CategoryName, Value = Convert.ToString(cat.CategoryId) });
@@ -288,21 +269,22 @@ namespace Project_1640.Controllers
             ViewBag.CategoryList = category;
         }
 
+        //Take Attach File
         private string UploadFile(IFormFile formFile)
         {
             string UniqueFileName = formFile.FileName;
             string TargetPath = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", UniqueFileName);
-
             using (var stream = new FileStream(TargetPath, FileMode.Create))
             {
                 formFile.CopyTo(stream);
             }
             return UniqueFileName;
         }
+
+        //Donwload Attach File
         public IActionResult DownloadFile(int id)
         {
             Idea idea = GetIdeaByID(id);
-
             if (idea.FilePath != null)
             {
                var path = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
@@ -317,9 +299,9 @@ namespace Project_1640.Controllers
                 return File(memory,contentType,fileName);
             }
             return RedirectToAction("Index");
-
-
         }        
+
+        //Send Mail After Creating Idea
         public void SendMailCreateIdea(Email emailData, Idea idea)
         {
             //Take submiter details
@@ -333,7 +315,6 @@ namespace Project_1640.Controllers
                     user = users;
                 }
             }
-
             string topicName = "";
             foreach(var topic in context.Topics)
             {
@@ -342,7 +323,6 @@ namespace Project_1640.Controllers
                     topicName = topic.Name;
                 }
             }
-
             string categoryName = "";
             foreach (var category in context.Category)
             {
@@ -351,7 +331,6 @@ namespace Project_1640.Controllers
                     categoryName = category.CategoryName;
                 }
             }
-
             //Format email form
             string BodyMessage =
                 "You had create a new idea in topic " + $"{topicName}" + " successfully\r\n\r\n" +
@@ -397,12 +376,10 @@ namespace Project_1640.Controllers
                 "       </td>\r\n" +
                 "   </tr>\r\n" +
                 "</table>";
-
             //Input email details
             emailData.From = "luandtgcs200115@fpt.edu.vn";
             emailData.Password = "Conso123!";
             emailData.Body = BodyMessage;
-
             var email = new MimeMessage();
             {
                 email.From.Add(MailboxAddress.Parse(emailData.From));
@@ -410,7 +387,6 @@ namespace Project_1640.Controllers
                 email.Subject = "Create Idea Success Notification";
                 email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = emailData.Body };
             }
-
             using var smtp = new SmtpClient();
             {
                 smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
@@ -420,11 +396,13 @@ namespace Project_1640.Controllers
             }
         }
 
+        //Take Idea By id
         public Idea GetIdeaByID(int id)
         {
             return context.Ideas.FirstOrDefault(x => x.IdeaId == id);
         }
 
+        //Take Topic Id by id
         public void GetTopicId(int id)
         {
             foreach (var topic in context.Topics)
@@ -436,23 +414,11 @@ namespace Project_1640.Controllers
             }
         }
 
-        public void GetTopicName(int id)
-        {
-            foreach (var topic in context.Topics)
-            {
-                if (topic.Id == id)
-                {
-                    Topic_Name = topic.Name;
-                }
-            }
-            ViewBag.TopicName = Topic_Name;
-        }
-
+        //Download CSV File 
         public FileResult CSVFile(int id)
         {
             //Find idea
             List<Idea> ideaList = new List<Idea>();
-
             foreach (var idea in context.Ideas)
             {
                 if (Convert.ToInt32(idea.TopicId) == id)
@@ -460,17 +426,13 @@ namespace Project_1640.Controllers
                     ideaList.Add(idea);
                 }
             }
-
             string CSV = string.Empty;
             string[] columnName = new string[] { "IdeaId", "IdeaName", "IdeaDescription", "CreatedDate", "CategoryId", "TopicId", "FilePath, Like, Dislike" };
-
             foreach (var column in columnName)
             {
                 CSV += column + ',';
             }
-
             CSV += "\r\n";
-
             foreach (var idea in ideaList)
             {
                 CSV += idea.IdeaId.ToString().Replace(",", ",") + ',';
@@ -482,19 +444,17 @@ namespace Project_1640.Controllers
                 CSV += idea.FilePath?.Replace(",", ",") + ',';
                 CSV += idea.TotalLike?.ToString().Replace(",", ",") + ',';
                 CSV += idea.TotalDislike?.ToString().Replace(",", ",") + ',';
-
                 CSV += "\r\n";
             }
-
             byte[] bytes = Encoding.UTF8.GetBytes(CSV);
             return File(bytes, "text/csv", "IdeasList.csv");
         }
 
+        //Download Excel File 
         public IActionResult ExcelFile(int id)
         {
             //Find idea
             List<Idea> ideaList = new List<Idea>();
-
             foreach (var idea in context.Ideas)
             {
                 if (Convert.ToInt32(idea.TopicId) == id)
@@ -502,12 +462,10 @@ namespace Project_1640.Controllers
                     ideaList.Add(idea);
                 }
             }
-
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Topic");
                 var currentRow = 1;
-
                 //Add title
                 worksheet.Cell(currentRow, 1).Value = "IdeaId";
                 worksheet.Cell(currentRow, 2).Value = "IdeaName";
@@ -530,7 +488,6 @@ namespace Project_1640.Controllers
                     worksheet.Cell(currentRow, 7).Value = idea.TotalLike;
                     worksheet.Cell(currentRow, 8).Value = idea.TotalDislike;
                 }
-
                 using (var stream = new MemoryStream())
                 {
                     workbook.SaveAs(stream);

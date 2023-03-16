@@ -18,9 +18,9 @@ namespace Project_1640.Controllers
             userManager = _userManager;
         }
 
+        //GET Like
         public async Task<IActionResult> Like(int id, Idea idea, Reaction reaction)
         {
-            // Get the current user's ID
             var userId = userManager.GetUserId(HttpContext.User);
             foreach (var ideas in context.Ideas)
             {
@@ -77,16 +77,14 @@ namespace Project_1640.Controllers
                     }
                 }
             }
-
             await context.SaveChangesAsync();
             return RedirectToRoute(new { controller = "Idea", action = "Details", id});
         }
 
+        //GET Dislike
         public async Task<IActionResult> Dislike(int id, Idea idea, Reaction reaction)
         {
-            // Get the current user's ID
             var userId = userManager.GetUserId(HttpContext.User);
-
             foreach (var ideas in context.Ideas)
             {
                 if (ideas.IdeaId == id)
@@ -94,9 +92,7 @@ namespace Project_1640.Controllers
                     idea = ideas;
                 }
             }
-
             int count = 0;
-
             foreach (var react in context.Reactions)
             {
                 if (idea.IdeaId == react.IdeaId && react.UserId == userId)
@@ -144,7 +140,6 @@ namespace Project_1640.Controllers
                     }
                 }
             }
-
             await context.SaveChangesAsync();
             return RedirectToRoute(new { controller = "Idea", action = "Details", id});
         }

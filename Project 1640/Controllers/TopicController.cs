@@ -13,129 +13,127 @@ namespace Project_1640.Controllers
 {
     public class TopicController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        private IHostingEnvironment _oIHostingEnvironment;
-        public TopicController(ApplicationDbContext db, IHostingEnvironment oIHostingEnvironment)
+        private readonly ApplicationDbContext context;
+        private IHostingEnvironment oIHostingEnvironment;
+
+        public TopicController(ApplicationDbContext _context, IHostingEnvironment _oIHostingEnvironment)
         {
-            _oIHostingEnvironment = oIHostingEnvironment;
-            _db = db;
+            oIHostingEnvironment = _oIHostingEnvironment;
+            context = _context;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Topic> objTopicList = _db.Topics;
+            IEnumerable<Topic> objTopicList = context.Topics;
             return View(objTopicList);
         }
 
-        //GET
+        //GET: Create Topic
         public IActionResult Create()
         {
             return View();
         }
 
-        //POST
+        //POST: Create Topic
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Topic obj)
         {
             if (ModelState.IsValid)
-            { 
-                _db.Topics.Add(obj);
-                _db.SaveChanges();
+            {
+                context.Topics.Add(obj);
+                context.SaveChanges();
                 TempData["success"] = "Topic Created Successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
         }
 
-        //GET
+        //GET: Edit Topic
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var topicFromDb = _db.Topics.Find(id);
-
+            var topicFromDb = context.Topics.Find(id);
             if(topicFromDb == null)
             {
                 return NotFound();
             }
-
             return View(topicFromDb);
         }
-        //POST
+
+        //POST: Edit Topic
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Topic obj)
         {
             if (ModelState.IsValid)
             {
-                _db.Topics.Update(obj);
-                _db.SaveChanges();
+                context.Topics.Update(obj);
+                context.SaveChanges();
                 TempData["success"] = "Topic Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
         }
-        //GET
+
+        //GET Delete Topic
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var topicFromDb = _db.Topics.Find(id);
-
+            var topicFromDb = context.Topics.Find(id);
             if (topicFromDb == null)
             {
                 return NotFound();
             }
-
             return View(topicFromDb);
         }
-        //POST
+
+        //POST Delete Topic
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _db.Topics.Find(id);
+            var obj = context.Topics.Find(id);
             if(obj == null)
             {
                 return NotFound();
             }
-            _db.Topics.Remove(obj);
-            _db.SaveChanges();
+            context.Topics.Remove(obj);
+            context.SaveChanges();
             TempData["success"] = "Topic Deleted Successfully";
             return RedirectToAction("Index");
-            }
+        }
+
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _db.Topics == null)
+            if (id == null || context.Topics == null)
             {
                 return NotFound();
             }
-
-            var topic = await _db.Topics.FirstOrDefaultAsync(m => m.Id == id);
+            var topic = await context.Topics.FirstOrDefaultAsync(m => m.Id == id);
             List<Idea> ideaList = new List<Idea>();
-
-            foreach (var ideas in _db.Ideas)
+            foreach (var ideas in context.Ideas)
             {
                 if (id == Convert.ToInt32(ideas.TopicId))
                 {
                     ideaList.Add(ideas);
                 }
             }
-
             IdeaTopicViewModel model = new IdeaTopicViewModel();
             model.Topics = topic;
             model.Ideas = ideaList;
-
             return View(model);
         }
+
         public FileResult ZipFile(int id)
         {
-            var webRoot = _oIHostingEnvironment.WebRootPath;
+            var webRoot = oIHostingEnvironment.WebRootPath;
             var fileName = "MyZip.zip";
             var tempOutput = webRoot + "UserFiles" + fileName;
             using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
@@ -143,7 +141,7 @@ namespace Project_1640.Controllers
                 oZipOutputStream.SetLevel(9);
                 byte[] buffer = new byte[4096];
                 var FileList = new List<string>();
-                foreach (var idea in _db.Ideas)
+                foreach (var idea in context.Ideas)
                 {
                     if (Convert.ToInt32(idea.TopicId) == id)
                     {
@@ -183,7 +181,6 @@ namespace Project_1640.Controllers
                 throw new Exception(String.Format("Nothing found"));
             }
             return File(finalResult, "application/zip", fileName);
-
         }
     }
 }

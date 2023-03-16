@@ -6,6 +6,7 @@ namespace Project_1640.ViewModels
 {
     public class IdeaViewModel
     {
+        public int IdeaId { get; set; }
         public string IdeaName { get; set; }
         public string IdeaDescription { get; set; }
         public string CategoryId { get; set; }   
@@ -21,6 +22,5 @@ namespace Project_1640.ViewModels
         public int TotalPages { get; set; }
         public string Term { get; set; }
         public string OrderBy { get; set; }
-
     }
 }

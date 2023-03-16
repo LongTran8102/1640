@@ -22,37 +22,34 @@ namespace Project_1640.Controllers
             _userManager = userManager;
         }
 
-        // GET: Comments
+        //GET Comments
         public async Task<IActionResult> Index()
         {
               return View(await _context.Comments.ToListAsync());
         }
 
-        // GET: Comments/Details/5
+        //GET Details Comment
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Comments == null)
             {
                 return NotFound();
             }
-
-            var comment = await _context.Comments
-                .FirstOrDefaultAsync(m => m.CommentId == id);
+            var comment = await _context.Comments.FirstOrDefaultAsync(m => m.CommentId == id);
             if (comment == null)
             {
                 return NotFound();
             }
-
             return View(comment);
         }
 
-        // GET: Comments/Create
+        //GET Create Comment
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Comments/Create
+        //POST Create Comment
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Comment comment, int id)
@@ -60,14 +57,12 @@ namespace Project_1640.Controllers
             comment.UserId = _userManager.GetUserId(HttpContext.User);
             comment.IdeaId = id;
             comment.CommentDate = DateTime.Now;
-
             _context.Add(comment);
             await _context.SaveChangesAsync();
-
             return RedirectToRoute(new { controller = "Idea", action = "Details", id });
         }
 
-        // GET: Comments/Edit/5
+        //GET Edit Comment
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Comments == null)
@@ -83,7 +78,7 @@ namespace Project_1640.Controllers
             return View(comment);
         }
 
-        // POST: Comments/Edit/5
+        //POST Edit Comment
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Comment comment)
@@ -92,7 +87,6 @@ namespace Project_1640.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -116,25 +110,22 @@ namespace Project_1640.Controllers
             return View(comment);
         }
 
-        // GET: Comments/Delete/5
+        //GET Delete Comment
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Comments == null)
             {
                 return NotFound();
             }
-
-            var comment = await _context.Comments
-                .FirstOrDefaultAsync(m => m.CommentId == id);
+            var comment = await _context.Comments.FirstOrDefaultAsync(m => m.CommentId == id);
             if (comment == null)
             {
                 return NotFound();
             }
-
             return View(comment);
         }
 
-        // POST: Comments/Delete/5
+        //POST Delete Comment
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -148,11 +139,11 @@ namespace Project_1640.Controllers
             {
                 _context.Comments.Remove(comment);
             }
-            
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
+        //Check comment exist
         private bool CommentExists(int id)
         {
           return _context.Comments.Any(e => e.CommentId == id);
