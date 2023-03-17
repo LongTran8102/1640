@@ -90,9 +90,8 @@ namespace Project_1640.Controllers
         }
         
         [Authorize]
-        public async Task<IActionResult> Details(int id, Idea idea,Topic topic, Reaction reaction)
+        public async Task<IActionResult> Details(int id, Idea idea)
         {
-            GetTopicId(id);
             foreach (var topics in context.Topics)
             {
                 if (topics.Id == id)
@@ -155,7 +154,7 @@ namespace Project_1640.Controllers
 
                 return View(viewModel);
             }
-            return RedirectToAction("Details", "Topic", topic);
+            return RedirectToRoute(new { controller = "Topic", action = "Details", id });
         }
 
         //GET Create Idea
@@ -175,13 +174,13 @@ namespace Project_1640.Controllers
                 DropDownList();
                 return View();
             }
-            return RedirectToAction("Index", "Topic", topic);
+            return RedirectToRoute(new { controller = "Topic", action = "Details", id });
         }
 
         //POST Create Idea
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, Idea idea, Topic topic, int id)
+        public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, Idea idea, int id)
         {
             //Create Idea
             GetTopicId(id);
@@ -202,7 +201,8 @@ namespace Project_1640.Controllers
                 await context.SaveChangesAsync();
                 //Send Mail
                 SendMailCreateIdea(emailData, idea);
-                return RedirectToAction("Details", "Topic", topic);
+                return RedirectToRoute(new { controller = "Topic", action = "Details", Topic_Id});
+
             }
             else
             {

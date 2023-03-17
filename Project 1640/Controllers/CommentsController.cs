@@ -47,9 +47,8 @@ namespace Project_1640.Controllers
         }
 
         //GET Create Comment
-        public IActionResult Create(Topic topic, int id)
+        public IActionResult Create(int id)
         {
-            GetTopicId(id);
             foreach (var topics in _context.Topics)
             {
                 if (topics.Id.ToString() == Topic_Id)
@@ -61,7 +60,8 @@ namespace Project_1640.Controllers
             {
                 return View();
             }
-            return RedirectToAction("Details", "Topic", topic);
+            return RedirectToRoute(new { controller = "Idea", action = "Details", id });
+
         }
 
         //POST Create Comment
@@ -69,6 +69,8 @@ namespace Project_1640.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Comment comment, int id)
         {
+            GetTopicId(id);
+
             comment.UserId = _userManager.GetUserId(HttpContext.User);
             comment.IdeaId = id;
             comment.CommentDate = DateTime.Now;

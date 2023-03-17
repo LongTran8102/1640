@@ -76,20 +76,9 @@
                 </td>
                 <td width="30%">
                     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                        <a asp-action="Like" asp-controller="Reactions" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded align-middle">
-                            <i class="bi bi-hand-thumbs-up align-middle"></i>
-                            Like
-                        </a>
-                        <a asp-action="DisLike" asp-controller="Reactions" asp-route-id="@item.IdeaId" class="btn btn-outline-danger mx-2 rounded align-middle">
-                            <i class="bi bi-hand-thumbs-down align-middle"></i>
-                            Dislike
-                        </a>
-                        <a asp-action="Create" asp-controller="Comments" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded align-middle">
-                            Comment
-                        </a>
-                        <a asp-action="Edit" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded align-middle mx-2">
-                            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
-                            Edit
+                        <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
+                            <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
+                            Details
                         </a>
                     </div>
                 </td>

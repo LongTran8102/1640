@@ -3932,3 +3932,4 @@ C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 16
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\ref\Project 1640.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
 C:\Users\USER\Desktop\1640\Project 1640\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Users\pekoi\Documents\Desktop\1640\Project 1640\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
