@@ -26,6 +26,7 @@ using System;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.InkML;
 using Org.BouncyCastle.Crypto;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace Project_1640.Controllers
 {
@@ -37,6 +38,8 @@ namespace Project_1640.Controllers
 
         public static string Topic_Id;
         public static string Topic_Name;
+        public static DateTime Topic_ClosureDate;
+        public static DateTime Topic_FinalClosureDate;
 
         public IdeaController(IWebHostEnvironment _webHostEnvironment, ApplicationDbContext _context, UserManager<IdentityUser> _userManager)
         {
@@ -87,63 +90,92 @@ namespace Project_1640.Controllers
         }
         
         [Authorize]
-        public async Task<IActionResult> Details(int id, Idea idea, Reaction reaction)
+        public async Task<IActionResult> Details(int id, Idea idea,Topic topic, Reaction reaction)
         {
-            idea = GetIdeaByID(id);
-            List<Comment> comments = new List<Comment>();
-            List<ApplicationUser> users = new List<ApplicationUser>();
-            foreach (var user in context.applicationUsers)
+            GetTopicId(id);
+            foreach (var topics in context.Topics)
             {
-                users.Add(user);
+                if (topics.Id == id)
+                {                    
+                    Topic_FinalClosureDate = topics.FinalClosureDate;
+                }
             }
-            foreach (var comment in context.Comments)
+            if (Topic_FinalClosureDate > DateTime.Now)
             {
-                if (comment.IdeaId == idea.IdeaId)
+                idea = GetIdeaByID(id);
+                List<Comment> comments = new List<Comment>();
+                List<ApplicationUser> users = new List<ApplicationUser>();
+                foreach (var user in context.applicationUsers)
                 {
-                    foreach (var user in users)
+                    users.Add(user);
+                }
+
+                foreach (var comment in context.Comments)
+                {
+                    if (comment.IdeaId == idea.IdeaId)
                     {
-                        if (user.Id == comment.UserId)
+                        foreach (var user in users)
                         {
-                            comment.IdeaId = idea.IdeaId;
-                            comment.UserId = user.Firstname;
+                            if (user.Id == comment.UserId)
+                            {
+                                comment.IdeaId = idea.IdeaId;
+                                comment.UserId = user.Firstname;
+                            }
+                        }
+                        comments.Add(comment);
+                    }
+                }
+
+                int like = 0;
+                int dislike = 0;
+
+                foreach (var react in context.Reactions)
+                {
+                    if (idea.IdeaId == react.IdeaId)
+                    {
+                        if (react.React == true)
+                        {
+                            like++;
+                        }
+                        if (react.React == false)
+                        {
+                            dislike++;
                         }
                     }
-                    comments.Add(comment);
                 }
+
+                idea.TotalLike = like;
+                idea.TotalDislike = dislike;
+                context.Ideas.Update(idea);
+                await context.SaveChangesAsync();
+
+                CommentViewModel viewModel = new CommentViewModel();
+                viewModel.Ideas = idea;
+                viewModel.Comments = comments;
+
+                return View(viewModel);
             }
-            int like = 0;
-            int dislike = 0;
-            foreach (var react in context.Reactions)
-            {
-                if (idea.IdeaId == react.IdeaId)
-                {
-                    if (react.React == true)
-                    {
-                        like++;
-                    }
-                    if (react.React == false)
-                    {
-                        dislike++;
-                    }
-                }
-            }
-            idea.TotalLike = like ;
-            idea.TotalDislike = dislike;
-            context.Ideas.Update(idea);
-            await context.SaveChangesAsync();
-            CommentViewModel viewModel = new CommentViewModel();
-            viewModel.Ideas = idea;
-            viewModel.Comments = comments;
-            return View(viewModel);
+            return RedirectToAction("Details", "Topic", topic);
         }
 
         //GET Create Idea
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(Topic topic, int id)
         {
-            DropDownList();
-            return View();
+            foreach (var topics in context.Topics)
+            {
+                if (topics.Id == id)
+                {
+                    Topic_ClosureDate = topics.ClosureDate;
+                }
+            }
+            if (Topic_ClosureDate > DateTime.Now)
+            {
+                DropDownList();
+                return View();
+            }
+            return RedirectToAction("Index", "Topic", topic);
         }
 
         //POST Create Idea

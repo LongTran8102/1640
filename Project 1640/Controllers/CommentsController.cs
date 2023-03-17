@@ -16,6 +16,9 @@ namespace Project_1640.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
+        public static DateTime Topic_FinalClosureDate;
+        public static string Topic_Id;
+
         public CommentsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
@@ -44,9 +47,21 @@ namespace Project_1640.Controllers
         }
 
         //GET Create Comment
-        public IActionResult Create()
+        public IActionResult Create(Topic topic, int id)
         {
-            return View();
+            GetTopicId(id);
+            foreach (var topics in _context.Topics)
+            {
+                if (topics.Id.ToString() == Topic_Id)
+                {
+                    Topic_FinalClosureDate = topics.FinalClosureDate;
+                }
+            }
+            if (Topic_FinalClosureDate > DateTime.Now)
+            {
+                return View();
+            }
+            return RedirectToAction("Details", "Topic", topic);
         }
 
         //POST Create Comment
@@ -147,6 +162,16 @@ namespace Project_1640.Controllers
         private bool CommentExists(int id)
         {
           return _context.Comments.Any(e => e.CommentId == id);
+        }
+        public void GetTopicId(int id)
+        {
+            foreach (var idea in _context.Ideas)
+            {
+                if (idea.IdeaId == id)
+                {
+                    Topic_Id = Convert.ToString(idea.TopicId);
+                }
+            }
         }
     }
 }
