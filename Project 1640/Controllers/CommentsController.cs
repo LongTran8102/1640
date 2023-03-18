@@ -71,7 +71,6 @@ namespace Project_1640.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Comment comment, int id)
         {
-            
             comment.UserId = _userManager.GetUserId(HttpContext.User);
             comment.IdeaId = id;
             comment.CommentDate = DateTime.Now;

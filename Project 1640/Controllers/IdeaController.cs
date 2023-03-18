@@ -88,7 +88,7 @@ namespace Project_1640.Controllers
             ideaData.OrderBy = orderBy;
             return View(ideaData);
         }
-        
+
         [Authorize]
         public async Task<IActionResult> Details(int id, Idea idea)
         {
@@ -96,7 +96,7 @@ namespace Project_1640.Controllers
             foreach (var topics in context.Topics)
             {
                 if (topics.Id.ToString() == Topic_Id)
-                {                    
+                {
                     Topic_FinalClosureDate = topics.FinalClosureDate;
                 }
             }
@@ -155,20 +155,19 @@ namespace Project_1640.Controllers
 
                 return View(viewModel);
             }
-            return RedirectToRoute(new { controller = "Topic", action = "Details", Topic_Id });
+            return RedirectToAction("Index", "Topic");
         }
 
         //GET Create Idea
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Create(Topic topic, int id)
+        public async Task<IActionResult> Create(int id)
         {
-            GetTopicId(id);
-            foreach (var topics in context.Topics)
+            foreach (var topic in context.Topics)
             {
-                if (topics.Id == id)
+                if (topic.Id == id)
                 {
-                    Topic_ClosureDate = topics.ClosureDate;
+                    Topic_ClosureDate = topic.ClosureDate;
                 }
             }
             if (Topic_ClosureDate > DateTime.Now)
@@ -176,7 +175,9 @@ namespace Project_1640.Controllers
                 DropDownList();
                 return View();
             }
-            return RedirectToRoute(new { controller = "Topic", action = "Details", Topic_Id });
+            ViewBag.showAlert = true; 
+            ViewBag.alertMessage = "Hello World!";
+            return RedirectToAction("Index", "Topic");
         }
 
         //POST Create Idea
@@ -203,8 +204,7 @@ namespace Project_1640.Controllers
                 await context.SaveChangesAsync();
                 //Send Mail
                 SendMailCreateIdea(emailData, idea);
-                return RedirectToRoute(new { controller = "Topic", action = "Details", Topic_Id});
-
+                return RedirectToRoute(new { controller = "Topic", action = "Details", Topic_Id });
             }
             else
             {
@@ -321,19 +321,19 @@ namespace Project_1640.Controllers
             Idea idea = GetIdeaByID(id);
             if (idea.FilePath != null)
             {
-               var path = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
-                var memory=new MemoryStream();
-                using (var stream =new FileStream(path, FileMode.Open)) 
+                var path = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
+                var memory = new MemoryStream();
+                using (var stream = new FileStream(path, FileMode.Open))
                 {
                     stream.CopyTo(memory);
                 }
                 memory.Position = 0;
                 var contentType = "APPLICATION/octet-stream";
                 var fileName = Path.GetFileName(path);
-                return File(memory,contentType,fileName);
+                return File(memory, contentType, fileName);
             }
             return RedirectToAction("Index");
-        }        
+        }
 
         //Send Mail After Creating Idea
         public void SendMailCreateIdea(Email emailData, Idea idea)
@@ -350,9 +350,9 @@ namespace Project_1640.Controllers
                 }
             }
             string topicName = "";
-            foreach(var topic in context.Topics)
+            foreach (var topic in context.Topics)
             {
-                if(topic.Id == Convert.ToInt32(idea.TopicId))
+                if (topic.Id == Convert.ToInt32(idea.TopicId))
                 {
                     topicName = topic.Name;
                 }
@@ -456,6 +456,12 @@ namespace Project_1640.Controllers
                     Topic_Id = Convert.ToString(idea.TopicId);
                 }
             }
+        }
+
+        public void AlertMessage ()
+        {
+            ViewBag.showAlert = true;
+            ViewBag.alertMessage = "Hello World!";
         }
     }
 }
