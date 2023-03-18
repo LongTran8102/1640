@@ -92,9 +92,10 @@ namespace Project_1640.Controllers
         [Authorize]
         public async Task<IActionResult> Details(int id, Idea idea)
         {
+            GetTopicIdFromIdea(id);
             foreach (var topics in context.Topics)
             {
-                if (topics.Id == id)
+                if (topics.Id.ToString() == Topic_Id)
                 {                    
                     Topic_FinalClosureDate = topics.FinalClosureDate;
                 }
@@ -154,7 +155,7 @@ namespace Project_1640.Controllers
 
                 return View(viewModel);
             }
-            return RedirectToRoute(new { controller = "Topic", action = "Details", id });
+            return RedirectToRoute(new { controller = "Topic", action = "Details", Topic_Id });
         }
 
         //GET Create Idea
@@ -162,6 +163,7 @@ namespace Project_1640.Controllers
         [Authorize]
         public async Task<IActionResult> Create(Topic topic, int id)
         {
+            GetTopicId(id);
             foreach (var topics in context.Topics)
             {
                 if (topics.Id == id)
@@ -174,7 +176,7 @@ namespace Project_1640.Controllers
                 DropDownList();
                 return View();
             }
-            return RedirectToRoute(new { controller = "Topic", action = "Details", id });
+            return RedirectToRoute(new { controller = "Topic", action = "Details", Topic_Id });
         }
 
         //POST Create Idea
@@ -442,6 +444,16 @@ namespace Project_1640.Controllers
                 if (topic.Id == id)
                 {
                     Topic_Id = Convert.ToString(topic.Id);
+                }
+            }
+        }
+        public void GetTopicIdFromIdea(int id)
+        {
+            foreach (var idea in context.Ideas)
+            {
+                if (idea.IdeaId == id)
+                {
+                    Topic_Id = Convert.ToString(idea.TopicId);
                 }
             }
         }

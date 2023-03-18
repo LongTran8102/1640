@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.InkML;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -49,6 +50,7 @@ namespace Project_1640.Controllers
         //GET Create Comment
         public IActionResult Create(int id)
         {
+            GetTopicIdFromIdea(id);
             foreach (var topics in _context.Topics)
             {
                 if (topics.Id.ToString() == Topic_Id)
@@ -69,8 +71,7 @@ namespace Project_1640.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Comment comment, int id)
         {
-            GetTopicId(id);
-
+            
             comment.UserId = _userManager.GetUserId(HttpContext.User);
             comment.IdeaId = id;
             comment.CommentDate = DateTime.Now;
@@ -165,7 +166,7 @@ namespace Project_1640.Controllers
         {
           return _context.Comments.Any(e => e.CommentId == id);
         }
-        public void GetTopicId(int id)
+        public void GetTopicIdFromIdea(int id)
         {
             foreach (var idea in _context.Ideas)
             {
