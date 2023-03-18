@@ -27,12 +27,15 @@ using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.InkML;
 using Org.BouncyCastle.Crypto;
 using DocumentFormat.OpenXml.Office2010.Excel;
+using ICSharpCode.SharpZipLib.Zip;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Project_1640.Controllers
 {
     public class IdeaController : Controller
     {
         public readonly IWebHostEnvironment webHostEnvironment;
+        private IHostingEnvironment oIHostingEnvironment;
         public readonly ApplicationDbContext context;
         public readonly UserManager<IdentityUser> userManager;
 
@@ -41,10 +44,11 @@ namespace Project_1640.Controllers
         public static DateTime Topic_ClosureDate;
         public static DateTime Topic_FinalClosureDate;
 
-        public IdeaController(IWebHostEnvironment _webHostEnvironment, ApplicationDbContext _context, UserManager<IdentityUser> _userManager)
+        public IdeaController(IHostingEnvironment _IHostingEnvironment, IWebHostEnvironment _webHostEnvironment, ApplicationDbContext _context, UserManager<IdentityUser> _userManager)
         {
             userManager = _userManager;
             webHostEnvironment = _webHostEnvironment;
+            oIHostingEnvironment = _IHostingEnvironment;
             context = _context;
         }
 
@@ -429,7 +433,60 @@ namespace Project_1640.Controllers
                 smtp.Disconnect(true);
             }
         }
-
+        
+        //Download idea file
+        public FileResult ZipFile(Idea idea, int id)
+        {
+            GetIdeaByID(id);
+            var webRoot = oIHostingEnvironment.WebRootPath;
+            var fileName =  $"{idea.IdeaName}.zip";
+            var tempOutput = webRoot + "UserFiles" + fileName;
+            using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
+            {
+                oZipOutputStream.SetLevel(9);
+                byte[] buffer = new byte[4096];
+                var FileList = new List<string>();
+                foreach (var ideas in context.Ideas)
+                {
+                    if (ideas.IdeaId == id)
+                    {
+                        if (ideas.FilePath != null)
+                        {
+                            FileList.Add(webRoot + "/UserFiles/" + ideas.FilePath);
+                        }
+                    }
+                }
+                for (int i = 0; i < FileList.Count; i++)
+                {
+                    ZipEntry entry = new ZipEntry(Path.GetFileName(FileList[i]));
+                    entry.DateTime = DateTime.Now;
+                    entry.IsUnicodeText = true;
+                    oZipOutputStream.PutNextEntry(entry);
+                    using (FileStream oFileStream = System.IO.File.OpenRead(FileList[i]))
+                    {
+                        int sourceBytes;
+                        do
+                        {
+                            sourceBytes = oFileStream.Read(buffer, 0, buffer.Length);
+                            oZipOutputStream.Write(buffer, 0, sourceBytes);
+                        } while (sourceBytes > 0);
+                    }
+                }
+                oZipOutputStream.Finish();
+                oZipOutputStream.Flush();
+                oZipOutputStream.Close();
+            }
+            byte[] finalResult = System.IO.File.ReadAllBytes(tempOutput);
+            if (System.IO.File.Exists(tempOutput))
+            {
+                System.IO.File.Delete(tempOutput);
+            }
+            if (finalResult == null || !finalResult.Any())
+            {
+                throw new Exception(String.Format("Nothing found"));
+            }
+            return File(finalResult, "application/zip", fileName);
+        }
         //Take Idea By id
         public Idea GetIdeaByID(int id)
         {

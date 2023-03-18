@@ -60,10 +60,16 @@ namespace Project_1640.Controllers
             }
             if (Topic_FinalClosureDate > DateTime.Now)
             {
+                foreach (var idea in _context.Ideas)
+                {
+                    if (idea.IdeaId == id)
+                    {
+                        ViewBag.CommentId = idea.IdeaId;
+                    }
+                }
                 return View();
             }
             return RedirectToRoute(new { controller = "Idea", action = "Details", id });
-
         }
 
         //POST Create Comment

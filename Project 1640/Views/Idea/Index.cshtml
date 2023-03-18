@@ -62,11 +62,7 @@
                             <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
                             Details
                         </a>
-                        <a asp-action="Delete" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">
-                            <i class="bi bi-trash align-middle" style="font-size:20px"></i>
-                            Delete
-                        </a>
-                        <a asp-action="DownloadFile" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">
+                        <a asp-action="ZipFile" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-danger rounded align-middle">
                             <i class="bi bi-trash align-middle" style="font-size:20px"></i>
                             Download File
                         </a>

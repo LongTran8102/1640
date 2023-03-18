@@ -1,4 +1,6 @@
-﻿@model Project_1640.ViewModels.CommentViewModel
+﻿@using System.Security.Claims;
+
+@model Project_1640.ViewModels.CommentViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -68,6 +70,13 @@
         <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
         Edit
     </a>
+    @if (@Model.Ideas.UserId == this.User.FindFirstValue(ClaimTypes.NameIdentifier))
+    {
+        <a asp-action="Delete" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-primary rounded align-middle mx-2" >
+            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+            Delete
+        </a>
+    }
 </div>
 <br />
 <br />

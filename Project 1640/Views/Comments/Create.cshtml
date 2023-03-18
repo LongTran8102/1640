@@ -22,10 +22,10 @@
     </div>
 </div>
 <div>
-    <a asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
-            <i class="bi bi-arrow-left-short align-middle"></i>
-            Back
-        </a>
+    <a asp-action="Details" asp-controller="Idea" asp-route-id="@ViewBag.CommentId" class="btn btn-secondary btn-danger" style="width:150px">
+        <i class="bi bi-arrow-left-short align-middle"></i>
+        Back
+    </a>
 </div>
 
 @section Scripts {
