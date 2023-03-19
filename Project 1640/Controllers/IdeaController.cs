@@ -32,6 +32,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Project_1640.Controllers
 {
+    [Authorize]
     public class IdeaController : Controller
     {
         public readonly IWebHostEnvironment webHostEnvironment;

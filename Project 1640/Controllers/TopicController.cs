@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using DocumentFormat.OpenXml.InkML;
 using ICSharpCode.SharpZipLib.Zip;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Utilities.Zlib;
@@ -13,6 +14,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Project_1640.Controllers
 {
+    [Authorize]
     public class TopicController : Controller
     {
         private readonly ApplicationDbContext context;
@@ -31,6 +33,9 @@ namespace Project_1640.Controllers
         }
 
         //GET: Create Topic
+        
+        [Authorize(Roles = "QA/QC Coordinator , Admin")]
+        
         public IActionResult Create()
         {
             return View();
@@ -39,6 +44,7 @@ namespace Project_1640.Controllers
         //POST: Create Topic
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "QA/QC Coordinator , Admin")]
         public IActionResult Create(Topic obj)
         {
             if (ModelState.IsValid)
@@ -52,6 +58,8 @@ namespace Project_1640.Controllers
         }
 
         //GET: Edit Topic
+        [Authorize(Roles = "QA/QC Coordinator , Admin")]
+
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -69,6 +77,7 @@ namespace Project_1640.Controllers
         //POST: Edit Topic
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "QA/QC Coordinator , Admin")]
         public IActionResult Edit(Topic obj)
         {
             if (ModelState.IsValid)
@@ -82,6 +91,7 @@ namespace Project_1640.Controllers
         }
 
         //GET Delete Topic
+        [Authorize(Roles = "QA/QC Coordinator, Admin")]
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -99,6 +109,7 @@ namespace Project_1640.Controllers
         //POST Delete Topic
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "QA/QC Coordinator, Admin")]
         public IActionResult DeletePOST(int? id)
         {
             var obj = context.Topics.Find(id);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Project_1640.Models;
 
 namespace Project_1640.Controllers
 {
+    [Authorize(Roles = "QA/QC Coordinator, Admin")]
     public class DepartmentsController : Controller
     {
         private readonly ApplicationDbContext _context;

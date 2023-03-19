@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project_1640.Data;
@@ -7,6 +8,7 @@ using System.Security.Claims;
 
 namespace Project_1640.Controllers
 {
+    [Authorize]
     public class ReactionsController : Controller
     {
         private readonly ApplicationDbContext context;
