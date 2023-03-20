@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.InkML;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
 using Project_1640.Data;
 using Project_1640.Models;
 
@@ -77,13 +79,15 @@ namespace Project_1640.Controllers
         //POST Create Comment
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Comment comment, int id)
+        public async Task<IActionResult> Create(Email emailData, Comment comment, int id)
         {
             comment.UserId = _userManager.GetUserId(HttpContext.User);
             comment.IdeaId = id;
             comment.CommentDate = DateTime.Now;
             _context.Add(comment);
             await _context.SaveChangesAsync();
+
+            SendMailReceiveComment(emailData, id);
             return RedirectToRoute(new { controller = "Idea", action = "Details", id });
         }
 
@@ -168,11 +172,7 @@ namespace Project_1640.Controllers
             return RedirectToAction("Index");
         }
 
-        //Check comment exist
-        private bool CommentExists(int id)
-        {
-          return _context.Comments.Any(e => e.CommentId == id);
-        }
+
         public void GetTopicIdFromIdea(int id)
         {
             foreach (var idea in _context.Ideas)
@@ -182,6 +182,61 @@ namespace Project_1640.Controllers
                     Topic_Id = Convert.ToString(idea.TopicId);
                 }
             }
+        }
+        //Send Mail After Creating Idea
+        public void SendMailReceiveComment(Email emailData, int id)
+        {
+            //Take topic's author details
+            string userId = "";
+            Idea Idea = new Idea();
+            IdentityUser User = new IdentityUser();
+
+            foreach (var idea in _context.Ideas)
+            {
+                if(idea.IdeaId == id)
+                {
+                    userId = idea.UserId;
+                    Idea = idea;
+                }
+            }
+            
+            foreach(var user in _context.Users)
+            {
+                if(user.UserName == userId)
+                {
+                    User = user;
+                }
+            }
+
+            User.Email = emailData.To;
+
+            //Format email form
+            string BodyMessage = "You had received a new comment in the idea " + $"{Idea.IdeaName}" + " in the topic" + $"{Idea.TopicId}" + ". Did you read it?\r\n\r\n";
+
+            //Input email details
+            emailData.From = "luandtgcs200115@fpt.edu.vn";
+            emailData.Password = "Conso123!";
+            emailData.Body = BodyMessage;
+            var email = new MimeMessage();
+            {
+                email.From.Add(MailboxAddress.Parse(emailData.From));
+                email.To.Add(MailboxAddress.Parse(emailData.To));
+                email.Subject = "New Comment Notification";
+                email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = emailData.Body };
+            }
+            using var smtp = new SmtpClient();
+            {
+                smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+                smtp.Authenticate(emailData.From, emailData.Password);
+                smtp.Send(email);
+                smtp.Disconnect(true);
+            }
+        }
+
+        //Check comment exist
+        private bool CommentExists(int id)
+        {
+          return _context.Comments.Any(e => e.CommentId == id);
         }
     }
 }

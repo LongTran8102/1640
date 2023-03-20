@@ -33,9 +33,7 @@ namespace Project_1640.Controllers
         }
 
         //GET: Create Topic
-        
         [Authorize(Roles = "QA/QC Coordinator , Admin")]
-        
         public IActionResult Create()
         {
             return View();
