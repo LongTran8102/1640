@@ -189,11 +189,10 @@ namespace Project_1640.Controllers
         public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, Idea idea, int id)
         {
             //Create Idea
-            GetTopicId(id);
             DropDownList();
             if (model.TermsConditions == true)
             {
-                idea.TopicId = Topic_Id;
+                idea.TopicId = id;
                 idea.IdeaName = model.IdeaName;
                 idea.IdeaDescription = model.IdeaDescription;
                 idea.CategoryId = model.CategoryId;
@@ -207,7 +206,7 @@ namespace Project_1640.Controllers
                 await context.SaveChangesAsync();
                 //Send Mail
                 SendMailCreateIdea(emailData, idea);
-                return RedirectToRoute(new { controller = "Topic", action = "Details", Topic_Id });
+                return RedirectToRoute(new { controller = "Topic", action = "Details", id });
             }
             else
             {
