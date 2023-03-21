@@ -180,8 +180,6 @@ namespace Project_1640.Controllers
                 DropDownList();
                 return View();
             }
-            ViewBag.showAlert = true; 
-            ViewBag.alertMessage = "Hello World!";
             return RedirectToAction("Index", "Topic");
         }
 
@@ -223,18 +221,22 @@ namespace Project_1640.Controllers
         public IActionResult Edit(int id)
         {
             var idea = GetIdeaByID(id);
-            DropDownList();
-
-            EditIdeaViewModel model = new()
+            if (userManager.GetUserId(HttpContext.User) == idea.UserId || this.User.IsInRole("Admin") == true)
             {
-                IdeaId = idea.IdeaId,
-                IdeaName = idea.IdeaName,
-                IdeaDescription = idea.IdeaDescription,
-                CategoryId = idea.CategoryId,
-                UserId = userManager.GetUserId(HttpContext.User),
-                ExsitingFile = idea.FilePath,
-            };
-            return View(model);
+                DropDownList();
+
+                EditIdeaViewModel model = new()
+                {
+                    IdeaId = idea.IdeaId,
+                    IdeaName = idea.IdeaName,
+                    IdeaDescription = idea.IdeaDescription,
+                    CategoryId = idea.CategoryId,
+                    UserId = userManager.GetUserId(HttpContext.User),
+                    ExsitingFile = idea.FilePath,
+                };
+                return View(model);
+            }
+            return RedirectToAction("Index");
         }
 
         //POST Edit Idea
@@ -271,11 +273,15 @@ namespace Project_1640.Controllers
                 return NotFound();
             }
             var idea = GetIdeaByID(id);
-            if (idea == null)
+            if (userManager.GetUserId(HttpContext.User) == idea.UserId || this.User.IsInRole("Admin") == true)
             {
-                return NotFound();
+                if (idea == null)
+                {
+                    return NotFound();
+                }
+                return View(idea);
             }
-            return View(idea);
+            return RedirectToAction("Index");
         }
 
         //POST Delete Idea

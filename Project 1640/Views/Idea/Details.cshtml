@@ -1,5 +1,4 @@
 ﻿@using System.Security.Claims;
-
 @model Project_1640.ViewModels.CommentViewModel
 @{
     ViewData["Title"] = "Details";
@@ -11,21 +10,21 @@
 
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Ideas.IdeaName)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.IdeaName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Ideas.TopicId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.TopicId)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Ideas.IdeaDescription)
-        </dt>        
+        </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.IdeaDescription)
         </dd>
@@ -35,13 +34,13 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.FilePath)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Ideas.TotalLike)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.TotalLike)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Ideas.TotalDislike)
         </dt>
         <dd class="col-sm-10">
@@ -66,13 +65,13 @@
         <i class="bi bi-chat-right-text align-middle" style="font-size:20px"></i>
         Comment
     </a>
-    <a asp-action="Edit" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-primary rounded align-middle mx-2" >
-        <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
-        Edit
-    </a>
-    @if (@Model.Ideas.UserId == this.User.FindFirstValue(ClaimTypes.NameIdentifier))
+    @if (@Model.Ideas.UserId == this.User.FindFirstValue(ClaimTypes.NameIdentifier) || this.User.IsInRole("Admin") == true)
     {
-        <a asp-action="Delete" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-primary rounded align-middle mx-2" >
+        <a asp-action="Edit" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-primary rounded align-middle mx-2">
+            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+            Edit
+        </a>
+        <a asp-action="Delete" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-primary rounded align-middle mx-2">
             <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
             Delete
         </a>
@@ -87,7 +86,6 @@
                 <input asp-for="Comment.CommentText" class="form-control mb-3" />
                 <span asp-validation-for="Comment.CommentText" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <input type="submit" value="Send" class="btn btn-primary mb-3" />
             </div>
@@ -98,33 +96,32 @@
 <br />
 
 <div class="container py-5">
-<div class="row d-flex justify-content-center">
-    <div class="col-md-12 col-lg-10" style="width:100%">
-        <div class="card text-dark">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-12 col-lg-10" style="width:100%">
+            <div class="card text-dark">
 
-            <div class="card-body p-4">
-                <h4 class="mb-0">Recent comments</h4>
+                <div class="card-body p-4">
+                    <h4 class="mb-0">Recent comments</h4>
 
-                @foreach (var item in Model.Comments)
-                {
-                    <div class="d-flex flex-start">
-                        <div>
-                            <h6 class="text-primary fw-bold mb-0">User</h6>
-                            <div class="d-flex align-items-center mb-3">
-                                <p class="mb-0">
-                                    @Html.DisplayFor(modelItem => item.CommentDate)
+                    @foreach (var item in Model.Comments)
+                    {
+                        <div class="d-flex flex-start">
+                            <div>
+                                <h6 class="text-primary fw-bold mb-0">User</h6>
+                                <div class="d-flex align-items-center mb-3">
+                                    <p class="mb-0">
+                                        @Html.DisplayFor(modelItem => item.CommentDate)
+                                    </p>
+                                </div>
+                                <p class="mb-1">
+                                    @Html.DisplayFor(modelItem => item.CommentText)
                                 </p>
                             </div>
-                            <p class="mb-1">
-                                @Html.DisplayFor(modelItem => item.CommentText)
-                            </p>
                         </div>
-                    </div>
-                    <hr class="my-0" />
-                }
+                        <hr class="my-0" />
+                    }
+                </div>
             </div>
-
         </div>
     </div>
-</div>
 </div>
