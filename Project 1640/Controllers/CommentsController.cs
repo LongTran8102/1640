@@ -202,7 +202,7 @@ namespace Project_1640.Controllers
             
             foreach(var user in _context.Users)
             {
-                if(user.UserName == userId)
+                if(user.Id == userId)
                 {
                     User = user;
                 }
