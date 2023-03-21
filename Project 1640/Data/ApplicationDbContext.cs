@@ -18,6 +18,6 @@ namespace Project_1640.Data
         public DbSet<Idea> Ideas { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Reaction> Reactions { get; set; }
-
+        public DbSet<View> Views { get; set; }
     }
 }

@@ -15,5 +15,6 @@ namespace Project_1640.Models
         public DateTime CreatedDate { get; set; }
         public int? TotalLike { get; set; } = 0;
         public int? TotalDislike { get; set; } = 0;
+        public int? TotalView { get; set; } = 0;
     }
 }

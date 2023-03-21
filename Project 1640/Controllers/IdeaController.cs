@@ -96,70 +96,65 @@ namespace Project_1640.Controllers
         [Authorize]
         public async Task<IActionResult> Details(int id, Idea idea)
         {
-            GetTopicIdFromIdea(id);
-            foreach (var topics in context.Topics)
+            CountView(id);
+            idea = GetIdeaByID(id);
+            List<Comment> comments = new List<Comment>();
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            foreach (var user in context.applicationUsers)
             {
-                if (topics.Id.ToString() == Topic_Id)
-                {
-                    Topic_FinalClosureDate = topics.FinalClosureDate;
-                }
+                users.Add(user);
             }
-            if (Topic_FinalClosureDate > DateTime.Now)
+
+            foreach (var comment in context.Comments)
             {
-                idea = GetIdeaByID(id);
-                List<Comment> comments = new List<Comment>();
-                List<ApplicationUser> users = new List<ApplicationUser>();
-                foreach (var user in context.applicationUsers)
+                if (comment.IdeaId == idea.IdeaId)
                 {
-                    users.Add(user);
-                }
-
-                foreach (var comment in context.Comments)
-                {
-                    if (comment.IdeaId == idea.IdeaId)
+                    foreach (var user in users)
                     {
-                        foreach (var user in users)
+                        if (user.Id == comment.UserId)
                         {
-                            if (user.Id == comment.UserId)
-                            {
-                                comment.IdeaId = idea.IdeaId;
-                                comment.UserId = user.Firstname;
-                            }
-                        }
-                        comments.Add(comment);
-                    }
-                }
-
-                int like = 0;
-                int dislike = 0;
-
-                foreach (var react in context.Reactions)
-                {
-                    if (idea.IdeaId == react.IdeaId)
-                    {
-                        if (react.React == true)
-                        {
-                            like++;
-                        }
-                        if (react.React == false)
-                        {
-                            dislike++;
+                            comment.IdeaId = idea.IdeaId;
+                            comment.UserId = user.Firstname;
                         }
                     }
+                    comments.Add(comment);
                 }
-
-                idea.TotalLike = like;
-                idea.TotalDislike = dislike;
-                context.Ideas.Update(idea);
-                await context.SaveChangesAsync();
-
-                CommentViewModel viewModel = new CommentViewModel();
-                viewModel.Ideas = idea;
-                viewModel.Comments = comments;
-
-                return View(viewModel);
             }
-            return RedirectToAction("Index", "Topic");
+
+            int like = 0;
+            int dislike = 0;
+
+            foreach (var react in context.Reactions)
+            {
+                if (idea.IdeaId == react.IdeaId)
+                {
+                    if (react.React == true)
+                    {
+                        like++;
+                    }
+                    if (react.React == false)
+                    {
+                        dislike++;
+                    }
+                }
+            }
+            int TotalView = 0;
+
+            foreach (var view in context.Views)
+            {
+                if (view.IdeaId == id)
+                    TotalView++;
+            }
+            idea.TotalLike = like;
+            idea.TotalDislike = dislike;
+            idea.TotalView = TotalView;
+            context.Ideas.Update(idea);
+            await context.SaveChangesAsync();
+
+            CommentViewModel viewModel = new CommentViewModel();
+            viewModel.Ideas = idea;
+            viewModel.Comments = comments;
+            return View(viewModel);
         }
 
         //GET Create Idea
@@ -438,13 +433,13 @@ namespace Project_1640.Controllers
                 smtp.Disconnect(true);
             }
         }
-        
+
         //Download idea file
         public FileResult ZipFile(Idea idea, int id)
         {
             GetIdeaByID(id);
             var webRoot = oIHostingEnvironment.WebRootPath;
-            var fileName =  $"{idea.IdeaName}.zip";
+            var fileName = $"{idea.IdeaName}.zip";
             var tempOutput = webRoot + "UserFiles" + fileName;
             using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
             {
@@ -506,6 +501,36 @@ namespace Project_1640.Controllers
                 if (idea.IdeaId == id)
                 {
                     Topic_Id = Convert.ToString(idea.TopicId);
+                }
+            }
+        }
+        public void CountView(int id)
+        {
+            GetTopicIdFromIdea(id);
+            foreach (var topics in context.Topics)
+            {
+                if (topics.Id.ToString() == Topic_Id)
+                {
+                    Topic_FinalClosureDate = topics.FinalClosureDate;
+                }
+            }
+            if (Topic_FinalClosureDate > DateTime.Now)
+            {
+                int count = 0;
+                foreach (var views in context.Views)
+                {
+                    if (views.IdeaId == id && views.UserId == userManager.GetUserId(HttpContext.User))
+                    {
+                        count++;
+                    }
+                }
+                if (count == 0)
+                {
+                    View view = new View();
+                    view.IdeaId = id;
+                    view.ViewDate = DateTime.Now;
+                    view.UserId = userManager.GetUserId(HttpContext.User);
+                    context.Views.Add(view);
                 }
             }
         }

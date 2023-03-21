@@ -2,7 +2,7 @@
 
 <div>
     <h4>Topic</h4>
-    <hr/>
+    <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Topics.Name)
@@ -25,7 +25,7 @@
     </dl>
 </div>
 
-<hr/>
+<hr />
 
 <h4>Ideas</h4>
 @if (Model.Topics.ClosureDate > DateTime.Now)
@@ -78,15 +78,15 @@
                     @Html.DisplayFor(modelItem => item.TotalDislike)
                 </td>
                 <td width="30%">
-                    @if (Model.Topics.FinalClosureDate > DateTime.Now)
-                    {
-                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                            <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
-                                <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
-                                Details
-                            </a>
-                        </div>
-                    }
+
+
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
+                            <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
+                            Details
+                        </a>
+                    </div>
+
                 </td>
             </tr>
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DocumentFormat.OpenXml.InkML;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,9 @@ namespace Project_1640.Controllers
         private readonly ApplicationDbContext context;
         public readonly UserManager<IdentityUser> userManager;
 
+        public static DateTime Topic_FinalClosureDate;
+        public static string Topic_Id;
+
         public ReactionsController(ApplicationDbContext _context, UserManager<IdentityUser> _userManager)
         {
             context = _context;
@@ -23,127 +27,161 @@ namespace Project_1640.Controllers
         //GET Like
         public async Task<IActionResult> Like(int id, Idea idea, Reaction reaction)
         {
-            var userId = userManager.GetUserId(HttpContext.User);
-            foreach (var ideas in context.Ideas)
+            GetTopicIdFromIdea(id);
+            foreach (var topics in context.Topics)
             {
-                if(ideas.IdeaId == id)
+                if (topics.Id.ToString() == Topic_Id)
                 {
-                    idea = ideas;
+                    Topic_FinalClosureDate = topics.FinalClosureDate;
                 }
             }
-            int count = 0;
-            foreach (var react in context.Reactions)
+            if (Topic_FinalClosureDate > DateTime.Now)
             {
-                if (idea.IdeaId == react.IdeaId && react.UserId == userId)
+                var userId = userManager.GetUserId(HttpContext.User);
+                foreach (var ideas in context.Ideas)
                 {
-                    count++;
+                    if (ideas.IdeaId == id)
+                    {
+                        idea = ideas;
+                    }
                 }
-            }
-            if (count == 0)
-            {
-                Reaction Reaction = new Reaction()
-                {
-                    UserId = Convert.ToString(userId),
-                    IdeaId = id,
-                    React = true,
-                };
-                context.Reactions.Add(Reaction);
-            }
-            else
-            {
+                int count = 0;
                 foreach (var react in context.Reactions)
                 {
-                    if (idea.IdeaId == react.IdeaId && userId == react.UserId)
+                    if (idea.IdeaId == react.IdeaId && react.UserId == userId)
                     {
-                        reaction = react;
-                        if (react.React == false)
+                        count++;
+                    }
+                }
+                if (count == 0)
+                {
+                    Reaction Reaction = new Reaction()
+                    {
+                        UserId = Convert.ToString(userId),
+                        IdeaId = id,
+                        React = true,
+                    };
+                    context.Reactions.Add(Reaction);
+                }
+                else
+                {
+                    foreach (var react in context.Reactions)
+                    {
+                        if (idea.IdeaId == react.IdeaId && userId == react.UserId)
                         {
-                            reaction.React = true;
+                            reaction = react;
+                            if (react.React == false)
+                            {
+                                reaction.React = true;
+                            }
+                            else if (react.React == true)
+                            {
+                                reaction.React = null;
+                            }
+                            else
+                            {
+                                reaction.React = true;
+                            }
                         }
-                        else if (react.React == true)
+                    }
+                    foreach (var react in context.Reactions)
+                    {
+                        if (reaction.IdeaId == react.IdeaId && reaction.UserId == react.UserId)
                         {
-                            reaction.React = null;
-                        }
-                        else
-                        {
-                            reaction.React = true;
+                            react.React = reaction.React;
+                            context.Reactions.Update(react);
                         }
                     }
                 }
-                foreach (var react in context.Reactions)
-                {
-                    if (reaction.IdeaId == react.IdeaId && reaction.UserId == react.UserId)
-                    {
-                        react.React = reaction.React;
-                        context.Reactions.Update(react);
-                    }
-                }
+                await context.SaveChangesAsync();
+                return RedirectToRoute(new { controller = "Idea", action = "Details", id });
             }
-            await context.SaveChangesAsync();
-            return RedirectToRoute(new { controller = "Idea", action = "Details", id});
+            return RedirectToRoute(new { controller = "Idea", action = "Details", id });
         }
 
         //GET Dislike
         public async Task<IActionResult> Dislike(int id, Idea idea, Reaction reaction)
         {
-            var userId = userManager.GetUserId(HttpContext.User);
-            foreach (var ideas in context.Ideas)
+            GetTopicIdFromIdea(id);
+            foreach (var topics in context.Topics)
             {
-                if (ideas.IdeaId == id)
+                if (topics.Id.ToString() == Topic_Id)
                 {
-                    idea = ideas;
+                    Topic_FinalClosureDate = topics.FinalClosureDate;
                 }
             }
-            int count = 0;
-            foreach (var react in context.Reactions)
+            if (Topic_FinalClosureDate > DateTime.Now)
             {
-                if (idea.IdeaId == react.IdeaId && react.UserId == userId)
+                var userId = userManager.GetUserId(HttpContext.User);
+                foreach (var ideas in context.Ideas)
                 {
-                    count++;
+                    if (ideas.IdeaId == id)
+                    {
+                        idea = ideas;
+                    }
                 }
-            }
-            if (count == 0)
-            {
-                Reaction Reaction = new Reaction()
-                {
-                    UserId = Convert.ToString(userId),
-                    IdeaId = id,
-                    React = false,
-                };
-                context.Reactions.Add(Reaction);
-            }
-            else
-            {
+                int count = 0;
                 foreach (var react in context.Reactions)
                 {
-                    if (idea.IdeaId == react.IdeaId && userId == react.UserId)
+                    if (idea.IdeaId == react.IdeaId && react.UserId == userId)
                     {
-                        reaction = react;
-                        if (react.React == null)
+                        count++;
+                    }
+                }
+                if (count == 0)
+                {
+                    Reaction Reaction = new Reaction()
+                    {
+                        UserId = Convert.ToString(userId),
+                        IdeaId = id,
+                        React = false,
+                    };
+                    context.Reactions.Add(Reaction);
+                }
+                else
+                {
+                    foreach (var react in context.Reactions)
+                    {
+                        if (idea.IdeaId == react.IdeaId && userId == react.UserId)
                         {
-                            reaction.React = false;
+                            reaction = react;
+                            if (react.React == null)
+                            {
+                                reaction.React = false;
+                            }
+                            else if (react.React == true)
+                            {
+                                reaction.React = false;
+                            }
+                            else
+                            {
+                                reaction.React = null;
+                            }
                         }
-                        else if (react.React == true)
+                    }
+                    foreach (var react in context.Reactions)
+                    {
+                        if (reaction.IdeaId == react.IdeaId && reaction.UserId == react.UserId)
                         {
-                            reaction.React = false;
-                        }
-                        else
-                        {
-                            reaction.React = null;
+                            react.React = reaction.React;
+                            context.Reactions.Update(reaction);
                         }
                     }
                 }
-                foreach (var react in context.Reactions)
+                await context.SaveChangesAsync();
+                return RedirectToRoute(new { controller = "Idea", action = "Details", id });
+            }
+            return RedirectToRoute(new { controller = "Idea", action = "Details", id });
+        }
+        public void GetTopicIdFromIdea(int id)
+        {
+            foreach (var idea in context.Ideas)
+            {
+                if (idea.IdeaId == id)
                 {
-                    if (reaction.IdeaId == react.IdeaId && reaction.UserId == react.UserId)
-                    {
-                        react.React = reaction.React;
-                        context.Reactions.Update(reaction);
-                    }
+                    Topic_Id = Convert.ToString(idea.TopicId);
                 }
             }
-            await context.SaveChangesAsync();
-            return RedirectToRoute(new { controller = "Idea", action = "Details", id});
         }
     }
 }
