@@ -189,31 +189,30 @@ namespace Project_1640.Controllers
             //Take topic's author details
             string userId = "";
             Idea Idea = new Idea();
-            IdentityUser User = new IdentityUser();
+            ApplicationUser User = new ApplicationUser();
 
             foreach (var idea in _context.Ideas)
             {
-                if(idea.IdeaId == id)
+                if (idea.IdeaId == id)
                 {
                     userId = idea.UserId;
                     Idea = idea;
                 }
             }
-            
-            foreach(var user in _context.Users)
+
+            foreach (var user in _context.applicationUsers)
             {
-                if(user.Id == userId)
+                if (user.Id == userId)
                 {
                     User = user;
                 }
             }
 
-            User.Email = emailData.To;
-
             //Format email form
             string BodyMessage = "You had received a new comment in the idea " + $"{Idea.IdeaName}" + " in the topic" + $"{Idea.TopicId}" + ". Did you read it?\r\n\r\n";
 
             //Input email details
+            emailData.To = User.Email;
             emailData.From = "luandtgcs200115@fpt.edu.vn";
             emailData.Password = "Conso123!";
             emailData.Body = BodyMessage;

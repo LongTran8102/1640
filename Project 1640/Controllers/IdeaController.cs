@@ -515,11 +515,5 @@ namespace Project_1640.Controllers
                 }
             }
         }
-
-        public void AlertMessage ()
-        {
-            ViewBag.showAlert = true;
-            ViewBag.alertMessage = "Hello World!";
-        }
     }
 }
