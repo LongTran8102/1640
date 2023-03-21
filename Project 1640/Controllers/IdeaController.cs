@@ -41,7 +41,6 @@ namespace Project_1640.Controllers
         public readonly UserManager<IdentityUser> userManager;
 
         public static string Topic_Id;
-        public static string Topic_Name;
         public static DateTime Topic_ClosureDate;
         public static DateTime Topic_FinalClosureDate;
 
@@ -192,7 +191,7 @@ namespace Project_1640.Controllers
             DropDownList();
             if (model.TermsConditions == true)
             {
-                idea.TopicId = id;
+                idea.TopicId = id.ToString();
                 idea.IdeaName = model.IdeaName;
                 idea.IdeaDescription = model.IdeaDescription;
                 idea.CategoryId = model.CategoryId;
@@ -500,16 +499,6 @@ namespace Project_1640.Controllers
         }
 
         //Take Topic Id by id
-        public void GetTopicId(int id)
-        {
-            foreach (var topic in context.Topics)
-            {
-                if (topic.Id == id)
-                {
-                    Topic_Id = Convert.ToString(topic.Id);
-                }
-            }
-        }
         public void GetTopicIdFromIdea(int id)
         {
             foreach (var idea in context.Ideas)
