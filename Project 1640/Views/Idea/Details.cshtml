@@ -77,8 +77,8 @@
             <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
             Edit
         </a>
-        <a asp-action="Delete" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-primary rounded align-middle mx-2">
-            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+        <a asp-action="Delete" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-danger rounded align-middle">
+            <i class="bi bi-trash align-middle" style="font-size:20px"></i>
             Delete
         </a>
     }
@@ -118,6 +118,9 @@
                                     <p class="mb-0">
                                         @Html.DisplayFor(modelItem => item.CommentDate)
                                     </p>
+                                    <a asp-action="Delete" asp-route-id="@item.CommentId">
+                                        <i class="bi bi-x-circle"></i>
+                                    </a>
                                 </div>
                                 <p class="mb-1">
                                     @Html.DisplayFor(modelItem => item.CommentText)
