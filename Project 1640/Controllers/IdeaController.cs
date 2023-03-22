@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.VisualStudio.Debugger.Contracts;
 using MimeKit;
 using Project_1640.Data;
 using Project_1640.Models;
@@ -42,7 +43,7 @@ namespace Project_1640.Controllers
             var ideaData = new IdeaViewModel();
             ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
             var ideas = (from idea in context.Ideas
-                         where term == "" || idea.IdeaName.ToLower().StartsWith(term)
+                         where (userManager.GetUserId(HttpContext.User) == idea.UserId && term == "" )|| (idea.IdeaName.ToLower().StartsWith(term) && userManager.GetUserId(HttpContext.User)==idea.UserId)
                          select new Idea
                          {
                              IdeaId = idea.IdeaId,
@@ -53,7 +54,8 @@ namespace Project_1640.Controllers
                              TotalLike = idea.TotalLike,
                              TotalDislike = idea.TotalDislike,
                              TotalView = idea.TotalView,
-                         });
+                         });            
+            
             switch (orderBy)
             {
                 case "date_desc":
@@ -67,7 +69,6 @@ namespace Project_1640.Controllers
             var pageSize = 5;
             var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
             ideas = ideas.Skip((currentPage - 1) * pageSize).Take(pageSize);
-            ideaData.Ideas = ideas;
             ideaData.Ideas = ideas;
             ideaData.CurrentPage = currentPage;
             ideaData.TotalPages = totalPages;
