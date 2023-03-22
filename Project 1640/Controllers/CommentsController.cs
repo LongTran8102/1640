@@ -224,6 +224,7 @@ namespace Project_1640.Controllers
         {
             //Take topic's author details
             string userId = "";
+            string topicName = "";
             Idea Idea = new Idea();
             ApplicationUser User = new ApplicationUser();
 
@@ -236,6 +237,14 @@ namespace Project_1640.Controllers
                 }
             }
 
+            foreach (var topic in _context.Topics)
+            {
+                if (topic.Id.ToString() == Idea.TopicId)
+                {
+                    topicName = topic.Name;
+                }
+            }
+
             foreach (var user in _context.applicationUsers)
             {
                 if (user.Id == userId)
@@ -245,7 +254,7 @@ namespace Project_1640.Controllers
             }
 
             //Format email form
-            string BodyMessage = "You had received a new comment in the idea " + $"{Idea.IdeaName}" + " in the topic" + $"{Idea.TopicId}" + ". Did you read it?\r\n\r\n";
+            string BodyMessage = "You had received a new comment in the idea " + $"{Idea.IdeaName}" + " in the topic " + $"{topicName}" + ". Did you read it?\r\n\r\n";
 
             //Input email details
             emailData.To = User.Email;

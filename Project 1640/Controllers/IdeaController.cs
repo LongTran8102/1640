@@ -435,27 +435,27 @@ namespace Project_1640.Controllers
         }
 
         //Download idea file
-        public FileResult ZipFile(Idea idea, int id)
+        public FileResult ZipFile(int id)
         {
-            GetIdeaByID(id);
             var webRoot = oIHostingEnvironment.WebRootPath;
-            var fileName = $"{idea.IdeaName}.zip";
+            var fileName = "MyZip.zip";
             var tempOutput = webRoot + "UserFiles" + fileName;
             using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
             {
                 oZipOutputStream.SetLevel(9);
                 byte[] buffer = new byte[4096];
                 var FileList = new List<string>();
-                foreach (var ideas in context.Ideas)
+                foreach (var idea in context.Ideas)
                 {
-                    if (ideas.IdeaId == id)
+                    if (idea.IdeaId == id)
                     {
-                        if (ideas.FilePath != null)
+                        if (idea.FilePath != null)
                         {
-                            FileList.Add(webRoot + "/UserFiles/" + ideas.FilePath);
+                            FileList.Add(webRoot + "/UserFiles/" + idea.FilePath);
                         }
                     }
                 }
+
                 for (int i = 0; i < FileList.Count; i++)
                 {
                     ZipEntry entry = new ZipEntry(Path.GetFileName(FileList[i]));
@@ -487,6 +487,7 @@ namespace Project_1640.Controllers
             }
             return File(finalResult, "application/zip", fileName);
         }
+
         //Take Idea By id
         public Idea GetIdeaByID(int id)
         {

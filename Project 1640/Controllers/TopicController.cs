@@ -207,7 +207,7 @@ namespace Project_1640.Controllers
                 }
             }
             string CSV = string.Empty;
-            string[] columnName = new string[] { "IdeaId", "IdeaName", "IdeaDescription", "CreatedDate", "CategoryId", "TopicId", "FilePath, Like, Dislike" };
+            string[] columnName = new string[] { "IdeaId", "IdeaName", "IdeaDescription", "CreatedDate", "CategoryId", "TopicId", "FilePath, Like, Dislike, View" };
             foreach (var column in columnName)
             {
                 CSV += column + ',';
@@ -224,6 +224,7 @@ namespace Project_1640.Controllers
                 CSV += idea.FilePath?.Replace(",", ",") + ',';
                 CSV += idea.TotalLike?.ToString().Replace(",", ",") + ',';
                 CSV += idea.TotalDislike?.ToString().Replace(",", ",") + ',';
+                CSV += idea.TotalView?.ToString().Replace(",", ",") + ',';
                 CSV += "\r\n";
             }
             byte[] bytes = Encoding.UTF8.GetBytes(CSV);
@@ -253,8 +254,9 @@ namespace Project_1640.Controllers
                 worksheet.Cell(currentRow, 4).Value = "CreatedDate";
                 worksheet.Cell(currentRow, 5).Value = "CategoryId";
                 worksheet.Cell(currentRow, 6).Value = "FilePath";
-                worksheet.Cell(currentRow, 5).Value = "Like";
-                worksheet.Cell(currentRow, 6).Value = "Dislike";
+                worksheet.Cell(currentRow, 7).Value = "Like";
+                worksheet.Cell(currentRow, 8).Value = "Dislike";
+                worksheet.Cell(currentRow, 9).Value = "Views";
                 //Add details
                 foreach (var idea in ideaList)
                 {
@@ -267,6 +269,7 @@ namespace Project_1640.Controllers
                     worksheet.Cell(currentRow, 6).Value = idea.FilePath;
                     worksheet.Cell(currentRow, 7).Value = idea.TotalLike;
                     worksheet.Cell(currentRow, 8).Value = idea.TotalDislike;
+                    worksheet.Cell(currentRow, 9).Value = idea.TotalView;
                 }
                 using (var stream = new MemoryStream())
                 {
