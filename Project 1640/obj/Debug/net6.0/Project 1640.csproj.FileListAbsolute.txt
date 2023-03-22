@@ -3642,23 +3642,15 @@ D:\Study\1640\Project 1640\obj\Debug\net6.0\refint\Project 1640.dll
 D:\Study\1640\Project 1640\obj\Debug\net6.0\Project 1640.pdb
 D:\Study\1640\Project 1640\obj\Debug\net6.0\Project 1640.genruntimeconfig.cache
 D:\Study\1640\Project 1640\obj\Debug\net6.0\ref\Project 1640.dll
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.csproj.AssemblyReference.cache
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.AssemblyInfoInputs.cache
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.AssemblyInfo.cs
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.csproj.CoreCompileInputs.cache
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.RazorAssemblyInfo.cache
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.RazorAssemblyInfo.cs
+C:\Users\USER\Desktop\1640\Project 1640\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Users\pekoi\Documents\Desktop\1640\Project 1640\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\Project 1640.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\appsettings.json
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\Project 1640.staticwebassets.runtime.json
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\Project 1640.exe
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\Project 1640.deps.json
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\Project 1640.runtimeconfig.json
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\Project 1640.dll
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\Project 1640.pdb
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\ClosedXML.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\ExcelNumberFormat.dll
@@ -3730,6 +3722,7 @@ C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\NuGet.Proj
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\NuGet.Protocol.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\NuGet.Versioning.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\SixLabors.Fonts.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\System.Composition.AttributedModel.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\System.Composition.Convention.dll
@@ -3914,6 +3907,15 @@ C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\runtimes\w
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.csproj.AssemblyReference.cache
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.AssemblyInfoInputs.cache
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.AssemblyInfo.cs
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.csproj.CoreCompileInputs.cache
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.RazorAssemblyInfo.cache
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.RazorAssemblyInfo.cs
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\staticwebassets\msbuild.Project 1640.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\staticwebassets\msbuild.build.Project 1640.props
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Project 1640.props
@@ -3929,7 +3931,5 @@ C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 16
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\refint\Project 1640.dll
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.pdb
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\Project 1640.genruntimeconfig.cache
+C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\Project 1640.pdb
 C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\obj\Debug\net6.0\ref\Project 1640.dll
-C:\Users\Admin\OneDrive\Máy tính\1640\Project 1640\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
-C:\Users\USER\Desktop\1640\Project 1640\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
-C:\Users\pekoi\Documents\Desktop\1640\Project 1640\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll

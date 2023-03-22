@@ -81,7 +81,7 @@ namespace Project_1640.Controllers
         public async Task<IActionResult> Details(int id, Idea idea)
         {
             CountView(id);
-            idea = GetIdeaByID(id);
+            idea = GetIdeaByID(id);          
             List<Comment> comments = new List<Comment>();
             List<ApplicationUser> users = new List<ApplicationUser>();
             foreach (var user in context.applicationUsers)

@@ -154,7 +154,7 @@ namespace Project_1640.Controllers
         //GET Delete Comment
         public async Task<IActionResult> Delete(int id)
         {
-            GetTopicIdFromIdea(id);
+            /*GetTopicIdFromIdea(id);
             foreach (var topics in _context.Topics)
             {
                 if (topics.Id.ToString() == Topic_Id)
@@ -163,27 +163,27 @@ namespace Project_1640.Controllers
                 }
             }
             if (Topic_FinalClosureDate > DateTime.Now)
+            {*/
+            if (id == null || _context.Comments == null)
             {
-                if (id == null || _context.Comments == null)
-                {
-                    return NotFound();
-                }
-                var comment = await _context.Comments.FirstOrDefaultAsync(m => m.CommentId == id);
-                if (comment == null)
-                {
-                    return NotFound();
-                }
-                return View(comment);
+                return NotFound();
             }
-            return RedirectToRoute(new { controller = "Idea", action = "Details", id });
+            var comment = await _context.Comments.FirstOrDefaultAsync(m => m.CommentId == id);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+            return View(comment);
+            //}
+            // return RedirectToAction("Index");
         }
 
         //POST Delete Comment
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            GetTopicIdFromIdea(id);
+            /*GetTopicIdFromIdea(id);
             foreach (var topics in _context.Topics)
             {
                 if (topics.Id.ToString() == Topic_Id)
@@ -192,20 +192,26 @@ namespace Project_1640.Controllers
                 }
             }
             if (Topic_FinalClosureDate > DateTime.Now)
-            {
+            {*/
+              
                 if (_context.Comments == null)
                 {
                     return Problem("Entity set 'ApplicationDbContext.Comments'  is null.");
                 }
-                var comment = await _context.Comments.FindAsync(id);
+                var comment = _context.Comments.Find(id);
+
                 if (comment != null)
                 {
                     _context.Comments.Remove(comment);
+
                 }
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return RedirectToRoute(new { controller = "Idea", action = "Details", id });
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Idea");
+            //}
+            //return RedirectToAction("Index", "Idea");
+
+
+
         }
 
 

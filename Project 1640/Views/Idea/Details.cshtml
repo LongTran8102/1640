@@ -118,7 +118,7 @@
                                     <p class="mb-0">
                                         @Html.DisplayFor(modelItem => item.CommentDate)
                                     </p>
-                                    <a asp-action="Delete" asp-route-id="@item.CommentId">
+                                    <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.CommentId">
                                         <i class="bi bi-x-circle"></i>
                                     </a>
                                 </div>
