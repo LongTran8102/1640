@@ -1,34 +1,16 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ICSharpCode.SharpZipLib.Zip;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+using MimeKit;
 using Project_1640.Data;
-using Project_1640.Migrations;
 using Project_1640.Models;
 using Project_1640.ViewModels;
-using System.Security.Claims;
-using MailKit.Net.Smtp;
-using System.Net.Mail;
-using MimeKit;
-using SmtpClient = MailKit.Net.Smtp.SmtpClient;
-using Idea = Project_1640.Models.Idea;
 using Comment = Project_1640.Models.Comment;
-using Topic = Project_1640.Models.Topic;
-using Microsoft.Extensions.Hosting;
-using Org.BouncyCastle.Asn1.BC;
-using System.Text;
-using DocumentFormat.OpenXml.Spreadsheet;
-using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
-using DocumentFormat.OpenXml.ExtendedProperties;
-using System;
-using DocumentFormat.OpenXml.Drawing.Charts;
-using DocumentFormat.OpenXml.InkML;
-using Org.BouncyCastle.Crypto;
-using DocumentFormat.OpenXml.Office2010.Excel;
-using ICSharpCode.SharpZipLib.Zip;
+using Idea = Project_1640.Models.Idea;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace Project_1640.Controllers
 {
@@ -40,6 +22,7 @@ namespace Project_1640.Controllers
         public readonly ApplicationDbContext context;
         public readonly UserManager<IdentityUser> userManager;
 
+        public static CommentViewModel models = new CommentViewModel();
         public static string Topic_Id;
         public static DateTime Topic_ClosureDate;
         public static DateTime Topic_FinalClosureDate;
@@ -69,6 +52,7 @@ namespace Project_1640.Controllers
                              CreatedDate = idea.CreatedDate,
                              TotalLike = idea.TotalLike,
                              TotalDislike = idea.TotalDislike,
+                             TotalView = idea.TotalView,
                          });
             switch (orderBy)
             {
@@ -154,6 +138,7 @@ namespace Project_1640.Controllers
             CommentViewModel viewModel = new CommentViewModel();
             viewModel.Ideas = idea;
             viewModel.Comments = comments;
+
             return View(viewModel);
         }
 
@@ -172,6 +157,7 @@ namespace Project_1640.Controllers
             if (Topic_ClosureDate > DateTime.Now)
             {
                 DropDownList();
+                ViewBag.TopicId = id;
                 return View();
             }
             return RedirectToAction("Index", "Topic");
@@ -210,7 +196,6 @@ namespace Project_1640.Controllers
         }
 
         //GET Edit Idea
-        [HttpGet]
         public IActionResult Edit(int id)
         {
             var idea = GetIdeaByID(id);
@@ -227,6 +212,7 @@ namespace Project_1640.Controllers
                     UserId = userManager.GetUserId(HttpContext.User),
                     ExsitingFile = idea.FilePath,
                 };
+
                 return View(model);
             }
             return RedirectToAction("Index");
@@ -239,9 +225,11 @@ namespace Project_1640.Controllers
         {
             DropDownList();
             Idea idea = GetIdeaByID(model.ID);
+
             idea.IdeaName = model.IdeaName;
             idea.IdeaDescription = model.IdeaDescription;
             idea.CategoryId = model.CategoryId;
+
             if (model.AttachFile != null)
             {
                 if (idea.FilePath != null)
@@ -254,7 +242,8 @@ namespace Project_1640.Controllers
             var SelectedIdea = context.Ideas.Attach(idea);
             SelectedIdea.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
-            return RedirectToAction("Index");
+
+            return RedirectToRoute(new { controller = "Idea", action = "Details", model.ID });
         }
 
         //GET Delete Idea
@@ -293,7 +282,7 @@ namespace Project_1640.Controllers
                 context.Ideas.Remove(idea);
                 context.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Topic");
         }
 
         //Take Category Dropdown List
@@ -438,23 +427,26 @@ namespace Project_1640.Controllers
         public FileResult ZipFile(int id)
         {
             var webRoot = oIHostingEnvironment.WebRootPath;
-            var fileName = "MyZip.zip";
+            var Name = "";
+            var FileList = new List<string>();
+            foreach (var idea in context.Ideas)
+            {
+                if (idea.IdeaId == id)
+                {
+                    if (idea.FilePath != null)
+                    {
+                        FileList.Add(webRoot + "/UserFiles/" + idea.FilePath);
+                        Name = idea.IdeaName;
+                    }
+                }
+            }
+            var fileName = $"{Name}.zip";
             var tempOutput = webRoot + "UserFiles" + fileName;
+
             using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
             {
                 oZipOutputStream.SetLevel(9);
                 byte[] buffer = new byte[4096];
-                var FileList = new List<string>();
-                foreach (var idea in context.Ideas)
-                {
-                    if (idea.IdeaId == id)
-                    {
-                        if (idea.FilePath != null)
-                        {
-                            FileList.Add(webRoot + "/UserFiles/" + idea.FilePath);
-                        }
-                    }
-                }
 
                 for (int i = 0; i < FileList.Count; i++)
                 {
@@ -476,6 +468,7 @@ namespace Project_1640.Controllers
                 oZipOutputStream.Flush();
                 oZipOutputStream.Close();
             }
+
             byte[] finalResult = System.IO.File.ReadAllBytes(tempOutput);
             if (System.IO.File.Exists(tempOutput))
             {
