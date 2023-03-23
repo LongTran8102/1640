@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MimeKit;
 using Project_1640.Data;
+using Project_1640.Migrations;
 using Project_1640.Models;
 using Project_1640.ViewModels;
 using Comment = Project_1640.Models.Comment;
@@ -42,7 +43,7 @@ namespace Project_1640.Controllers
             var ideaData = new IdeaViewModel();
             ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
             var ideas = (from idea in context.Ideas
-                         where term == "" || idea.IdeaName.ToLower().StartsWith(term)
+                         where (userManager.GetUserId(HttpContext.User) == idea.UserId && term == "" ) || (idea.IdeaName.ToLower().StartsWith(term) && userManager.GetUserId(HttpContext.User) == idea.UserId)
                          select new Idea
                          {
                              IdeaId = idea.IdeaId,

@@ -21,11 +21,20 @@ namespace Project_1640.Controllers
         }
 
         // GET: UsersController
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            UsersViewModel usersViewModel = new UsersViewModel();
-            usersViewModel.UserList = context.applicationUsers.ToList();
-            return View(usersViewModel);
+            
+            var users = await context.applicationUsers.Select(
+                user => new UsersViewModel
+            {
+                UserID = user.Id,
+                FirstName = user.Firstname,
+                LastName = user.Lastname,
+                Email = user.Email,
+                Roles = userManager.GetRolesAsync(user).Result,                
+                
+            }).ToListAsync();
+            return View(users);
         }
 
         // GET: UsersController
