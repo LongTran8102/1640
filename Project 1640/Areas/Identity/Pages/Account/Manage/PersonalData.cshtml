@@ -8,17 +8,17 @@
 <h3>@ViewData["Title"]</h3>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col">
         <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
         <p>
             <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
         </p>
-        <form id="download-data" asp-page="DownloadPersonalData" method="post">
-            <button class="btn btn-primary mb-3" type="submit">Download</button>
-        </form>
+        <form id="download-data" asp-page="DownloadPersonalData" method="post" class="d-inline-flex">
+            <button class="btn btn-primary mb-3" type="submit" style=" margin-right: 3rem">Download</button>
         <p>
             <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Delete</a>
         </p>
+        </form>
     </div>
 </div>
 
