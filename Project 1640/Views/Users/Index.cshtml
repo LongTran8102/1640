@@ -15,9 +15,6 @@
             <th>
                 Email
             </th>
-            <th>
-                Department Id
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -34,7 +31,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-
+                <td class="text-center">
+                    <div class="btn-group border-start" role="button">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary rounded mx-3 align-middle">
+                            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+                            Edit
+                        </a>
+                    </div>
+                </td>
             </tr>
         }
     </tbody>
