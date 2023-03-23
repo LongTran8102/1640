@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.InkML;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,26 +24,26 @@ namespace Project_1640.Controllers
         // GET: UsersController
         public async Task<IActionResult> Index()
         {
-                     
+
             var users = (from user in context.applicationUsers
                          join d in context.Department on user.DepartmentId equals d.DepartmentId
-                         select new UsersViewModel               
-                
-            {
-                UserID = user.Id,
-                FirstName = user.Firstname,
-                LastName = user.Lastname,
-                Email = user.Email,
-                Roles = userManager.GetRolesAsync(user).Result,   
-                DepartmentName=d.DepartmentName,
-                
-                
-            }).ToArray();
+                         select new UsersViewModel
+
+                         {
+                             UserID = user.Id,
+                             FirstName = user.Firstname,
+                             LastName = user.Lastname,
+                             Email = user.Email,
+                             Roles = userManager.GetRolesAsync(user).Result,
+                             DepartmentName = d.DepartmentName,
+
+
+                         }).ToArray();
             return View(users);
         }
 
         // GET: UsersController
-        // GET: Categories/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(string? id)
         {
             if (id == null || context.applicationUsers == null)
@@ -50,45 +51,38 @@ namespace Project_1640.Controllers
                 return NotFound();
             }
 
-            var category = await context.applicationUsers.FindAsync(id);
-            if (category == null)
+            var user = await context.applicationUsers.FindAsync(id);
+            var viewUser = new UsersViewModel
+
             {
-                return NotFound();
-            }
-            return View(category);
+                UserID = id,
+                FirstName = user.Firstname,
+                LastName = user.Lastname,
+                Email = user.Email,
+            };
+            return View(viewUser);
         }
 
         // POST: Categories/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, ApplicationUser user)
-        {
-            if (id != user.Id)
-            {
-                return NotFound();
-            }
+        public async Task<IActionResult> Edit(UsersViewModel model, string id)
+        {           
 
-            if (ModelState.IsValid)
+            var user = await context.applicationUsers.FindAsync(id);
+            if(user==null)
+                return NotFound();
+            var userWithSameEmail = await context.applicationUsers.FindAsync(model.Email);
+            /*if(userWithSameEmail!=null&& userWithSameEmail.Id != model.UserID)
             {
-                try
-                {
-                    context.Update(user);
-                    await context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UserExists(user.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(user);
+                ModelState.AddModelError("Email", "This email is already used");
+                    return View(model);
+            }*/
+            user.Firstname= model.FirstName;
+            user.Lastname= model.LastName;  
+            user.Email= model.Email;
+            await context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         private bool UserExists(string id)

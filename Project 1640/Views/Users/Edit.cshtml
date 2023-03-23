@@ -1,0 +1,33 @@
+﻿@using Project_1640.ViewModels;
+@model UsersViewModel
+@{
+    ViewBag.Title = "Edit Idea";    
+}
+<form method="post" asp-action="Edit" asp-controller="Users">
+    <div class="border p-3 mt-4 mx-auto" style="width:40%">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit Topic</h2>
+            <hr/>
+        </div>
+        <div class="mb-3">
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" class="form-control"/>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        
+        <a asp-controller="Topic" asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
+            <i class="bi bi-arrow-left-short align-middle"></i>
+            Back
+        </a>
+        <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+    </div>
+</form>
