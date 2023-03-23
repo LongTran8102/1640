@@ -21,7 +21,8 @@
                 <td>@user.FirstName</td>
                 <td>@user.LastName</td>
                 <td>@user.Email</td>
-                <td>@string.Join("",user.Roles.ToList())</td>                
+                <td>@string.Join("",user.Roles.ToList())</td>
+                <td>@user.DepartmentName</td>
                 <td class="text-center">
                     <div class="btn-group border-start" role="button">
                         <a asp-action="Edit" asp-route-id="@user.UserID" class="btn btn-outline-primary rounded mx-3 align-middle">

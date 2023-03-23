@@ -23,17 +23,21 @@ namespace Project_1640.Controllers
         // GET: UsersController
         public async Task<IActionResult> Index()
         {
-            
-            var users = await context.applicationUsers.Select(
-                user => new UsersViewModel
+                     
+            var users = (from user in context.applicationUsers
+                         join d in context.Department on user.DepartmentId equals d.DepartmentId
+                         select new UsersViewModel               
+                
             {
                 UserID = user.Id,
                 FirstName = user.Firstname,
                 LastName = user.Lastname,
                 Email = user.Email,
-                Roles = userManager.GetRolesAsync(user).Result,                
+                Roles = userManager.GetRolesAsync(user).Result,   
+                DepartmentName=d.DepartmentName,
                 
-            }).ToListAsync();
+                
+            }).ToArray();
             return View(users);
         }
 

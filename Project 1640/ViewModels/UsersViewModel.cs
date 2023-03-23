@@ -10,6 +10,6 @@ namespace Project_1640.ViewModels
         public string LastName { get; set; }
         public string Email { get; set; }
         public IEnumerable<string> Roles { get; set; }
-        public IEnumerable<string> DepartmentName { get; set; }
+        public string DepartmentName { get; set; }
     }
 }
