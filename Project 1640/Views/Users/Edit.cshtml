@@ -1,7 +1,7 @@
 ﻿@using Project_1640.ViewModels;
 @model UsersViewModel
 @{
-    ViewBag.Title = "Edit Idea";    
+    ViewBag.Title = "Edit User";    
 }
 <form method="post" asp-action="Edit" asp-controller="Users">
     <div class="border p-3 mt-4 mx-auto" style="width:40%">
@@ -20,14 +20,18 @@
             <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
         <div class="mb-3">
+            <label asp-for="DepartmentId" class="form-label"></label>
+            <select asp-for=DepartmentId asp-items="@ViewBag.DepartList" class="form-select"><option disabled selected>--Please select department--</option></select>
+            <span asp-validation-for="DepartmentId" class="text-danger"></span>
+        </div>        
+        <div class="mb-3">
             <label asp-for="Email"></label>
             <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        
+            <span asp-validation-for="Email" class="text-danger"></span>  
+        </div>
         <a asp-controller="Topic" asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
             <i class="bi bi-arrow-left-short align-middle"></i>
             Back
         </a>
         <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
-    </div>
 </form>
