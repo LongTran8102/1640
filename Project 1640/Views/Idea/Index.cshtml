@@ -9,16 +9,16 @@
     <div class="col-6">
         <h2 class="text-primary">Idea List</h2>
         <form asp-action="Index">
-        <div class="row">
-            <div class="col-md-8">
-                <input name="term" class="form-control" placeholder="Search by Idea Name"/>
+            <div class="row">
+                <div class="col-md-8">
+                    <input name="term" class="form-control" placeholder="Search by Idea Name" />
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-info">Search</button>
+                </div>
             </div>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-info">Search</button>
-            </div>
-        </div>
         </form>
-    </div>    
+    </div>
 </div>
 <br />
 <br />
@@ -57,16 +57,14 @@
                     @Html.DisplayFor(modelItem => item.CreatedDate)
                 </td>
                 <td class="text-center">
-                    <div class="border-start">
-                        <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
-                            <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
-                            Details
-                        </a>
-                        <a asp-action="ZipFile" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded align-middle">
-                            <i class="bi bi-file-arrow-down align-middle" style="font-size:20px"></i>
-                            Download File
-                        </a>
-                    </div>
+                    <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
+                        <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
+                        Details
+                    </a>
+                    <a asp-action="ZipFile" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded align-middle">
+                        <i class="bi bi-file-arrow-down align-middle" style="font-size:20px"></i>
+                        Download File
+                    </a>
                 </td>
             </tr>
         }
@@ -83,7 +81,7 @@
                     </a>
                 </li>
             }
-            @for(int i = 1; i <= Model.TotalPages; i++)
+            @for (int i = 1; i <= Model.TotalPages; i++)
             {
                 if (i == Model.CurrentPage)
                 {
@@ -94,7 +92,7 @@
                     <li class="page-item"><a class="page-link" href="/Idea/Index?term=@Model.Term&orderBy=>@Model.OrderBy&currentPage=@i">@i</a></li>
                 }
             }
-            
+
             @if (Model.CurrentPage < Model.TotalPages)
             {
                 <li class="page-item">

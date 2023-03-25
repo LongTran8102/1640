@@ -21,13 +21,18 @@
         </div>
         <div class="mb-3">
             <label asp-for="DepartmentId" class="form-label"></label>
-            <select asp-for=DepartmentId asp-items="@ViewBag.DepartList" class="form-select"><option disabled selected>--Please select department--</option></select>
+            <select asp-for=DepartmentId asp-items="@ViewBag.DepartList" class="form-select"><option selected>--Please select department--</option></select>
             <span asp-validation-for="DepartmentId" class="text-danger"></span>
         </div>        
         <div class="mb-3">
             <label asp-for="Email"></label>
             <input asp-for="Email" class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>  
+        </div>
+        <div class="mb-3">
+            <label asp-for="RoleId" class="form-label"></label>
+            <select asp-for=RoleId asp-items="@ViewBag.RolesList" class="form-select"><option selected>--Please select role--</option></select>
+            <span asp-validation-for="RoleId" class="text-danger"></span>
         </div>
         <a asp-controller="Topic" asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
             <i class="bi bi-arrow-left-short align-middle"></i>

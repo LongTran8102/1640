@@ -118,9 +118,9 @@
                                     <p class="mb-0">
                                         @Html.DisplayFor(modelItem => item.CommentDate)
                                     </p>
-                                    <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.CommentId" class="px-3">
-                                        <i class="bi bi-trash text-danger"></i>
-                                    </a>
+                                    <form method="post" asp-controller="Comments" asp-action="Delete" asp-route-id="@item.CommentId">
+                                        <button type="submit" class="btn warning; bi bi-trash text-danger"></button>
+                                    </form>
                                 </div>
                                 <p class="mb-1">
                                     @Html.DisplayFor(modelItem => item.CommentText)
