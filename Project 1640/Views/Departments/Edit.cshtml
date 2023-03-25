@@ -3,29 +3,28 @@
     ViewData["Title"] = "Edit";
 }
 
-<hr />
-    <div class="border p-3 mt-4 mx-auto" style="width:40%">
-        <div class="row pb-2">
-            <h2 class="text-primary">Edit Department</h2>
-            <hr />
-        </div>
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="DepartmentId" />
-            <div class="form-group">
-                <label asp-for="DepartmentName" class="control-label"></label>
-                <input asp-for="DepartmentName" class="form-control" />
-                <span asp-validation-for="DepartmentName" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-3">
+
+<form asp-controller="Idea" enctype="multipart/form-data" asp-action="Edit" method="post">
+    <div class="row pb-2">
+        <h2 class="text-primary">Edit Department</h2>
+        <hr />
+    </div>
+    <input type="hidden" asp-for="DepartmentId" />
+    <div class="form-group">
+        <label asp-for="DepartmentName" class="control-label"></label>
+        <input asp-for="DepartmentName" class="form-control" />
+        <span asp-validation-for="DepartmentName" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        <div class="form-group mt-3">
                 <a asp-controller="Departments" asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
                     <i class="bi bi-arrow-left-short align-middle"></i>
                     Back
                 </a>
                 <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
             </div>
-        </form>
     </div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

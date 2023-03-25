@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Project_1640.ViewModels.UsersViewModel>
+﻿@model Project_1640.ViewModels.UsersViewModel
 
 
 <h1>Index</h1>
@@ -6,32 +6,38 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Roles</th>
-            <th>Department</th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Email
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model)
+        @foreach (var item in Model.UserList)
         {
             <tr>
-                <td>@user.FirstName</td>
-                <td>@user.LastName</td>
-                <td>@user.Email</td>
-                <td>@user.Roles</td>
-                <td>@user.DepartmentName</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
                 <td class="text-center">
-                    <a asp-action="Edit" asp-route-id="@user.UserID" class="btn btn-outline-primary rounded mx-3 align-middle">
-                        <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
-                        Edit
-                    </a>
-                    <a asp-action="Delete" asp-route-id="@user.UserID" class="btn btn-outline-danger rounded align-middle">
-                        <i class="bi bi-trash align-middle" style="font-size:20px"></i>
-                        Delete
-                    </a>
+                    <div class="btn-group border-start" role="button">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary rounded mx-3 align-middle">
+                            <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
+                            Edit
+                        </a>
+                    </div>
                 </td>
             </tr>
         }

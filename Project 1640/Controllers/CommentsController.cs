@@ -22,7 +22,7 @@ namespace Project_1640.Controllers
         private readonly UserManager<IdentityUser> _userManager;
 
         public static DateTime Topic_FinalClosureDate;
-        public static int Topic_Id;
+        public static string Topic_Id;
 
         public CommentsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
@@ -57,7 +57,7 @@ namespace Project_1640.Controllers
             GetTopicIdFromIdea(id);
             foreach (var topics in _context.Topics)
             {
-                if (topics.Id == Topic_Id)
+                if (topics.Id.ToString() == Topic_Id)
                 {
                     Topic_FinalClosureDate = topics.FinalClosureDate;
                 }
@@ -84,7 +84,7 @@ namespace Project_1640.Controllers
             GetTopicIdFromIdea(id);
             foreach (var topics in _context.Topics)
             {
-                if (topics.Id == Topic_Id)
+                if (topics.Id.ToString() == Topic_Id)
                 {
                     Topic_FinalClosureDate = topics.FinalClosureDate;
                 }
@@ -154,16 +154,16 @@ namespace Project_1640.Controllers
         //GET Delete Comment
         public async Task<IActionResult> Delete(int id)
         {
-            GetTopicIdFromComment(id);
+            /*GetTopicIdFromIdea(id);
             foreach (var topics in _context.Topics)
             {
-                if (topics.Id == Topic_Id)
+                if (topics.Id.ToString() == Topic_Id)
                 {
                     Topic_FinalClosureDate = topics.FinalClosureDate;
                 }
             }
             if (Topic_FinalClosureDate > DateTime.Now)
-            {
+            {*/
             if (id == null || _context.Comments == null)
             {
                 return NotFound();
@@ -174,8 +174,8 @@ namespace Project_1640.Controllers
                 return NotFound();
             }
             return View(comment);
-            }
-            return RedirectToAction("Index");
+            //}
+            // return RedirectToAction("Index");
         }
 
         //POST Delete Comment
@@ -183,16 +183,16 @@ namespace Project_1640.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            GetTopicIdFromComment(id);
+            /*GetTopicIdFromIdea(id);
             foreach (var topics in _context.Topics)
             {
-                if (topics.Id == Topic_Id)
+                if (topics.Id.ToString() == Topic_Id)
                 {
                     Topic_FinalClosureDate = topics.FinalClosureDate;
                 }
             }
             if (Topic_FinalClosureDate > DateTime.Now)
-            {
+            {*/
               
                 if (_context.Comments == null)
                 {
@@ -206,32 +206,14 @@ namespace Project_1640.Controllers
 
                 }
                 _context.SaveChanges();
-                return RedirectToAction("Index", "Topic");
-            }
-            return RedirectToAction("Index", "Idea");
+                return RedirectToAction("Index", "Idea");
+            //}
+            //return RedirectToAction("Index", "Idea");
 
 
 
         }
-        public void GetTopicIdFromComment(int id)
-        {
-            int IdeaId = 0;
-            foreach(var comment in _context.Comments)
-            {
-                if(comment.CommentId == id)
-                {
-                    IdeaId = comment.IdeaId;
-                }
-            }
 
-            foreach (var idea in _context.Ideas)
-            {
-                if (idea.IdeaId == IdeaId)
-                {
-                    Topic_Id = Convert.ToInt32(idea.TopicId);
-                }
-            }
-        }
 
         public void GetTopicIdFromIdea(int id)
         {
@@ -239,7 +221,7 @@ namespace Project_1640.Controllers
             {
                 if (idea.IdeaId == id)
                 {
-                    Topic_Id = Convert.ToInt32(idea.TopicId);
+                    Topic_Id = Convert.ToString(idea.TopicId);
                 }
             }
         }
