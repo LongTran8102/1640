@@ -13,7 +13,7 @@
         <div class="col-6">
             <h2 class="text-primary">Topic List</h2>
         </div>
-        @if ((Model.Ideas.UserId == this.User.FindFirstValue(ClaimTypes.NameIdentifier) || this.User.IsInRole("Admin") == true))
+        @if (this.User.IsInRole("Admin") == true)
         {
             <div class="col-6 text-end">
                 <a asp-controller="Topic" asp-action="Create" class="btn btn-primary">
