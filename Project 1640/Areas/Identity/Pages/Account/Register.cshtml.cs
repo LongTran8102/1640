@@ -197,8 +197,7 @@ namespace Project_1640.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        return RedirectToAction("Index", "Users");
                     }
                 }
                 foreach (var error in result.Errors)
