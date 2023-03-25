@@ -4,6 +4,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ namespace Project_1640.Controllers
         public readonly ApplicationDbContext context;
         public readonly UserManager<IdentityUser> userManager;
         public readonly RoleManager<IdentityRole> roleManager;
-
+        public string RoleName;
         public UsersController(ApplicationDbContext _context, UserManager<IdentityUser> _userManager, RoleManager<IdentityRole> _roleManager)
         {
             context = _context;
@@ -74,7 +75,7 @@ namespace Project_1640.Controllers
         // POST: Categories/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<object> Edit(UsersViewModel model, string id)
+        public async Task<IActionResult> Edit(UsersViewModel model, string id)
         {
             DropDownList();
             var user = await context.applicationUsers.FindAsync(id);
@@ -95,53 +96,37 @@ namespace Project_1640.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public async Task<IActionResult> EditRole(string id)
-        {
-            var user = await context.applicationUsers.FindAsync(id);
+        public async Task<IActionResult> EditRole(string? id)
+        {            
             if (id == null || context.applicationUsers == null)
             {
                 return NotFound();
             }
             DropDownList();
-            foreach (var userid in context.UserRoles)
-            {
-                if (userid.UserId == id)
-                {
-                    var role = userid.RoleId;
-                    var viewUser = new UsersViewModel
 
-                    {
-                        UserID = id,
-                        RoleId = role,
-                    };
-                    return View(viewUser);
-                };
-            }
-            return RedirectToAction("Index");
+            var viewUser = (from user in context.applicationUsers                            
+                            join ur in context.UserRoles on user.Id equals ur.UserId
+                            join r in context.Roles on ur.RoleId equals r.Id
+                            where user.Id == id
+                            select new UsersViewModel
+                            {
+                                UserID = id,                                
+                                RoleId = r.Id,                                
+                            });
+            return View(viewUser);
+            
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<object> EditRole(UsersViewModel model, string id)
         {
-            string userid = "";
-            string roleid = "";
-            DropDownList();           
-            foreach (var user in context.UserRoles)
-            {
-                if (user.UserId == id)
-                {
-                   
-                    roleid=user.RoleId
-                    
-                };
-            }
-            
-            if (userid == id)
-            {
-                model.RoleId = roleid;
-            }
-            model.RoleId = userid;
-            userid.UserId = id;
+            var user = await userManager.FindByIdAsync(id);
+            var role = await roleManager.FindByIdAsync(model.RoleId);
+            DropDownList();
+            var oldrole = await userManager.GetRolesAsync(user);
+            var newrole = await roleManager.GetRoleNameAsync(role);
+            //await userManager.RemoveFromRolesAsync(user, oldrole);
+            //await userManager.AddToRolesAsync(user, newrole);
             return RedirectToAction("Index");
         }
 

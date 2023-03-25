@@ -1,4 +1,5 @@
-﻿using Project_1640.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using Project_1640.Models;
 
 namespace Project_1640.ViewModels
 {
@@ -14,6 +15,6 @@ namespace Project_1640.ViewModels
         public string RoleId { get; set; }
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
-
+        public IdentityUser User { get; set; }
     }
 }
