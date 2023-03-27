@@ -12,15 +12,25 @@
         <form id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating mb-3">
-                <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label"></label>
+                <input asp-for="LastName" class="form-control" disabled />
+                <label asp-for="LastName" class="form-label"></label>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                <input asp-for="FirstName" class="form-control" disabled />
+                <label asp-for="FirstName" class="form-label"></label>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            <div class="form-floating mb-3">
+                <input asp-for="Email" class="form-control" disabled />
+                <label asp-for="Email" class="form-label"></label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Department" class="form-control" disabled />
+                <label asp-for="Department" class="form-label"></label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Role" class="form-control" disabled />
+                <label asp-for="Role" class="form-label"></label>
+            </div>
         </form>
     </div>
 </div>

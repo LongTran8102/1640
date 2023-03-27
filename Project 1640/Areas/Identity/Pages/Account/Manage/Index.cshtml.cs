@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Project_1640.Data;
+using Project_1640.Models;
 
 namespace Project_1640.Areas.Identity.Pages.Account.Manage
 {
@@ -16,21 +18,26 @@ namespace Project_1640.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ApplicationDbContext context;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager, ApplicationDbContext _context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            context = _context;
         }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        public string Username { get; set; }
-
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Role { get; set; }
+        public string Department { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -43,35 +50,49 @@ namespace Project_1640.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        [BindProperty]
-        public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        public class InputModel
-        {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Phone]
-            [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
-        }
 
         private async Task LoadAsync(IdentityUser user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var userId = await _userManager.GetUserIdAsync(user);
+            string roleId = "";
+            int depId = 0;
 
-            Username = userName;
-
-            Input = new InputModel
+            //Take user info
+            foreach (var users in context.applicationUsers)
             {
-                PhoneNumber = phoneNumber
-            };
+                if (userId == users.Id)
+                {
+                    FirstName = users.Firstname;
+                    LastName = users.Lastname;
+                    Email = users.Email;
+                    depId = users.DepartmentId;
+                }
+            }
+            //Take department name
+            foreach (var dep in context.Department)
+            {
+                if (dep.DepartmentId == depId)
+                {
+                    Department = dep.DepartmentName;
+                }
+            }
+            //Take role id
+            foreach (var userRole in context.UserRoles)
+            {
+                if (userRole.UserId == userId)
+                {
+                    roleId = userRole.RoleId;
+                }
+            }
+            //Take role name
+            foreach (var role in context.Roles)
+            {
+                if (roleId == role.Id)
+                {
+                    Role = role.Name;
+                }
+            }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -84,36 +105,6 @@ namespace Project_1640.Areas.Identity.Pages.Account.Manage
 
             await LoadAsync(user);
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            if (!ModelState.IsValid)
-            {
-                await LoadAsync(user);
-                return Page();
-            }
-
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
-                }
-            }
-
-            await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
-            return RedirectToPage();
         }
     }
 }
