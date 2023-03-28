@@ -79,11 +79,12 @@ namespace Project_1640.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Details(int id, Idea idea)
+        public async Task<IActionResult> Details(int id, Idea idea, string sortOrder)
         {
             CountView(id);
-            idea = GetIdeaByID(id);          
-            List<Comment> comments = new List<Comment>();
+            idea = GetIdeaByID(id);
+            // List<Comment> comments = new List<Comment>();
+
             List<ApplicationUser> users = new List<ApplicationUser>();
             foreach (var user in context.applicationUsers)
             {
@@ -99,7 +100,8 @@ namespace Project_1640.Controllers
                 }
             }
 
-            foreach (var comment in context.Comments)
+
+            /*foreach (var comment in context.Comments)
             {
                 if (comment.IdeaId == idea.IdeaId)
                 {
@@ -113,7 +115,7 @@ namespace Project_1640.Controllers
                     }
                     comments.Add(comment);
                 }
-            }
+            }*/
 
             int like = 0;
             int dislike = 0;
@@ -146,9 +148,32 @@ namespace Project_1640.Controllers
             await context.SaveChangesAsync();
 
             CommentViewModel viewModel = new CommentViewModel();
-            viewModel.Ideas = idea;
-            viewModel.Comments = comments;
+            ViewData["CommentDateSort"] = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
 
+            var comments = (from comment in context.Comments
+                            where comment.IdeaId == idea.IdeaId
+                            select new Comment
+                            {
+                                IdeaId = comment.IdeaId,
+                                UserId = comment.UserId,
+                                CommentId = comment.CommentId,
+                                CommentDate = comment.CommentDate,
+                                CommentText = comment.CommentText,
+                            });
+            switch (sortOrder)
+            {
+                default:
+                    comments = comments.OrderByDescending(a => a.CommentDate);
+                    break;
+            }
+            List<Comment> list = new List<Comment>();
+            foreach (var views in comments)
+            {
+                list.Add(views);
+            }
+
+            viewModel.Ideas = idea;
+            viewModel.ListComments = list;
             return View(viewModel);
         }
 

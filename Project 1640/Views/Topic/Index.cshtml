@@ -58,6 +58,8 @@
                                 <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
                                 Details
                             </a>
+                        @if (this.User.IsInRole("Admin") == true)
+                        { 
                             <a asp-controller="Topic" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-primary rounded align-middle">
                                 <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
                                 Edit
@@ -66,6 +68,7 @@
                                 <i class="bi bi-trash align-middle d-inline-block" style="font-size:20px"></i>
                                 Delete
                             </a>
+                        }
                         </td>
                         <td>
                             <div class="dropdown border-start align-middle">
