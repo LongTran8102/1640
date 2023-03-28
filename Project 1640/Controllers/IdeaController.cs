@@ -83,7 +83,6 @@ namespace Project_1640.Controllers
         {
             CountView(id);
             idea = GetIdeaByID(id);
-            // List<Comment> comments = new List<Comment>();
 
             List<ApplicationUser> users = new List<ApplicationUser>();
             foreach (var user in context.applicationUsers)
@@ -99,23 +98,6 @@ namespace Project_1640.Controllers
                     ViewBag.TopicDate = topic.FinalClosureDate;
                 }
             }
-
-
-            /*foreach (var comment in context.Comments)
-            {
-                if (comment.IdeaId == idea.IdeaId)
-                {
-                    foreach (var user in users)
-                    {
-                        if (user.Id == comment.UserId)
-                        {
-                            comment.IdeaId = idea.IdeaId;
-                            comment.UserId = user.Firstname;
-                        }
-                    }
-                    comments.Add(comment);
-                }
-            }*/
 
             int like = 0;
             int dislike = 0;

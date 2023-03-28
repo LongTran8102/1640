@@ -206,7 +206,7 @@ namespace Project_1640.Controllers
 
                 }
                 _context.SaveChanges();
-                return RedirectToAction("Index", "Topic");
+                return RedirectToAction("Details", "Idea", new { id = comment.IdeaId });
             }
             return RedirectToAction("Index", "Idea");
 
