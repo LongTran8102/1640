@@ -96,7 +96,7 @@ namespace Project_1640.Controllers
                 ideaData.TotalReaction= (int)(idea.TotalLike - idea.TotalDislike);
                 ideaData.IdeaId= idea.IdeaId;
                 ideaData.IdeaDescription= idea.IdeaDescription;
-                ideaData.CreatedDate
+                ideaData.CreatedDate = idea.CreatedDate;
                 //list.Add(idea);
             }
            /* ViewData["MostLikeIdea"] = String.IsNullOrEmpty(sortLike) ? "" : "";

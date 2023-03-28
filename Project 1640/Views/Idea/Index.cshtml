@@ -22,54 +22,57 @@
 </div>
 <br />
 <br />
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("IdeaName")
-            </th>
-            <th>
-                @Html.DisplayName("IdeaDescription")
-            </th>
-            <th>
-                @Html.DisplayName("FilePath")
-            </th>
-            <th>
-                @Html.DisplayName("CreatedDate")
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Ideas)
-        {
+<div class="table-responsive">
+
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdeaName)
-                </td>
-                <td width="30%">
-                    @Html.DisplayFor(modelItem => item.IdeaDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FilePath)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedDate)
-                </td>
-                <td class="text-center">
-                    <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
-                        <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
-                        Details
-                    </a>
-                    <a asp-action="ZipFile" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded align-middle">
-                        <i class="bi bi-file-arrow-down align-middle" style="font-size:20px"></i>
-                        Download File
-                    </a>
-                </td>
+                <th>
+                    @Html.DisplayName("IdeaName")
+                </th>
+                <th>
+                    @Html.DisplayName("IdeaDescription")
+                </th>
+                <th>
+                    @Html.DisplayName("FilePath")
+                </th>
+                <th>
+                    @Html.DisplayName("CreatedDate")
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Ideas)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdeaName)
+                    </td>
+                    <td width="30%">
+                        @Html.DisplayFor(modelItem => item.IdeaDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FilePath)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
+                            <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
+                            Details
+                        </a>
+                        <a asp-action="ZipFile" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded align-middle">
+                            <i class="bi bi-file-arrow-down align-middle" style="font-size:20px"></i>
+                            Download File
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 <div>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
