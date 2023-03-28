@@ -48,6 +48,9 @@
                             <li class="nav-item btn btn-outline-success" style="border:none">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Idea" asp-action="MostViewedIdeas">Most View Idea</a>
                             </li>
+                            <li class="nav-item btn btn-outline-success" style="border:none">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Statistics" asp-action="IdeaDepartment">Idea Per Department</a>
+                            </li>
                         }
                         else
                         @if (Context.User.IsInRole("QA/QC Coordinator"))
@@ -66,6 +69,9 @@
                             </li>
                             <li class="nav-item btn btn-outline-success" style="border:none">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Idea" asp-action="MostViewedIdeas">Most popular ideas</a>
+                            </li>
+                            <li class="nav-item btn btn-outline-success" style="border:none">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Statistics" asp-action="IdeaDepartment">Idea Per Department</a>
                             </li>
                         }
                         else

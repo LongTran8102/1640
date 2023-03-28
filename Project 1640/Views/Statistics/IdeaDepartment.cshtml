@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<input id="ID" value="Show Graph" type="button" />
+<br />
+<div>
+    <canvas id="myChart" style="max-height: 300px; max-width: 300px"></canvas>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#ID").click(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "/Statistics/IdeaDepartmentData",
+                data: "",
+                contextType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccessResult,
+                error: OnError
+            });
+            function OnSuccessResult(data) {
+                console.log(data);
+                var _data = data;
+                var _chartLabels = _data[0];
+                var _chartData = _data[1];
+
+                var barColor = ["red", "blue", "purple", "brown"];
+
+                new Chart("myChart",
+                    {
+                        type: "pie",
+                        data: {
+                            labels: _chartLabels,
+                            datasets: [{
+                                backgroundColor: barColor,
+                                data: _chartData
+                            }]
+                        }
+                    });
+            }
+            function OnError(err) {
+                console.log("Fail.");
+
+            }
+        });
+    });
+
+</script>
+
