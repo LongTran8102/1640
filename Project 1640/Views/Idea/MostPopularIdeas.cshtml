@@ -1,4 +1,5 @@
-﻿@model Project_1640.ViewModels.IdeaViewModel
+﻿@using Project_1640.ViewModels
+@model IEnumerable<MostPopularIdeaViewModel>
 
 @{
     ViewData["Title"] = "MostPopularIdeas";
@@ -20,13 +21,16 @@
                     @Html.DisplayName("IdeaDescription")
                 </th>          
                 <th>
+                    @Html.DisplayName("TotalReaction")
+                </th>
+                <th>
                     @Html.DisplayName("CreatedDate")
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Ideas)
+            @foreach (var item in Model)
             {
                 <tr>
                     <td>
@@ -34,6 +38,9 @@
                     </td>
                     <td width="30%">
                         @Html.DisplayFor(modelItem => item.IdeaDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalReaction)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CreatedDate)

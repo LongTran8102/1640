@@ -77,12 +77,12 @@ namespace Project_1640.Controllers
             ideaData.OrderBy = orderBy;
             return View(ideaData);
         }
-        public IActionResult MostPopularIdeas(string sortLike,string sortViewd)
+        public IActionResult MostPopularIdeas(string sortReaction)
         {   
             var pageSize = 5;
-            var ideaData = new IdeaViewModel();
+            MostPopularIdeaViewModel ideaData = new MostPopularIdeaViewModel();
             var mostLikeideas = (from idea in context.Ideas                         
-                         select new Idea
+                         select new MostPopularIdeaViewModel
                          {
                              IdeaId = idea.IdeaId,
                              IdeaName = idea.IdeaName,
@@ -90,25 +90,17 @@ namespace Project_1640.Controllers
                              CreatedDate = idea.CreatedDate,
                              TotalLike = idea.TotalLike, 
                              TotalDislike=idea.TotalDislike,
+                             TotalReaction= (int)(idea.TotalLike - idea.TotalDislike),
                          });
-            foreach(var idea in mostLikeideas)
-            {              
-                ideaData.TotalReaction= (int)(idea.TotalLike - idea.TotalDislike);
-                ideaData.IdeaId= idea.IdeaId;
-                ideaData.IdeaDescription= idea.IdeaDescription;
-                ideaData.CreatedDate = idea.CreatedDate;
-                //list.Add(idea);
-            }
-           /* ViewData["MostLikeIdea"] = String.IsNullOrEmpty(sortLike) ? "" : "";
-            switch (sortLike)
+          
+            ViewData["MostPopularIdea"] = String.IsNullOrEmpty(sortReaction) ? "" : "";
+            switch (sortReaction)
             {
                 default:
-                    mostLikeideas = mostLikeideas.OrderByDescending(a => a.TotalLike);
-                    break; 
-            }*/
-            ideaData.Ideas= mostLikeideas.Take(pageSize);
-
-            return View(ideaData);
+                    mostLikeideas = mostLikeideas.OrderByDescending(a => a.TotalReaction);
+                    break;
+            }
+            return View(mostLikeideas.Take(pageSize));
         }
         public IActionResult MostViewedIdeas(string sortViewed)
         {

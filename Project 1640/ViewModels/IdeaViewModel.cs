@@ -23,6 +23,6 @@ namespace Project_1640.ViewModels
         public int TotalPages { get; set; }
         public string Term { get; set; }
         public string OrderBy { get; set; }
-        public int TotalReaction { get; set; }
+        
     }
 }
