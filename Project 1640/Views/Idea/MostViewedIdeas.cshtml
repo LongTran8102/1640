@@ -1,0 +1,58 @@
+﻿@model Project_1640.ViewModels.IdeaViewModel
+
+@{
+    ViewData["Title"] = "MostViewedIdeas";
+}
+<div class="row pt-4">
+    <div class="col-6">
+        <h2 class="text-primary">Most viewed idea list</h2>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("IdeaName")
+            </th>
+            <th>
+                @Html.DisplayName("IdeaDescription")
+            </th>
+            <th>
+                @Html.DisplayName("Total views")
+            </th>
+            <th>
+                @Html.DisplayName("CreatedDate")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Ideas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdeaName)
+                </td>
+                <td width="30%">
+                    @Html.DisplayFor(modelItem => item.IdeaDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalView)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td class="text-center">
+                    <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
+                        <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
+                        Details
+                    </a>
+                    <a asp-action="ZipFile" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-primary rounded align-middle">
+                        <i class="bi bi-file-arrow-down align-middle" style="font-size:20px"></i>
+                        Download File
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

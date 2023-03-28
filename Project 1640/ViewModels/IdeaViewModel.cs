@@ -10,7 +10,8 @@ namespace Project_1640.ViewModels
         public string IdeaName { get; set; }
         public string IdeaDescription { get; set; }
         public string CategoryId { get; set; }   
-        public string UserId { get; set; }        
+        public string UserId { get; set; }    
+        public DateTime CreatedDate { get; set; }
         public IFormFile AttachFile { get; set; }
         [Display(Name = "I accept the above terms and conditions.")]
         public bool TermsConditions { get; set; } = false;
@@ -22,5 +23,6 @@ namespace Project_1640.ViewModels
         public int TotalPages { get; set; }
         public string Term { get; set; }
         public string OrderBy { get; set; }
+        public int TotalReaction { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ICSharpCode.SharpZipLib.Zip;
+﻿using DocumentFormat.OpenXml.Presentation;
+using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -69,7 +70,6 @@ namespace Project_1640.Controllers
             var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
             ideas = ideas.Skip((currentPage - 1) * pageSize).Take(pageSize);
             ideaData.Ideas = ideas;
-            ideaData.Ideas = ideas;
             ideaData.CurrentPage = currentPage;
             ideaData.TotalPages = totalPages;
             ideaData.PageSize = pageSize;
@@ -77,7 +77,64 @@ namespace Project_1640.Controllers
             ideaData.OrderBy = orderBy;
             return View(ideaData);
         }
+        public IActionResult MostPopularIdeas(string sortLike,string sortViewd)
+        {   
+            var pageSize = 5;
+            var ideaData = new IdeaViewModel();
+            var mostLikeideas = (from idea in context.Ideas                         
+                         select new Idea
+                         {
+                             IdeaId = idea.IdeaId,
+                             IdeaName = idea.IdeaName,
+                             IdeaDescription = idea.IdeaDescription,                             
+                             CreatedDate = idea.CreatedDate,
+                             TotalLike = idea.TotalLike, 
+                             TotalDislike=idea.TotalDislike,
+                         });
+            foreach(var idea in mostLikeideas)
+            {              
+                ideaData.TotalReaction= (int)(idea.TotalLike - idea.TotalDislike);
+                ideaData.IdeaId= idea.IdeaId;
+                ideaData.IdeaDescription= idea.IdeaDescription;
+                ideaData.CreatedDate
+                //list.Add(idea);
+            }
+           /* ViewData["MostLikeIdea"] = String.IsNullOrEmpty(sortLike) ? "" : "";
+            switch (sortLike)
+            {
+                default:
+                    mostLikeideas = mostLikeideas.OrderByDescending(a => a.TotalLike);
+                    break; 
+            }*/
+            ideaData.Ideas= mostLikeideas.Take(pageSize);
 
+            return View(ideaData);
+        }
+        public IActionResult MostViewedIdeas(string sortViewed)
+        {
+            var pageSize = 5;
+            var ideaData = new IdeaViewModel();
+            
+            var mostViewedideas = (from idea in context.Ideas
+                                   select new Idea
+                                   {
+                                       IdeaId = idea.IdeaId,
+                                       IdeaName = idea.IdeaName,
+                                       IdeaDescription = idea.IdeaDescription,
+                                       CreatedDate = idea.CreatedDate,
+                                       TotalView = idea.TotalView,
+                                   });
+            ViewData["MostViewedIdea"] = String.IsNullOrEmpty(sortViewed) ? "" : "";
+            switch (sortViewed)
+            {
+                default:
+                    mostViewedideas = mostViewedideas.OrderByDescending(a => a.TotalView);
+                    break;
+            }
+            ideaData.Ideas = mostViewedideas.Take(pageSize);
+
+            return View(ideaData);
+        }
         [Authorize]
         public async Task<IActionResult> Details(int id, Idea idea, string sortOrder)
         {
