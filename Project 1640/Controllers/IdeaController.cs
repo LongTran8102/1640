@@ -44,7 +44,7 @@ namespace Project_1640.Controllers
             var ideaData = new IdeaViewModel();
             ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
             var ideas = (from idea in context.Ideas
-                         where (userManager.GetUserId(HttpContext.User) == idea.UserId && term == "" ) || (idea.IdeaName.ToLower().StartsWith(term) && userManager.GetUserId(HttpContext.User) == idea.UserId)
+                         where (userManager.GetUserId(HttpContext.User) == idea.UserId && term == "") || (idea.IdeaName.ToLower().StartsWith(term) && userManager.GetUserId(HttpContext.User) == idea.UserId)
                          select new Idea
                          {
                              IdeaId = idea.IdeaId,
@@ -78,21 +78,21 @@ namespace Project_1640.Controllers
             return View(ideaData);
         }
         public IActionResult MostPopularIdeas(string sortReaction)
-        {   
+        {
             var pageSize = 5;
             MostPopularIdeaViewModel ideaData = new MostPopularIdeaViewModel();
-            var mostLikeideas = (from idea in context.Ideas                         
-                         select new MostPopularIdeaViewModel
-                         {
-                             IdeaId = idea.IdeaId,
-                             IdeaName = idea.IdeaName,
-                             IdeaDescription = idea.IdeaDescription,                             
-                             CreatedDate = idea.CreatedDate,
-                             TotalLike = idea.TotalLike, 
-                             TotalDislike=idea.TotalDislike,
-                             TotalReaction= (int)(idea.TotalLike - idea.TotalDislike),
-                         });
-          
+            var mostLikeideas = (from idea in context.Ideas
+                                 select new MostPopularIdeaViewModel
+                                 {
+                                     IdeaId = idea.IdeaId,
+                                     IdeaName = idea.IdeaName,
+                                     IdeaDescription = idea.IdeaDescription,
+                                     CreatedDate = idea.CreatedDate,
+                                     TotalLike = idea.TotalLike,
+                                     TotalDislike = idea.TotalDislike,
+                                     TotalReaction = (int)(idea.TotalLike - idea.TotalDislike),
+                                 });
+
             ViewData["MostPopularIdea"] = String.IsNullOrEmpty(sortReaction) ? "" : "";
             switch (sortReaction)
             {
@@ -106,7 +106,7 @@ namespace Project_1640.Controllers
         {
             var pageSize = 5;
             var ideaData = new IdeaViewModel();
-            
+
             var mostViewedideas = (from idea in context.Ideas
                                    select new Idea
                                    {
@@ -348,7 +348,7 @@ namespace Project_1640.Controllers
                 context.Ideas.Remove(idea);
                 context.SaveChanges();
             }
-            return RedirectToAction("Index", "Topic");
+            return RedirectToAction("Details", "Topic", new { id = idea.TopicId });
         }
 
         //Take Category Dropdown List
@@ -372,26 +372,6 @@ namespace Project_1640.Controllers
                 formFile.CopyTo(stream);
             }
             return UniqueFileName;
-        }
-
-        //Donwload Attach File
-        public IActionResult DownloadFile(int id)
-        {
-            Idea idea = GetIdeaByID(id);
-            if (idea.FilePath != null)
-            {
-                var path = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
-                var memory = new MemoryStream();
-                using (var stream = new FileStream(path, FileMode.Open))
-                {
-                    stream.CopyTo(memory);
-                }
-                memory.Position = 0;
-                var contentType = "APPLICATION/octet-stream";
-                var fileName = Path.GetFileName(path);
-                return File(memory, contentType, fileName);
-            }
-            return RedirectToAction("Index");
         }
 
         //Send Mail After Creating Idea
@@ -489,8 +469,8 @@ namespace Project_1640.Controllers
             }
         }
 
-        //Download idea file
-        public FileResult ZipFile(int id)
+        //Download idea file FileResult
+        public IActionResult ZipFile(int id)
         {
             var webRoot = oIHostingEnvironment.WebRootPath;
             var Name = "";
@@ -506,45 +486,49 @@ namespace Project_1640.Controllers
                     }
                 }
             }
-            var fileName = $"{Name}.zip";
-            var tempOutput = webRoot + "UserFiles" + fileName;
-
-            using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
+            if (FileList.Count > 0)
             {
-                oZipOutputStream.SetLevel(9);
-                byte[] buffer = new byte[4096];
+                var fileName = $"{Name}.zip";
+                var tempOutput = webRoot + "UserFiles" + fileName;
 
-                for (int i = 0; i < FileList.Count; i++)
+                using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
                 {
-                    ZipEntry entry = new ZipEntry(Path.GetFileName(FileList[i]));
-                    entry.DateTime = DateTime.Now;
-                    entry.IsUnicodeText = true;
-                    oZipOutputStream.PutNextEntry(entry);
-                    using (FileStream oFileStream = System.IO.File.OpenRead(FileList[i]))
-                    {
-                        int sourceBytes;
-                        do
-                        {
-                            sourceBytes = oFileStream.Read(buffer, 0, buffer.Length);
-                            oZipOutputStream.Write(buffer, 0, sourceBytes);
-                        } while (sourceBytes > 0);
-                    }
-                }
-                oZipOutputStream.Finish();
-                oZipOutputStream.Flush();
-                oZipOutputStream.Close();
-            }
+                    oZipOutputStream.SetLevel(9);
+                    byte[] buffer = new byte[4096];
 
-            byte[] finalResult = System.IO.File.ReadAllBytes(tempOutput);
-            if (System.IO.File.Exists(tempOutput))
-            {
-                System.IO.File.Delete(tempOutput);
+                    for (int i = 0; i < FileList.Count; i++)
+                    {
+                        ZipEntry entry = new ZipEntry(Path.GetFileName(FileList[i]));
+                        entry.DateTime = DateTime.Now;
+                        entry.IsUnicodeText = true;
+                        oZipOutputStream.PutNextEntry(entry);
+                        using (FileStream oFileStream = System.IO.File.OpenRead(FileList[i]))
+                        {
+                            int sourceBytes;
+                            do
+                            {
+                                sourceBytes = oFileStream.Read(buffer, 0, buffer.Length);
+                                oZipOutputStream.Write(buffer, 0, sourceBytes);
+                            } while (sourceBytes > 0);
+                        }
+                    }
+                    oZipOutputStream.Finish();
+                    oZipOutputStream.Flush();
+                    oZipOutputStream.Close();
+                }
+
+                byte[] finalResult = System.IO.File.ReadAllBytes(tempOutput);
+                if (System.IO.File.Exists(tempOutput))
+                {
+                    System.IO.File.Delete(tempOutput);
+                }
+                if (finalResult == null || !finalResult.Any())
+                {
+                    throw new Exception(String.Format("Nothing found"));
+                }
+                return File(finalResult, "application/zip", fileName);
             }
-            if (finalResult == null || !finalResult.Any())
-            {
-                throw new Exception(String.Format("Nothing found"));
-            }
-            return File(finalResult, "application/zip", fileName);
+            return RedirectToAction("Index");
         }
 
         //Take Idea By id

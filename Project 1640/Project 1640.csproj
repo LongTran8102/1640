@@ -26,4 +26,8 @@
     <Folder Include="wwwroot\UserFiles\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Views\Statistics\IdeaDepartment.cshtml" />
+  </ItemGroup>
+
 </Project>
