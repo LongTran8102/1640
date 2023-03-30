@@ -16,5 +16,10 @@ namespace Project_1640.ViewModels
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
         public IdentityUser User { get; set; }
+        public IQueryable<UsersViewModel> Users { get; set; }
+        public string Term { get; set; }
+        public int PageSize { get; set; }
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
     }
 }

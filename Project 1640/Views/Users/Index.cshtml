@@ -1,7 +1,22 @@
-﻿@model IEnumerable<Project_1640.ViewModels.UsersViewModel>
+﻿@model Project_1640.ViewModels.UsersViewModel
 
-
-<h1>Index</h1>
+<div class="row pt-4">
+    <div class="col-6">
+        <h2 class="text-primary">User List</h2>
+        <form asp-action="Index">
+            <div class="row">
+                <div class="col-md-7">
+                    <input name="term" class="form-control" placeholder="Search by Name" />
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-info">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<br />
 <div class="table-responsive">
     <table class="table table-hover">
         <thead class="bg-gradient bg-primary text-white">
@@ -15,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Model)
+            @foreach (var user in Model.Users)
             {
                 <tr>
                     <td>@user.FirstName</td>
@@ -37,4 +52,38 @@
             }
         </tbody>
     </table>
+</div>
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @if (Model.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/Users/Index?term=@Model.Term&currentPage=@(Model.CurrentPage-1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="page-item"><a class="page-link active text-danger" href="/Users/Index?term=@Model.Term&currentPage=@i">@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="/Users/Index?term=@Model.Term&currentPage=@i">@i</a></li>
+                }
+            }
+
+            @if (Model.CurrentPage < Model.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/Users/Index?term=@Model.Term&currentPage=@(Model.CurrentPage+1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
 </div>

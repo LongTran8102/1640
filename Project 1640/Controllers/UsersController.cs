@@ -33,12 +33,14 @@ namespace Project_1640.Controllers
         }
 
         // GET: UsersController
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string term = "", int currentPage = 1)
         {
+            term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
             var users = (from user in context.applicationUsers
                          join d in context.Department on user.DepartmentId equals d.DepartmentId
                          join ur in context.UserRoles on user.Id equals ur.UserId
                          join r in context.Roles on ur.RoleId equals r.Id
+                         where (term == "" || user.Firstname.ToLower().StartsWith(term) || user.Lastname.ToLower().StartsWith(term))
                          select new UsersViewModel
                          {
                              UserID = user.Id,
@@ -47,8 +49,18 @@ namespace Project_1640.Controllers
                              Email = user.Email,
                              Roles = r.Name,
                              DepartmentName = d.DepartmentName,
-                         }).ToArray();
-            return View(users);
+                         });
+            var totalRecords = users.Count();
+            var pageSize = 5;
+            var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
+            users = users.Skip((currentPage - 1) * pageSize).Take(pageSize);
+            var userData = new UsersViewModel();
+            userData.PageSize= pageSize;
+            userData.TotalPages= totalPages;
+            userData.CurrentPage = currentPage;
+            userData.Users = users;
+            userData.Term = term;
+            return View(userData);
         }
 
         // GET: UsersController

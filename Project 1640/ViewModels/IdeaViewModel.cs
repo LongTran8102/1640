@@ -15,8 +15,7 @@ namespace Project_1640.ViewModels
         public IFormFile AttachFile { get; set; }
         [Display(Name = "I accept the above terms and conditions.")]
         public bool TermsConditions { get; set; } = false;
-        public IQueryable<Idea> Ideas { get; set; }
-        public string IdeaNameSortOrder { get; set; }
+        public IQueryable<Idea> Ideas { get; set; }       
         public string CreatedDateSortOrder { get; set; }
         public int PageSize { get; set; }
         public int CurrentPage { get; set; }

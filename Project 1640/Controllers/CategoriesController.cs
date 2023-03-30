@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Project_1640.Data;
 using Project_1640.Models;
+using Project_1640.ViewModels;
 
 namespace Project_1640.Controllers
 {
@@ -22,9 +24,25 @@ namespace Project_1640.Controllers
         }
 
         //GET Categories
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string term = "", int currentPage = 1)
         {
-              return View(await _context.Category.ToListAsync());
+            term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
+            var cate = from cat in _context.Category
+                       where (term == "" || cat.CategoryName.ToLower().StartsWith(term))
+                       select cat;
+            var cats = new CategoryViewModel();
+
+
+            var totalRecords = cate.Count();
+            var pageSize = 5;
+            var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
+            cate = cate.Skip((currentPage - 1) * pageSize).Take(pageSize);
+            cats.categories = cate;
+            cats.PageSize = pageSize;
+            cats.CurrentPage = currentPage;
+            cats.TotalPages = totalPages;
+            cats.Term = term;
+            return View(cats);
         }
 
 
@@ -129,14 +147,14 @@ namespace Project_1640.Controllers
             {
                 _context.Category.Remove(category);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-          return _context.Category.Any(e => e.CategoryId == id);
+            return _context.Category.Any(e => e.CategoryId == id);
         }
     }
 }
