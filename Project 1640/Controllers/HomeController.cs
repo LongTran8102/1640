@@ -24,42 +24,46 @@ namespace Project_1640.Controllers
 
         public IActionResult Index(string term = "", string orderBy = "", int currentPage = 1)
         {
-            term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
-            var ideaData = new IdeaViewModel();
-            ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
-            var ideas = (from idea in context.Ideas
-                         where (userManager.GetUserId(HttpContext.User) == idea.UserId && term == "") || (idea.IdeaName.ToLower().StartsWith(term) && userManager.GetUserId(HttpContext.User) == idea.UserId)
-                         select new Idea
-                         {
-                             IdeaId = idea.IdeaId,
-                             IdeaName = idea.IdeaName,
-                             IdeaDescription = idea.IdeaDescription,
-                             FilePath = idea.FilePath,
-                             CreatedDate = idea.CreatedDate,
-                             TotalLike = idea.TotalLike,
-                             TotalDislike = idea.TotalDislike,
-                             TotalView = idea.TotalView,
-                         });
-            switch (orderBy)
+            if (userManager.GetUserId(HttpContext.User) != null)
             {
-                case "date_desc":
-                    ideas = ideas.OrderBy(a => a.CreatedDate);
-                    break;
-                default:
-                    ideas = ideas.OrderByDescending(a => a.CreatedDate);
-                    break;
+                term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
+                var ideaData = new IdeaViewModel();
+                ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
+                var ideas = (from idea in context.Ideas
+                             where (userManager.GetUserId(HttpContext.User) == idea.UserId && term == "") || (idea.IdeaName.ToLower().StartsWith(term) && userManager.GetUserId(HttpContext.User) == idea.UserId)
+                             select new Idea
+                             {
+                                 IdeaId = idea.IdeaId,
+                                 IdeaName = idea.IdeaName,
+                                 IdeaDescription = idea.IdeaDescription,
+                                 FilePath = idea.FilePath,
+                                 CreatedDate = idea.CreatedDate,
+                                 TotalLike = idea.TotalLike,
+                                 TotalDislike = idea.TotalDislike,
+                                 TotalView = idea.TotalView,
+                             });
+                switch (orderBy)
+                {
+                    case "date_desc":
+                        ideas = ideas.OrderBy(a => a.CreatedDate);
+                        break;
+                    default:
+                        ideas = ideas.OrderByDescending(a => a.CreatedDate);
+                        break;
+                }
+                var totalRecords = ideas.Count();
+                var pageSize = 5;
+                var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
+                ideas = ideas.Skip((currentPage - 1) * pageSize).Take(pageSize);
+                ideaData.Ideas = ideas;
+                ideaData.CurrentPage = currentPage;
+                ideaData.TotalPages = totalPages;
+                ideaData.PageSize = pageSize;
+                ideaData.Term = term;
+                ideaData.OrderBy = orderBy;
+                return View(ideaData);
             }
-            var totalRecords = ideas.Count();
-            var pageSize = 5;
-            var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
-            ideas = ideas.Skip((currentPage - 1) * pageSize).Take(pageSize);
-            ideaData.Ideas = ideas;
-            ideaData.CurrentPage = currentPage;
-            ideaData.TotalPages = totalPages;
-            ideaData.PageSize = pageSize;
-            ideaData.Term = term;
-            ideaData.OrderBy = orderBy;
-            return View(ideaData);
+            return RedirectToAction("Account", "Identity", new { id = "Login" });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

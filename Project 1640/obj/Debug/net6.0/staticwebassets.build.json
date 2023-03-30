@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "M4paiVaNudd7hYqctM2lH00IPmowrEs4e2HzSzoUxUo=",
+  "Hash": "gIXkaMKM3j5+avBkW7Ou8NNEpUYq3vJpsDXqamDiiZM=",
   "Source": "Project 1640",
   "BasePath": "_content/Project 1640",
   "Mode": "Default",
@@ -2089,6 +2089,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\UserFiles\\728989e4ead2c21500527a5d29a38f6c.jpg",
+      "SourceId": "Project 1640",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\OneDrive\\Máy tính\\1640\\Project 1640\\wwwroot\\",
+      "BasePath": "_content/Project 1640",
+      "RelativePath": "UserFiles/728989e4ead2c21500527a5d29a38f6c.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserFiles\\728989e4ead2c21500527a5d29a38f6c.jpg"
     }
   ]
 }

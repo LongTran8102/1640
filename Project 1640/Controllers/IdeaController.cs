@@ -77,6 +77,42 @@ namespace Project_1640.Controllers
             ideaData.OrderBy = orderBy;
             return View(ideaData);
         }
+        public IActionResult AllIdeas(string term = "", string orderBy = "", int currentPage = 1)
+        {
+            term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
+            var ideaData = new IdeaViewModel();
+            ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
+            var ideas = (from idea in context.Ideas
+                         where (term == "" || idea.IdeaName.ToLower().StartsWith(term))
+                         select new Idea
+                         {
+                             IdeaId = idea.IdeaId,
+                             IdeaName = idea.IdeaName,
+                             IdeaDescription = idea.IdeaDescription,
+                             FilePath = idea.FilePath,
+                             CreatedDate = idea.CreatedDate,
+                             TotalLike = idea.TotalLike,
+                             TotalDislike = idea.TotalDislike,
+                             TotalView = idea.TotalView,
+                         });
+            switch (orderBy)
+            {                
+                default:
+                    ideas = ideas.OrderByDescending(a => a.CreatedDate);
+                    break;
+            }
+            var totalRecords = ideas.Count();
+            var pageSize = 5;
+            var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
+            ideas = ideas.Skip((currentPage - 1) * pageSize).Take(pageSize);
+            ideaData.Ideas = ideas;
+            ideaData.CurrentPage = currentPage;
+            ideaData.TotalPages = totalPages;
+            ideaData.PageSize = pageSize;
+            ideaData.Term = term;
+            ideaData.OrderBy = orderBy;
+            return View(ideaData);
+        }
         public IActionResult MostPopularIdeas(string sortReaction)
         {
             var pageSize = 5;
@@ -251,7 +287,7 @@ namespace Project_1640.Controllers
                 context.Ideas.Add(idea);
                 await context.SaveChangesAsync();
                 //Send Mail
-                SendMailCreateIdea(emailData, idea);
+                //SendMailCreateIdea(emailData, idea);
                 return RedirectToRoute(new { controller = "Topic", action = "Details", id });
             }
             else
@@ -375,7 +411,7 @@ namespace Project_1640.Controllers
         }
 
         //Send Mail After Creating Idea
-        public void SendMailCreateIdea(Email emailData, Idea idea)
+        /*public void SendMailCreateIdea(Email emailData, Idea idea)
         {
             //Take submiter details
             var userId = userManager.GetUserId(HttpContext.User);
@@ -467,7 +503,7 @@ namespace Project_1640.Controllers
                 smtp.Send(email);
                 smtp.Disconnect(true);
             }
-        }
+        }*/
 
         //Download idea file FileResult
         public IActionResult ZipFile(int id)

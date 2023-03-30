@@ -4,16 +4,13 @@
     ViewData["Title"] = "Register";
 }
 
-<div class="p-5 bg-image" style="
-        background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
-        height: 175px;
-        "></div>
+
 <div class="row pb-3 mx-auto w-75 rounded-3 text-center" style="
-        margin-top: -100px;
+        margin-top: 15px;
         background: hsla(0, 0%, 100%, 0.8);
-        backdrop-filter: blur(30px);
+        backdrop-filter: blur(30px);        
         ">
-    <h1>@ViewData["Title"]</h1>
+    <h1 class ="text-primary">@ViewData["Title"]</h1>
     <div class="col-md-center">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <hr />
@@ -61,7 +58,7 @@
                 <span asp-validation-for="Input.Role" class="text-danger"></span>
             </div>
 
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary rounded-pill mt-3">Register</button>
+            <button id="registerSubmit" type="submit" style="width:200px" class="btn btn-lg btn-primary rounded-pill mt-3">Register</button>
         </form>
     </div>
 </div>

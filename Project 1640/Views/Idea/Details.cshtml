@@ -59,18 +59,21 @@
         <i class="bi bi-arrow-left-short align-middle"></i>
         Back
     </a>
-    <a asp-action="Like" asp-controller="Reactions" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-primary rounded align-middle">
-        <i class="bi bi-hand-thumbs-up"></i>
-        Like
-    </a>
-    <a asp-action="DisLike" asp-controller="Reactions" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-danger mx-2 rounded align-middle">
-        <i class="bi bi-hand-thumbs-down"></i>
-        Dislike
-    </a>
-    <a class="btn btn-outline-primary rounded" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <i class="bi bi-chat-right-text align-middle" style="font-size:20px"></i>
-        Comment
-    </a>
+    @if (ViewBag.TopicDate > DateTime.Now)
+    {
+        <a asp-action="Like" asp-controller="Reactions" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-primary rounded align-middle">
+            <i class="bi bi-hand-thumbs-up"></i>
+            Like
+        </a>
+        <a asp-action="DisLike" asp-controller="Reactions" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-danger mx-2 rounded align-middle">
+            <i class="bi bi-hand-thumbs-down"></i>
+            Dislike
+        </a>
+        <a class="btn btn-outline-primary rounded" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <i class="bi bi-chat-right-text align-middle" style="font-size:20px"></i>
+            Comment
+        </a>
+    }
     @if (@Model.Ideas.UserId == this.User.FindFirstValue(ClaimTypes.NameIdentifier) || this.User.IsInRole("Admin") == true)
     {
         <a asp-action="Edit" asp-route-id="@Model.Ideas.IdeaId" class="btn btn-outline-primary rounded align-middle mx-2">

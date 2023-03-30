@@ -4,7 +4,7 @@
     ViewBag.Title = "Create Idea";
 }
 
-<form method="post">
+<form asp-controller="Idea" enctype="multipart/form-data" asp-action="Create" method="post">
     <div class="row pb-2">
         <h2 class="text-primary">Create New Idea</h2>
         <hr />
