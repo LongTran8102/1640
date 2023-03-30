@@ -11,43 +11,43 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Ideas.IdeaName)
+            @Html.DisplayName("Idea Name")
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.IdeaName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Ideas.TopicId)
+            @Html.DisplayName("Topic Idea")
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.TopicId)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Ideas.IdeaDescription)
+            @Html.DisplayName("Idea Description")
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.IdeaDescription)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Ideas.FilePath)
+            @Html.DisplayName("File Path")
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.FilePath)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Ideas.TotalLike)
+            @Html.DisplayName("Total Like")
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.TotalLike)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Ideas.TotalDislike)
+            @Html.DisplayName("Total Dislike")
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.TotalDislike)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Ideas.TotalView)
+            @Html.DisplayName("Total View")
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ideas.TotalView)
@@ -111,16 +111,21 @@
 
                     @foreach (var item in Model.ListComments)
                     {
-                        <div class="d-flex flex-start">
+                        <div class="d-flex">
                             <div>
                                 <h6 class="text-primary fw-bold mb-0">User</h6>
-                                <div class="d-flex align-items-center mt-3">
+                                <div class="d-flex align-items-center mt-1">
                                     <p class="mb-0">
                                         @Html.DisplayFor(modelItem => item.CommentDate)
                                     </p>
-                                    <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.CommentId" class="px-3">
-                                        <i class="bi bi-trash text-danger"></i>
-                                    </a>
+                                    @if (item.UserId == this.User.FindFirstValue(ClaimTypes.NameIdentifier) || this.User.IsInRole("Admin") == true)
+                                    {
+                                        <form method="post" asp-controller="Comments" asp-action="Delete" asp-route-id="@item.CommentId">
+                                            <button type="submit" class="btn text-danger border-0" style="max-height:fit-content; max-width:fit-content">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    }
                                 </div>
                                 <p class="mb-1">
                                     @Html.DisplayFor(modelItem => item.CommentText)

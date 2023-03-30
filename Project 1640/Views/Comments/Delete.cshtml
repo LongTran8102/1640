@@ -6,28 +6,28 @@
 
 <form method="post" asp-action="Delete">
     <div class="form-group">
-        <h2 class="text-primary">Delete Idea</h2>
+        <h2 class="text-primary">Delete Comment</h2>
         <hr />
     </div>
     <div class="form-group">
-        <label asp-for="CommentText"></label>
+        <label asp-for="CommentText">Comment Text</label>
         <input asp-for="CommentText" disabled class="form-control" />
     </div>
     <div class="form-group">
+        <label asp-for="CommentDate">Comment Date</label>
         <label asp-for="CommentDate"></label>
         <input asp-for="CommentDate" disabled class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="UserId"></label>
+        <label asp-for="UserId">User Id</label>
         <input asp-for="UserId" disabled class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="IdeaId"></label>
+        <label asp-for="IdeaId">Idea Id</label>
         <input asp-for="IdeaId" disabled class="form-control" />
     </div>
     <div class="mt-3">
-
-        <a asp-controller="Idea" asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
+        <a asp-controller="Idea" asp-route-id="@Model.IdeaId" asp-action="Details" class="btn btn-primary" style="width:150px">
             <i class="bi bi-arrow-left-short align-middle"></i>
             Back
         </a>

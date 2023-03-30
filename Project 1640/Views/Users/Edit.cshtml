@@ -5,21 +5,21 @@
 }
 <form method="post" asp-action="Edit">
     <div class="row pb-2">
-        <h2 class="text-primary">Edit Topic</h2>
+        <h2 class="text-primary">Edit User</h2>
         <hr />
     </div>
         <div class="form-group">
-            <label asp-for="FirstName"></label>
+            <label asp-for="FirstName">First Name</label>
             <input asp-for="FirstName" class="form-control" />
             <span asp-validation-for="FirstName" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="LastName"></label>
+            <label asp-for="LastName">Last Name</label>
             <input asp-for="LastName" class="form-control" />
             <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="DepartmentId" class="form-label"></label>
+            <label asp-for="DepartmentId" class="form-label">Department Id</label>
             <select asp-for=DepartmentId asp-items="@ViewBag.DepartList" class="form-select"><option selected>--Please select department--</option></select>
             <span asp-validation-for="DepartmentId" class="text-danger"></span>
         </div>
@@ -29,12 +29,12 @@
             <span asp-validation-for="Email" class="text-danger"></span>  
     </div>
     <div class="form-group">
-        <label asp-for="RoleId" class="form-label"></label>
+        <label asp-for="RoleId" class="form-label">Role Id</label>
             <select asp-for=RoleId asp-items="@ViewBag.RolesList" class="form-select"><option selected>--Please select role--</option></select>
             <span asp-validation-for="RoleId" class="text-danger"></span>
     </div>
-        <div class="form-group row-cols-2 text-center mt-3">
-            <a asp-controller="Users" asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
+        <div class="form-group row-cols-2 mt-3">
+            <a asp-controller="Users" asp-action="Index" class="btn btn-danger" style="width:150px">
                 <i class="bi bi-arrow-left-short align-middle"></i>
                 Back
             </a>

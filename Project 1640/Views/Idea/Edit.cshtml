@@ -6,22 +6,22 @@
 <form asp-controller="Idea" enctype="multipart/form-data" asp-action="Edit" method="post">
     <input hidden asp-for="ID" />
     <div class="form-group">
-        <label asp-for="IdeaName" class="form-label"></label>
+        <label asp-for="IdeaName" class="form-label">Idea Name</label>
         <input asp-for="IdeaName" class="form-control" />
         <span asp-validation-for="IdeaName" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="IdeaDescription" class="form-label"></label>
+        <label asp-for="IdeaDescription" class="form-label">Idea Description</label>
         <input asp-for="IdeaDescription" class="form-control" />
         <span asp-validation-for="IdeaDescription" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="CategoryId" class="form-label"></label>
+        <label asp-for="CategoryId" class="form-label">Category Id</label>
         <select asp-for=CategoryId asp-items="@ViewBag.CategoryList" class="form-select"></select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="AttachFile" class="form-label"></label>
+        <label asp-for="AttachFile" class="form-label">Attach File</label>
         <input asp-for="AttachFile" class="form-control" />
     </div>
     <div class="form-group mt-3">

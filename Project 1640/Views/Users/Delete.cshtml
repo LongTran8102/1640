@@ -12,11 +12,11 @@
         <hr />
     </div>
     <div class="form-group">
-        <label asp-for="@user.FirstName"></label>
+        <label asp-for="@user.FirstName">First Name</label>
         <input asp-for="@user.FirstName" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@user.LastName"></label>
+        <label asp-for="@user.LastName">Last Name</label>
         <input asp-for="@user.LastName" class="form-control" />
     </div>
     <div class="form-group">
@@ -28,11 +28,11 @@
          <input asp-for="@user.Roles" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@user.DepartmentName"></label>
+         <label asp-for="@user.DepartmentName">Department</label>
         <input asp-for="@user.DepartmentName" class="form-control" />
     </div>
     <div class="form-group mt-3">
-        <a asp-controller="Users" asp-action="Index" class="btn btn-secondary btn-danger" style="width:150px">
+        <a asp-controller="Users" asp-action="Index" class="btn btn-secondary btn-primary" style="width:150px">
                 <i class="bi bi-arrow-left-short align-middle"></i>
                 Back
             </a>

@@ -7,7 +7,7 @@
 
 <div class="row pt-4">
     <div class="col-6">
-        <h2 class="text-primary">Idea List</h2>
+        <h2 class="text-primary">My Idea List</h2>
         <form asp-action="Index">
             <div class="row">
                 <div class="col-md-8">
@@ -23,21 +23,20 @@
 <br />
 <br />
 <div class="table-responsive">
-
     <table class="table">
-        <thead>
+        <thead class="bg-gradient bg-primary text-white">
             <tr>
                 <th>
-                    @Html.DisplayName("IdeaName")
+                    @Html.DisplayName("Idea Name")
                 </th>
                 <th>
-                    @Html.DisplayName("IdeaDescription")
+                    @Html.DisplayName("Idea Description")
                 </th>
                 <th>
-                    @Html.DisplayName("FilePath")
+                    @Html.DisplayName("File Path")
                 </th>
                 <th>
-                    @Html.DisplayName("CreatedDate")
+                    @Html.DisplayName("Created Date")
                 </th>
                 <th></th>
             </tr>
