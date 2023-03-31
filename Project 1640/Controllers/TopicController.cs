@@ -141,24 +141,35 @@ namespace Project_1640.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id,string sortOrder="")
         {
             if (id == null || context.Topics == null)
             {
                 return NotFound();
             }
             var topic = await context.Topics.FirstOrDefaultAsync(m => m.Id == id);
-            List<Idea> ideaList = new List<Idea>();
+            /*List<Idea> ideaList = new List<Idea>();
             foreach (var ideas in context.Ideas)
             {
                 if (id == Convert.ToInt32(ideas.TopicId))
                 {
                     ideaList.Add(ideas);
                 }
+            }*/
+            ViewData["CreatedDate"] = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+            var idea = from ideas in context.Ideas
+                       where id == Convert.ToInt32(ideas.TopicId)
+                       select ideas;
+            switch (sortOrder)
+            {
+                default:
+                    idea = idea.OrderByDescending(a => a.CreatedDate);
+                    break;
             }
+            
             IdeaTopicViewModel model = new IdeaTopicViewModel();
             model.Topics = topic;
-            model.Ideas = ideaList;
+            model.Ideas = idea;
             return View(model);
         }
 
