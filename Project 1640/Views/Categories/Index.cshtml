@@ -4,32 +4,31 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">Category List</h2>
-            <form asp-action="Index">
-                <div class="row">
-                    <div class="col-md-7">
-                        <input name="term" class="form-control" placeholder="Search by Category Name" />
-                    </div>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-info">Search</button>
-                    </div>
+<div class="pt-4">
+    <div class="">
+        <h2 class="text-primary">Category List</h2>
+        <form asp-action="Index">
+            <div class="row">
+                <div class="col-6">
+                    <input name="term" class="form-control" placeholder="Search by Category Name" />
                 </div>
-            </form>
-            <a asp-action="Index" class="btn btn-danger mt-3">
-                Back
-            </a>
-        </div>
-
-        <div class="col-6 text-end">
+                <div class="col-6">
+                    <button type="submit" class="btn btn-info">Search</button>
+                    <a asp-action="Index" class="btn btn-danger mx-3">
+                        Back to Full List
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+        <div class=" text-end">
             <a asp-controller="Categories" asp-action="Create" class="btn btn-primary">
             <i class="bi bi-plus d-inline-block align-middle" style="font-size: 1.25rem"></i>
                 Create New Category
             </a>
         </div>
-    </div>
-<br />
 <br />
 <table class="table table-hover">
     <thead class="bg-gradient bg-primary text-white">

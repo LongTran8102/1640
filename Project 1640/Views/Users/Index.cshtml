@@ -1,31 +1,32 @@
 ﻿@model Project_1640.ViewModels.UsersViewModel
 
-<div class="row pt-4">
-    <div class="col-6">
+<div class="pt-4">
+    <div class="">
         <h2 class="text-primary">User List</h2>
         <form asp-action="Index">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-6" >
                     <input name="term" class="form-control" placeholder="Search by Name" />
                 </div>
-                <div class="col-md-4">
+                <div class="col-6">
                     <button type="submit" class="btn btn-info">Search</button>
+                    <a asp-action="Index" class="btn btn-danger mx-3">
+                        Back to Full List
+                    </a>
                 </div>
             </div>
         </form>
-        <a asp-action="Index" class="btn btn-danger mt-3">
-            Back
-        </a>
     </div>
-    <div class="col-6 text-end m-auto">
-        <a id="register" asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary">
-            <i class="bi bi-plus d-inline-block align-middle" style="font-size: 1.25rem"></i>
-            Create User
-        </a>
-    </div>
+    
 </div>
 
 <br />
+<div class=" text-end">
+    <a id="register" asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary">
+        <i class="bi bi-plus d-inline-block align-middle" style="font-size: 1.25rem"></i>
+        Create User
+    </a>
+</div>
 <br />
 <div class="table-responsive">
     <table class="table table-hover">

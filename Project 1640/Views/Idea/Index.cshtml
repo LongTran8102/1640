@@ -10,15 +10,13 @@
         <h2 class="text-primary">My Idea List</h2>
         <form asp-action="Index">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-6" >
                     <input name="term" class="form-control" placeholder="Search by Idea Name" />
                 </div>
-                <div class="col-md-2">
+                <div class="col-6">
                     <button type="submit" class="btn btn-info">Search</button>
-                </div>
-                <div class="col-md-2 border-start">
-                    <a asp-action="Index" class="btn btn-danger">
-                        Back
+                    <a asp-action="Index" class="btn btn-danger mx-3">
+                        Back to Full List
                     </a>
                 </div>
             </div>

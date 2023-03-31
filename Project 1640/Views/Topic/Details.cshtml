@@ -29,15 +29,21 @@
 <hr />
 
 <h4>Ideas</h4>
-@if (Model.Topics.ClosureDate > DateTime.Now)
-{
+
+
     <div class="text-end">
-        <a asp-controller="Idea" asp-action="Create" class="btn btn-primary rounded align-middle" asp-route-id="@Model.Topics.Id">
-            <i class="bi bi-plus align-middle" style="font-size:20px"></i>
-            Create idea
+    <a asp-action="Index" class="btn btn-danger mx-3" style="line-height:30px">
+            Back
         </a>
+        @if (Model.Topics.ClosureDate > DateTime.Now)
+        {
+            <a asp-controller="Idea" asp-action="Create" class="btn btn-primary rounded align-middle" asp-route-id="@Model.Topics.Id">
+                <i class="bi bi-plus align-middle" style="font-size:20px"></i>
+                Create idea
+            </a>
+        }
     </div>
-}
+
 <table class="table table-hover">
     <thead>
         <tr>
