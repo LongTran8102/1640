@@ -19,7 +19,10 @@
                     @Html.DisplayName("Idea Description")
                 </th>
                 <th>
-                    @Html.DisplayName("Total views")
+                    @Html.DisplayName("Topic Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Total Views")
                 </th>
                 <th>
                     @Html.DisplayName("Created Date")
@@ -28,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Ideas)
+            @foreach (var item in Model.Idea)
             {
                 <tr>
                     <td>
@@ -38,6 +41,9 @@
                         @Html.DisplayFor(modelItem => item.IdeaDescription)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.TopicName)
+                    </td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.TotalView)
                     </td>
                     <td>

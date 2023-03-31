@@ -118,6 +118,7 @@ namespace Project_1640.Controllers
             var pageSize = 5;
             MostPopularIdeaViewModel ideaData = new MostPopularIdeaViewModel();
             var mostLikeideas = (from idea in context.Ideas
+                                 join t in context.Topics on idea.TopicId equals t.Id.ToString()
                                  select new MostPopularIdeaViewModel
                                  {
                                      IdeaId = idea.IdeaId,
@@ -127,6 +128,7 @@ namespace Project_1640.Controllers
                                      TotalLike = idea.TotalLike,
                                      TotalDislike = idea.TotalDislike,
                                      TotalReaction = (int)(idea.TotalLike - idea.TotalDislike),
+                                     TopicName = t.Name,
                                  });
 
             ViewData["MostPopularIdea"] = String.IsNullOrEmpty(sortReaction) ? "" : "";
@@ -144,13 +146,16 @@ namespace Project_1640.Controllers
             var ideaData = new IdeaViewModel();
 
             var mostViewedideas = (from idea in context.Ideas
-                                   select new Idea
+                                   join t in context.Topics on idea.TopicId equals t.Id.ToString()
+                                   select new IdeaViewModel
                                    {
                                        IdeaId = idea.IdeaId,
                                        IdeaName = idea.IdeaName,
                                        IdeaDescription = idea.IdeaDescription,
                                        CreatedDate = idea.CreatedDate,
                                        TotalView = idea.TotalView,
+                                       TopicName=t.Name,
+
                                    });
             ViewData["MostViewedIdea"] = String.IsNullOrEmpty(sortViewed) ? "" : "";
             switch (sortViewed)
@@ -159,7 +164,7 @@ namespace Project_1640.Controllers
                     mostViewedideas = mostViewedideas.OrderByDescending(a => a.TotalView);
                     break;
             }
-            ideaData.Ideas = mostViewedideas.Take(pageSize);
+            ideaData.Idea = mostViewedideas.Take(pageSize);
 
             return View(ideaData);
         }
@@ -411,7 +416,7 @@ namespace Project_1640.Controllers
         }
 
         //Send Mail After Creating Idea
-        /*public void SendMailCreateIdea(Email emailData, Idea idea)
+        public void SendMailCreateIdea(Email emailData, Idea idea)
         {
             //Take submiter details
             var userId = userManager.GetUserId(HttpContext.User);
@@ -503,7 +508,7 @@ namespace Project_1640.Controllers
                 smtp.Send(email);
                 smtp.Disconnect(true);
             }
-        }*/
+        }
 
         //Download idea file FileResult
         public IActionResult ZipFile(int id)
@@ -522,49 +527,46 @@ namespace Project_1640.Controllers
                     }
                 }
             }
-            if (FileList.Count > 0)
+
+            var fileName = $"{Name}.zip";
+            var tempOutput = webRoot + "UserFiles" + fileName;
+
+            using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
             {
-                var fileName = $"{Name}.zip";
-                var tempOutput = webRoot + "UserFiles" + fileName;
+                oZipOutputStream.SetLevel(9);
+                byte[] buffer = new byte[4096];
 
-                using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
+                for (int i = 0; i < FileList.Count; i++)
                 {
-                    oZipOutputStream.SetLevel(9);
-                    byte[] buffer = new byte[4096];
-
-                    for (int i = 0; i < FileList.Count; i++)
+                    ZipEntry entry = new ZipEntry(Path.GetFileName(FileList[i]));
+                    entry.DateTime = DateTime.Now;
+                    entry.IsUnicodeText = true;
+                    oZipOutputStream.PutNextEntry(entry);
+                    using (FileStream oFileStream = System.IO.File.OpenRead(FileList[i]))
                     {
-                        ZipEntry entry = new ZipEntry(Path.GetFileName(FileList[i]));
-                        entry.DateTime = DateTime.Now;
-                        entry.IsUnicodeText = true;
-                        oZipOutputStream.PutNextEntry(entry);
-                        using (FileStream oFileStream = System.IO.File.OpenRead(FileList[i]))
+                        int sourceBytes;
+                        do
                         {
-                            int sourceBytes;
-                            do
-                            {
-                                sourceBytes = oFileStream.Read(buffer, 0, buffer.Length);
-                                oZipOutputStream.Write(buffer, 0, sourceBytes);
-                            } while (sourceBytes > 0);
-                        }
+                            sourceBytes = oFileStream.Read(buffer, 0, buffer.Length);
+                            oZipOutputStream.Write(buffer, 0, sourceBytes);
+                        } while (sourceBytes > 0);
                     }
-                    oZipOutputStream.Finish();
-                    oZipOutputStream.Flush();
-                    oZipOutputStream.Close();
                 }
-
-                byte[] finalResult = System.IO.File.ReadAllBytes(tempOutput);
-                if (System.IO.File.Exists(tempOutput))
-                {
-                    System.IO.File.Delete(tempOutput);
-                }
-                if (finalResult == null || !finalResult.Any())
-                {
-                    throw new Exception(String.Format("Nothing found"));
-                }
-                return File(finalResult, "application/zip", fileName);
+                oZipOutputStream.Finish();
+                oZipOutputStream.Flush();
+                oZipOutputStream.Close();
             }
-            return RedirectToAction("Index");
+
+            byte[] finalResult = System.IO.File.ReadAllBytes(tempOutput);
+            if (System.IO.File.Exists(tempOutput))
+            {
+                System.IO.File.Delete(tempOutput);
+            }
+            if (finalResult == null || !finalResult.Any())
+            {
+                throw new Exception(String.Format("Nothing found"));
+            }
+            return File(finalResult, "application/zip", fileName);
         }
 
         //Take Idea By id

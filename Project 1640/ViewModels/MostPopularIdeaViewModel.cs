@@ -10,6 +10,7 @@ namespace Project_1640.ViewModels
         public string IdeaDescription { get; set; }
         public string CategoryId { get; set; }
         public string UserId { get; set; }
+        public string TopicName { get; set; }
         public DateTime CreatedDate { get; set; }
         public int TotalReaction { get; set; }
         public int? TotalLike { get; set; }

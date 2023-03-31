@@ -21,7 +21,13 @@
                     @Html.DisplayName("Idea Description")
                 </th>          
                 <th>
-                    @Html.DisplayName("Total Reaction")
+                    @Html.DisplayName("Topic Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Total Like")
+                </th>
+                <th>
+                    @Html.DisplayName("Total Dislike")
                 </th>
                 <th>
                     @Html.DisplayName("Created Date")
@@ -40,7 +46,13 @@
                         @Html.DisplayFor(modelItem => item.IdeaDescription)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TotalReaction)
+                        @Html.DisplayFor(modelItem => item.TopicName)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.TotalLike)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.TotalDislike)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CreatedDate)
