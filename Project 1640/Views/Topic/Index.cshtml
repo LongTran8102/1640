@@ -1,28 +1,38 @@
-﻿@model IEnumerable<Topic>
+﻿@model Project_1640.ViewModels.TopicViewModel
 @{
     ViewData["Title"] = "Index";
 }
 
-@if (TempData["success"] != null)
-{
-    <h2>@TempData["success"]</h2>
-}
 
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
             <h2 class="text-primary">Topic List</h2>
+            <form asp-action="Index">
+                <div class="row">
+                    <div class="col-md-8">
+                        <input name="term" class="form-control" placeholder="Search by Topic Name" />
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-info">Search</button>
+                    </div>
+                </div>
+            </form>
+            <a asp-action="Index" class="btn btn-danger mt-3">
+                Back
+            </a>
         </div>
         @if (this.User.IsInRole("Admin") == true)
         {
-            <div class="col-6 text-end">
+            <div class="col-6 text-end m-auto">
                 <a asp-controller="Topic" asp-action="Create" class="btn btn-primary">
                     <i class="bi bi-plus d-inline-block align-middle" style="font-size: 1.25rem; vertical-align:0"></i>
                     Create New Topic
                 </a>
             </div>
         }
-    </div>
+    
+</div>
     <br /><br />
     <div class="table-responsive">
 
@@ -43,18 +53,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var obj in Model)
+                @foreach (var obj in Model.Topics)
                 {
-                    @if (obj.ClosureDate > DateTime.Now)
-                    {
-                        ViewBag.Color = "#ffffaa";
-                    }
-                    else if (obj.FinalClosureDate > DateTime.Now)
+                    @if (DateTime.Now > obj.ClosureDate && DateTime.Now > obj.FinalClosureDate)
                     {
                         ViewBag.Color = "#CD5C5C";
                     }
-                    <tr style="background: @ViewBag.Color">
-                        }
+                    @if (DateTime.Now > obj.ClosureDate && DateTime.Now < obj.FinalClosureDate)
+                    {
+                        ViewBag.Color = "#ffffaa";
+                    }
+                    @if (DateTime.Now < obj.ClosureDate && DateTime.Now < obj.FinalClosureDate)
+                    {
+                        ViewBag.Color = "#fff";
+                    }
+                    <tr style="background: @ViewBag.Color">                        
                         <td>
                             @obj.Name
                         </td>
@@ -114,5 +127,39 @@
             </tbody>
         </table>
     </div>
+</div>
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @if (Model.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/Topic/Index?term=@Model.Term&orderBy=>@Model.OrderBy&currentPage=@(Model.CurrentPage-1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="page-item"><a class="page-link active text-danger" href="/Topic/Index?term=@Model.Term&orderBy=>@Model.OrderBy&currentPage=@i">@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="/Topic/Index?term=@Model.Term&orderBy=>@Model.OrderBy&currentPage=@i">@i</a></li>
+                }
+            }
+
+            @if (Model.CurrentPage < Model.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/Topic/Index?term=@Model.Term&orderBy=>@Model.OrderBy&currentPage=@(Model.CurrentPage+1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
 </div>
 

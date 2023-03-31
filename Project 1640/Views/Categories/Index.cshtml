@@ -8,15 +8,18 @@
         <div class="col-6">
             <h2 class="text-primary">Category List</h2>
             <form asp-action="Index">
-            <div class="row">
-                <div class="col-md-7">
-                    <input name="term" class="form-control" placeholder="Search by Category Name" />
+                <div class="row">
+                    <div class="col-md-7">
+                        <input name="term" class="form-control" placeholder="Search by Category Name" />
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-info">Search</button>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-info">Search</button>
-                </div>
-            </div>
-        </form>
+            </form>
+            <a asp-action="Index" class="btn btn-danger mt-3">
+                Back
+            </a>
         </div>
 
         <div class="col-6 text-end">

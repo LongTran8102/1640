@@ -1,18 +1,20 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div id="ChartView">
+    <canvas id="myChart" style="height:0"></canvas>
+</div>
 <p>
-    <div class="row">
-        <div class="col-2">
-            <select id="ChartType" @ViewBag.ChartType="id" class="form-select form-select-sm" aria-label=".form-select-sm example">
+    <div class="text-center">
+        <div class="d-inline-block">
+            <select id="ChartType" class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option selected>--- Select Chart Type ---</option>
                 <option value="bar">Bar</option>
                 <option value="pie">Pie</option>
                 <option value="doughnut">Doughnut</option>
             </select>
         </div>
-        <div class="col-2">
+        <div class ="d-inline-block">
             <button id="ID" value="Show Graph" type="submit" class="btn btn-outline-primary rounded keychainify-checked">
                 <i class="bi bi-brush"></i>
                 Create chart
@@ -21,18 +23,16 @@
     </div>
 </p>
 <br />
-<div id="ChartView">
-    <canvas id="myChart"></canvas>
-</div>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
 
     $(function () {
         $("#ID").click(function () {
-            if (ViewBag.ChartType != "--- Select Chart Type ---" || ViewBag.ChartType != null) {
                 var chartType = $("#ChartType").val();
                 var chartView = document.getElementById('ChartView');
+            if (chartType != "--- Select Chart Type ---" || ViewBag.ChartType != null) {
 
                 chartView.innerHTML = '&nbsp;';
 

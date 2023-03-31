@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.InkML;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.AspNetCore.Authorization;
@@ -26,10 +27,32 @@ namespace Project_1640.Controllers
             context = _context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string term = "", int currentPage = 1, string orderBy = "")
         {
-            IEnumerable<Topic> objTopicList = context.Topics;
-            return View(objTopicList);
+            term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
+            var topicData = new TopicViewModel();
+            topicData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "" : "";
+            var topic = from top in context.Topics
+                        where term == "" || top.Name.ToLower().StartsWith(term) || top.Name.ToLower().StartsWith(term)
+                        select top;
+            switch (orderBy)
+            {                
+                default:
+                    topic = topic.OrderByDescending(a => a.CreatedDate);
+                    break;
+            }
+            var totalRecords = topic.Count();
+            var pageSize = 5;
+            var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
+            topic = topic.Skip((currentPage - 1) * pageSize).Take(pageSize);
+
+            topicData.Topics = topic;
+            topicData.Term = term;
+            topicData.PageSize = pageSize;
+            topicData.CurrentPage = currentPage;
+            topicData.TotalPages = totalPages;
+            topicData.OrderBy = orderBy;
+            return View(topicData);
         }
 
         //GET: Create Topic
@@ -49,7 +72,6 @@ namespace Project_1640.Controllers
             {
                 context.Topics.Add(obj);
                 context.SaveChanges();
-                TempData["success"] = "Topic Created Successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -65,7 +87,7 @@ namespace Project_1640.Controllers
                 return NotFound();
             }
             var topicFromDb = context.Topics.Find(id);
-            if(topicFromDb == null)
+            if (topicFromDb == null)
             {
                 return NotFound();
             }
@@ -82,7 +104,6 @@ namespace Project_1640.Controllers
             {
                 context.Topics.Update(obj);
                 context.SaveChanges();
-                TempData["success"] = "Topic Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -105,19 +126,18 @@ namespace Project_1640.Controllers
         }
 
         //POST Delete Topic
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "QA/QC Coordinator, Admin")]
         public IActionResult DeletePOST(int? id)
         {
             var obj = context.Topics.Find(id);
-            if(obj == null)
+            if (obj == null)
             {
                 return NotFound();
             }
             context.Topics.Remove(obj);
             context.SaveChanges();
-            TempData["success"] = "Topic Deleted Successfully";
             return RedirectToAction("Index");
         }
 
