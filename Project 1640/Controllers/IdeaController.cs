@@ -42,9 +42,9 @@ namespace Project_1640.Controllers
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
             var ideaData = new IdeaViewModel();
-            ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
+            ViewData["DateSort"] = string.IsNullOrEmpty(orderBy) ? "date" : "";
             var ideas = (from idea in context.Ideas
-                         where (userManager.GetUserId(HttpContext.User) == idea.UserId && term == "") || (idea.IdeaName.ToLower().StartsWith(term) && userManager.GetUserId(HttpContext.User) == idea.UserId)
+                         where (term == "" || idea.IdeaName.ToLower().StartsWith(term))
                          select new Idea
                          {
                              IdeaId = idea.IdeaId,
@@ -58,7 +58,7 @@ namespace Project_1640.Controllers
                          });
             switch (orderBy)
             {
-                case "date_desc":
+                case "date":
                     ideas = ideas.OrderBy(a => a.CreatedDate);
                     break;
                 default:
@@ -76,43 +76,7 @@ namespace Project_1640.Controllers
             ideaData.Term = term;
             ideaData.OrderBy = orderBy;
             return View(ideaData);
-        }
-        public IActionResult AllIdeas(string term = "", string orderBy = "", int currentPage = 1)
-        {
-            term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
-            var ideaData = new IdeaViewModel();
-            ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
-            var ideas = (from idea in context.Ideas
-                         where (term == "" || idea.IdeaName.ToLower().StartsWith(term))
-                         select new Idea
-                         {
-                             IdeaId = idea.IdeaId,
-                             IdeaName = idea.IdeaName,
-                             IdeaDescription = idea.IdeaDescription,
-                             FilePath = idea.FilePath,
-                             CreatedDate = idea.CreatedDate,
-                             TotalLike = idea.TotalLike,
-                             TotalDislike = idea.TotalDislike,
-                             TotalView = idea.TotalView,
-                         });
-            switch (orderBy)
-            {                
-                default:
-                    ideas = ideas.OrderByDescending(a => a.CreatedDate);
-                    break;
-            }
-            var totalRecords = ideas.Count();
-            var pageSize = 5;
-            var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
-            ideas = ideas.Skip((currentPage - 1) * pageSize).Take(pageSize);
-            ideaData.Ideas = ideas;
-            ideaData.CurrentPage = currentPage;
-            ideaData.TotalPages = totalPages;
-            ideaData.PageSize = pageSize;
-            ideaData.Term = term;
-            ideaData.OrderBy = orderBy;
-            return View(ideaData);
-        }
+        }       
         public IActionResult MostPopularIdeas(string sortReaction)
         {
             var pageSize = 5;

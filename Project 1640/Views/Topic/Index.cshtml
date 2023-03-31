@@ -58,15 +58,15 @@
                 {
                     @if (DateTime.Now > obj.ClosureDate && DateTime.Now > obj.FinalClosureDate)
                     {
-                        ViewBag.Color = "#CD5C5C";
+                        ViewBag.Color = "#FF7276";
                     }
                     @if (DateTime.Now > obj.ClosureDate && DateTime.Now < obj.FinalClosureDate)
                     {
-                        ViewBag.Color = "#ffffaa";
+                        ViewBag.Color = "#FCF695";
                     }
                     @if (DateTime.Now < obj.ClosureDate && DateTime.Now < obj.FinalClosureDate)
                     {
-                        ViewBag.Color = "#fff";
+                        ViewBag.Color = "#A7E99C";
                     }
                     <tr style="background: @ViewBag.Color">                        
                         <td>

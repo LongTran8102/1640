@@ -28,7 +28,7 @@ namespace Project_1640.Controllers
             {
                 term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
                 var ideaData = new IdeaViewModel();
-                ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "date_desc" : "";
+                ViewData["DateSort"] = string.IsNullOrEmpty(orderBy) ? "date" : "";
                 var ideas = (from idea in context.Ideas
                              where (userManager.GetUserId(HttpContext.User) == idea.UserId && term == "") || (idea.IdeaName.ToLower().StartsWith(term) && userManager.GetUserId(HttpContext.User) == idea.UserId)
                              select new Idea
@@ -44,7 +44,7 @@ namespace Project_1640.Controllers
                              });
                 switch (orderBy)
                 {
-                    case "date_desc":
+                    case "date":
                         ideas = ideas.OrderBy(a => a.CreatedDate);
                         break;
                     default:
