@@ -5,7 +5,7 @@
 
 @if (TempData["success"] != null)
 {
-        <h2>@TempData["success"]</h2>
+    <h2>@TempData["success"]</h2>
 }
 
 <div class="container p-3">
@@ -45,23 +45,59 @@
             <tbody>
                 @foreach (var obj in Model)
                 {
-                        <tr>
-                            <td>
+                    @if (obj.ClosureDate > DateTime.Now)
+                    {
+                        ViewBag.Color = "#ffffaa";
+                    }
+                    else if (obj.FinalClosureDate > DateTime.Now)
+                    {
+                        ViewBag.Color = "#CD5C5C";
+                    }
+                    <tr style="background: @ViewBag.Color">
+                        }
+                        <td>
                             @obj.Name
-                            </td>
-                            <td>
+                        </td>
+                        <td>
                             @obj.ClosureDate
-                            </td>
-                            <td>
+                        </td>
+                        <td>
                             @obj.FinalClosureDate
-                            </td>
-                            <td class="text-center">
-                                <a asp-controller="Topic" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-outline-info rounded align-middle">
-                                    <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
-                                    Details
-                                </a>
+                        </td>
+                        <td class="text-center" style="background: #fff">
+                            <div class="dropdown border-start align-middle">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:18px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-arrow-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M7.646 10.854a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 9.293V5.5a.5.5 0 0 0-1 0v3.793L6.354 8.146a.5.5 0 1 0-.708.708l2 2z" />
+                                        <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
+                                    </svg>
+                                    Download Option
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <a asp-controller="Topic" asp-action="CSVFile" asp-route-id="@obj.Id" class="dropdown-item btn btn-outline-primary rounded align-middle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-csv" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.517 14.841a1.13 1.13 0 0 0 .401.823c.13.108.289.192.478.252.19.061.411.091.665.091.338 0 .624-.053.859-.158.236-.105.416-.252.539-.44.125-.189.187-.408.187-.656 0-.224-.045-.41-.134-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.566-.21l-.621-.144a.97.97 0 0 1-.404-.176.37.37 0 0 1-.144-.299c0-.156.062-.284.185-.384.125-.101.296-.152.512-.152.143 0 .266.023.37.068a.624.624 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.2-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.551.05-.776.15-.225.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.122.524.082.149.2.27.352.367.152.095.332.167.539.213l.618.144c.207.049.361.113.463.193a.387.387 0 0 1 .152.326.505.505 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.223-.013-.32-.04a.838.838 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM.806 13.693c0-.248.034-.46.102-.633a.868.868 0 0 1 .302-.399.814.814 0 0 1 .475-.137c.15 0 .283.032.398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.441 1.441 0 0 0-.489-.272 1.838 1.838 0 0 0-.606-.097c-.356 0-.66.074-.911.223-.25.148-.44.359-.572.632-.13.274-.196.6-.196.979v.498c0 .379.064.704.193.976.131.271.322.48.572.626.25.145.554.217.914.217.293 0 .554-.055.785-.164.23-.11.414-.26.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.799.799 0 0 1-.118.363.7.7 0 0 1-.272.25.874.874 0 0 1-.401.087.845.845 0 0 1-.478-.132.833.833 0 0 1-.299-.392 1.699 1.699 0 0 1-.102-.627v-.495Zm8.239 2.238h-.953l-1.338-3.999h.917l.896 3.138h.038l.888-3.138h.879l-1.327 4Z" />
+                                        </svg>
+                                        Downdload CSV
+                                    </a>
+                                    <a asp-controller="Topic" asp-action="ExcelFile" asp-route-id="@obj.Id" class="dropdown-item btn btn-outline-primary rounded align-middle">
+                                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                                        Downdload Excel
+                                    </a>
+                                    <a asp-controller="Topic" asp-action="ZipFile" asp-route-id="@obj.Id" class="dropdown-item btn btn-outline-primary rounded align-middle">
+                                        <i class="bi bi-file-earmark-zip align-middle d-inline-block"></i>
+                                        Downdload Zip
+                                    </a>
+                                </ul>
+                            </div>
+                        </td>
+                        <td class="text-center" style="background: #fff">
+                            <a asp-controller="Topic" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-outline-info rounded align-middle">
+                                <i class="bi bi-info-circle align-middle" style="font-size:20px"></i>
+                                Details
+                            </a>
                             @if (this.User.IsInRole("Admin") == true)
-                            { 
+                            {
                                 <a asp-controller="Topic" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-primary rounded align-middle">
                                     <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
                                     Edit
@@ -71,31 +107,9 @@
                                     Delete
                                 </a>
                             }
-                            </td>
-                            <td>
-                                <div class="dropdown border-start align-middle">
-                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:18px">
-                                        Download Option
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <a asp-controller="Topic" asp-action="CSVFile" asp-route-id="@obj.Id" class="dropdown-item btn btn-outline-primary rounded align-middle">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-cs" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2H8v-1h4a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.629 15.29a1.176 1.176 0 0 1-.112-.449h.765a.578.578 0 0 0 .255.384c.07.049.153.087.249.114.096.028.202.041.32.041.163 0 .301-.023.412-.07a.559.559 0 0 0 .255-.193.507.507 0 0 0 .085-.29.387.387 0 0 0-.152-.326c-.102-.08-.256-.144-.463-.193l-.618-.143a1.72 1.72 0 0 1-.54-.214 1.001 1.001 0 0 1-.35-.367 1.068 1.068 0 0 1-.124-.524c0-.244.064-.457.19-.639.128-.181.303-.322.528-.422.225-.1.483-.149.776-.149.305 0 .565.05.78.152.216.102.383.239.5.41.12.17.186.359.2.566h-.75a.56.56 0 0 0-.12-.258.624.624 0 0 0-.246-.181.923.923 0 0 0-.37-.068c-.216 0-.387.05-.512.152a.472.472 0 0 0-.185.384c0 .121.048.22.144.3a.97.97 0 0 0 .404.175l.621.143c.217.05.405.12.566.211.16.09.285.21.375.358.09.148.134.335.134.56 0 .247-.062.466-.187.656a1.216 1.216 0 0 1-.54.439c-.234.105-.52.158-.858.158a2.21 2.21 0 0 1-.665-.09 1.404 1.404 0 0 1-.477-.252 1.13 1.13 0 0 1-.29-.375Zm-2.72-2.23a1.732 1.732 0 0 0-.103.633v.495c0 .246.034.455.102.627a.833.833 0 0 0 .299.392.845.845 0 0 0 .478.132.86.86 0 0 0 .4-.088.7.7 0 0 0 .273-.249.799.799 0 0 0 .118-.363h.764v.076a1.27 1.27 0 0 1-.225.674c-.137.193-.32.345-.551.454a1.81 1.81 0 0 1-.785.164c-.36 0-.664-.072-.914-.217a1.424 1.424 0 0 1-.572-.626C.064 14.892 0 14.567 0 14.188v-.498c0-.38.065-.705.196-.979a1.44 1.44 0 0 1 .572-.633c.252-.148.555-.222.91-.222.22 0 .422.032.607.097.188.062.35.153.49.272a1.324 1.324 0 0 1 .465.964v.073h-.764a.85.85 0 0 0-.12-.38.7.7 0 0 0-.273-.261.803.803 0 0 0-.398-.097.814.814 0 0 0-.475.138.868.868 0 0 0-.302.398Z" />
-                                            </svg>
-                                            Downdload CSV
-                                        </a>
-                                        <a asp-controller="Topic" asp-action="ExcelFile" asp-route-id="@obj.Id" class="dropdown-item btn btn-outline-primary rounded align-middle">
-                                            <i class="bi bi-cloud-arrow-down align-middle d-inline-block"></i>
-                                            Downdload Excel
-                                        </a>
-                                        <a asp-controller="Topic" asp-action="ZipFile" asp-route-id="@obj.Id" class="dropdown-item btn btn-outline-primary rounded align-middle">
-                                            <i class="bi bi-file-earmark-zip align-middle d-inline-block"></i>
-                                            Downdload Zip
-                                        </a>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
+                        </td>
+
+                    </tr>
                 }
             </tbody>
         </table>
