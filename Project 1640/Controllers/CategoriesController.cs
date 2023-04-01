@@ -138,18 +138,29 @@ namespace Project_1640.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Category == null)
+            var usedcategory = await _context.Category
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var count = _context.Ideas.Count(i => i.CategoryId == id.ToString());
+            if (count == 0)
             {
-                return Problem("Entity set 'ApplicationDbContext.Category'  is null.");
-            }
-            var category = await _context.Category.FindAsync(id);
-            if (category != null)
-            {
-                _context.Category.Remove(category);
-            }
+                if (_context.Category == null)
+                {
+                    return Problem("Entity set 'ApplicationDbContext.Category'  is null.");
+                }
+                var category = await _context.Category.FindAsync(id);
+                if (category != null)
+                {
+                    _context.Category.Remove(category);
+                }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewBag.UsedCategory = "This category is already used";
+            }
+            return View(usedcategory);
         }
 
         private bool CategoryExists(int id)

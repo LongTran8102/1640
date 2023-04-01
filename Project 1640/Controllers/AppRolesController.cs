@@ -6,6 +6,10 @@ using System.Xml.Linq;
 using Project_1640.Models;
 using System.Data;
 using System.Collections.Generic;
+using DocumentFormat.OpenXml.InkML;
+using Project_1640.Data;
+using System.Runtime.InteropServices;
+using Project_1640.ViewModels;
 
 namespace Project_1640.Controllers
 {
@@ -13,9 +17,11 @@ namespace Project_1640.Controllers
     public class AppRolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        public AppRolesController(RoleManager<IdentityRole> roleManager)
+        private readonly ApplicationDbContext _context;
+        public AppRolesController(RoleManager<IdentityRole> roleManager, ApplicationDbContext context)
         {
             _roleManager = roleManager;
+            _context = context;
         }
         //List all the Roles
         public IActionResult Index()
@@ -64,27 +70,40 @@ namespace Project_1640.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            //Check if database exists
-            if (_roleManager.Roles == null)
+            var usedrole = await _roleManager.Roles.FirstOrDefaultAsync(m => m.Id == id);
+            var users = (from user in _context.applicationUsers
+                         join ur in _context.UserRoles on user.Id equals ur.UserId
+                         where ur.RoleId == id
+                         select user).Count();
+            if (users == 0)
             {
-                return Problem("Entity set 'RoleManager<IdentityRole>.Roles'  is null.");
-            }
-
-            //Create variable stores details of component need delete
-            IdentityRole roles = new IdentityRole();
-
-            //Find value need to be deleted compares to id 
-            foreach (var role in _roleManager.Roles)
-            {
-                if (id == role.Id)
+                //Check if database exists
+                if (_roleManager.Roles == null)
                 {
-                    roles = role;
+                    return Problem("Entity set 'RoleManager<IdentityRole>.Roles'  is null.");
                 }
-            }
 
-            //Delete roles
-            await _roleManager.DeleteAsync(roles);
-            return RedirectToAction("Index");
+                //Create variable stores details of component need delete
+                IdentityRole roles = new IdentityRole();
+
+                //Find value need to be deleted compares to id 
+                foreach (var role in _roleManager.Roles)
+                {
+                    if (id == role.Id)
+                    {
+                        roles = role;
+                    }
+                }
+
+                //Delete roles
+                await _roleManager.DeleteAsync(roles);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.UsedRole = "This role is already used";
+            }
+            return View(usedrole);
         }
     }
 }
