@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MimeKit;
 using Project_1640.Data;
 using Project_1640.Migrations;
@@ -38,11 +39,12 @@ namespace Project_1640.Controllers
         }
 
         //Pagination Page and Search
-        public IActionResult Index(string term = "", string orderBy = "", int currentPage = 1)
+        public async Task<IActionResult> Index(string term = "", string orderBy = "", int currentPage = 1)
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
             var ideaData = new IdeaViewModel();
-            ViewData["DateSort"] = string.IsNullOrEmpty(orderBy) ? "date" : "";
+            ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "dateAscend" : "";
+            ideaData.NameSortOrder = orderBy == "nameDesc" ? "nameAscend" : "nameDesc";
             var ideas = (from idea in context.Ideas
                          where (term == "" || idea.IdeaName.ToLower().StartsWith(term))
                          select new Idea
@@ -58,9 +60,15 @@ namespace Project_1640.Controllers
                          });
             switch (orderBy)
             {
-                case "date":
-                    ideas = ideas.OrderBy(a => a.CreatedDate);
+                case "nameDesc":
+                    ideas = ideas.OrderByDescending(a => a.IdeaName);
                     break;
+                case "nameAscend":
+                    ideas = ideas.OrderBy(a => a.IdeaName);
+                    break;
+                case "dateAscend":
+                    ideas = ideas.OrderBy(a => a.CreatedDate);
+                    break;                
                 default:
                     ideas = ideas.OrderByDescending(a => a.CreatedDate);
                     break;
@@ -79,7 +87,7 @@ namespace Project_1640.Controllers
         }
         public IActionResult MostPopularIdeas(string sortReaction)
         {
-            var pageSize = 5;
+            var pageSize = 10;
             MostPopularIdeaViewModel ideaData = new MostPopularIdeaViewModel();
             var mostLikeideas = (from idea in context.Ideas
                                  join t in context.Topics on idea.TopicId equals t.Id.ToString()
@@ -106,7 +114,7 @@ namespace Project_1640.Controllers
         }
         public IActionResult MostViewedIdeas(string sortViewed)
         {
-            var pageSize = 5;
+            var pageSize = 10;
             var ideaData = new IdeaViewModel();
 
             var mostViewedideas = (from idea in context.Ideas

@@ -21,5 +21,11 @@ namespace Project_1640.ViewModels
         public int PageSize { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
+        public string FirstNameSort { get; set; }
+        public string LastNameSort { get; set; }
+        public string RolesSort { get; set; }
+        public string DepartmentSort { get; set; }
+
+        public string OrderBy { get; set; }
     }
 }

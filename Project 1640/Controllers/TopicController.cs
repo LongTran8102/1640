@@ -31,14 +31,35 @@ namespace Project_1640.Controllers
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
             var topicData = new TopicViewModel();
-            topicData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "" : "";
+            topicData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "CreatedDateDesc" : "";
+            topicData.NameSort = orderBy == "NameDesc" ? "NameAsc" : "NameDesc";
+            topicData.ClosureDateSort = orderBy == "CDateDesc" ? "CDateAsc" : "CDateDesc";
+            topicData.FinalClosureDateSort = orderBy == "FCDateDesc" ? "FCDateAsc" : "FCDateDesc";
+
+
             var topic = from top in context.Topics
                         where term == "" || top.Name.ToLower().StartsWith(term) || top.Name.ToLower().StartsWith(term)
                         select top;
             switch (orderBy)
-            {                
+            {
+                case "FCDateDesc":
+                    topic = topic.OrderByDescending(a => a.FinalClosureDate);
+                    break;
+                case "FCDateAsc":
+                    topic = topic.OrderBy(a => a.FinalClosureDate);
+                    break;
+
+                case "NameDesc":
+                    topic = topic.OrderByDescending(a => a.Name);
+                    break;
+                case "NameAsc":
+                    topic = topic.OrderBy(a => a.Name);
+                    break;
+                case "CDateAsc":
+                    topic = topic.OrderBy(a => a.ClosureDate);
+                    break;
                 default:
-                    topic = topic.OrderByDescending(a => a.CreatedDate);
+                    topic = topic.OrderByDescending(a => a.ClosureDate);
                     break;
             }
             var totalRecords = topic.Count();
@@ -131,14 +152,25 @@ namespace Project_1640.Controllers
         [Authorize(Roles = "QA/QC Coordinator, Admin")]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = context.Topics.Find(id);
-            if (obj == null)
+            var topicFromDb = context.Topics.Find(id);
+            var count = context.Ideas.Count(i => i.TopicId == id.ToString());
+            if (count == 0)
             {
-                return NotFound();
+                var obj = context.Topics.Find(id);
+                if (obj == null)
+                {
+                    return NotFound();
+                }
+                context.Topics.Remove(obj);
+                context.SaveChanges();
+                return RedirectToAction("Index");
             }
-            context.Topics.Remove(obj);
-            context.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+                ViewBag.UsedTopic = "This topic is already in use";
+            }
+            return View(topicFromDb);
+
         }
 
         public async Task<IActionResult> Details(int id, string sortReaction = "")

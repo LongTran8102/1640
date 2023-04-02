@@ -16,6 +16,8 @@
             <label asp-for="FinalClosureDate">Final Closure Date</label>
             <input asp-for="FinalClosureDate" disabled class="form-control" />
         </div>
+    <p class="text-danger">@ViewBag.UsedTopic</p>
+
         <div class="form-group mt-3 ">
             <a asp-controller="Topic" asp-action="Index" class="btn btn-primary" style="width:150px">
                 <i class="bi bi-arrow-left-short align-middle"></i>

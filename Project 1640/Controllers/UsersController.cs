@@ -3,6 +3,7 @@ using DocumentFormat.OpenXml.InkML;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
+using MailKit.Search;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -33,9 +34,10 @@ namespace Project_1640.Controllers
         }
 
         // GET: UsersController
-        public async Task<IActionResult> Index(string term = "", int currentPage = 1)
+        public async Task<IActionResult> Index(string term = "", int currentPage = 1,string orderBy="")
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
+            var userData = new UsersViewModel();
             var users = (from user in context.applicationUsers
                          join d in context.Department on user.DepartmentId equals d.DepartmentId
                          join ur in context.UserRoles on user.Id equals ur.UserId
@@ -50,16 +52,47 @@ namespace Project_1640.Controllers
                              Roles = r.Name,
                              DepartmentName = d.DepartmentName,
                          });
+            userData.FirstNameSort = string.IsNullOrEmpty(orderBy) ? "FirstNameDesc" : "";
+            userData.LastNameSort = orderBy == "LastNameAsc" ? "LastNameDesc" : "LastNameAsc";
+            userData.RolesSort = orderBy == "RolesAsc" ? "RolesDesc" : "RolesAsc";
+            userData.DepartmentSort = orderBy == "DepartmentAsc" ? "DepartmentDesc" : "DepartmentAsc";
+            switch (orderBy)
+            {
+                case "DepartmentAsc":
+                    users = users.OrderByDescending(a => a.DepartmentName);
+                    break;
+                case "DepartmentDesc":
+                    users = users.OrderBy(a => a.DepartmentName);
+                    break;
+                case "RolesDesc":
+                    users = users.OrderByDescending(a => a.Roles);
+                    break;
+                case "RolesAsc":
+                    users = users.OrderBy(a => a.Roles);
+                    break;
+                case "LastNameDesc":
+                    users = users.OrderByDescending(a => a.LastName);
+                    break;
+                case "LastNameAsc":
+                    users = users.OrderBy(a => a.LastName);
+                    break;
+                case "FirstNameDesc":
+                    users = users.OrderByDescending(a => a.FirstName);
+                    break;              
+                default:
+                    users = users.OrderBy(a => a.FirstName);
+                    break;
+            }
             var totalRecords = users.Count();
             var pageSize = 5;
             var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
-            users = users.Skip((currentPage - 1) * pageSize).Take(pageSize);
-            var userData = new UsersViewModel();
+            users = users.Skip((currentPage - 1) * pageSize).Take(pageSize);            
             userData.PageSize= pageSize;
             userData.TotalPages= totalPages;
             userData.CurrentPage = currentPage;
             userData.Users = users;
             userData.Term = term;
+            userData.OrderBy= orderBy;
             return View(userData);
         }
 

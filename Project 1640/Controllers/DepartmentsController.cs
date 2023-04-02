@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Project_1640.Data;
 using Project_1640.Models;
+using Project_1640.ViewModels;
 
 namespace Project_1640.Controllers
 {
@@ -22,9 +23,35 @@ namespace Project_1640.Controllers
         }
 
         // GET Departments
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string term = "", int currentPage = 1, string orderBy = "")
         {
-              return View(await _context.Department.ToListAsync());
+            term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
+            var dep = new DepartmentViewModel();
+            dep.NameSort = string.IsNullOrEmpty(orderBy) ? "NameDesc" : "";
+            var depart = from d in _context.Department
+                       where (term == "" || d.DepartmentName.ToLower().StartsWith(term))
+                       select d;
+            switch (orderBy)
+            {
+                case "NameDesc":
+                    depart = depart.OrderByDescending(a => a.DepartmentName);
+                    break;
+                default:
+                    depart = depart.OrderBy(a => a.DepartmentName);
+                    break;
+
+            }
+            var totalRecords = depart.Count();
+            var pageSize = 5;
+            var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
+            depart = depart.Skip((currentPage - 1) * pageSize).Take(pageSize);
+            dep.Departments = depart;
+            dep.PageSize = pageSize;
+            dep.CurrentPage = currentPage;
+            dep.TotalPages = totalPages;
+            dep.Term = term;
+            dep.OrderBy = orderBy;
+            return View(dep);
         }
 
         //GET Create Department

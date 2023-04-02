@@ -7,7 +7,7 @@
 
 <div class="pt-4">
     <div class="">
-        <h2 class="text-primary">My Idea List</h2>
+        <h2 class="text-primary">Idea List</h2>
         <form asp-action="Index">
             <div class="row">
                 <div class="col-6" >
@@ -32,7 +32,7 @@
         <thead class="bg-gradient bg-primary text-white">
             <tr>
                 <th>
-                    @Html.DisplayName("Idea Name")
+                    <a href="/Idea/Index?term=@Model.Term&orderBy=@Model.NameSortOrder">@Html.DisplayName("Idea Name")</a>
                 </th>
                 <th>
                     @Html.DisplayName("Idea Description")
@@ -41,7 +41,7 @@
                     @Html.DisplayName("File Path")
                 </th>
                 <th>
-                    @Html.DisplayName("Created Date")
+                    <a href="/Idea/Index?term=@Model.Term&orderBy=@Model.CreatedDateSortOrder">@Html.DisplayName("Created Date")</a>
                 </th>
                 <th></th>
             </tr>
@@ -60,7 +60,7 @@
                         @Html.DisplayFor(modelItem => item.FilePath)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                       @Html.DisplayFor(modelItem => item.CreatedDate)
                     </td>
                     <td class="text-center">
                         <a asp-action="Details" asp-controller="Idea" asp-route-id="@item.IdeaId" class="btn btn-outline-info rounded align-middle">
@@ -83,7 +83,7 @@
             @if (Model.CurrentPage > 1)
             {
                 <li class="page-item">
-                    <a class="page-link" href="/Idea/Index?term=@Model.Term&currentPage=@(Model.CurrentPage-1)" aria-label="Previous">
+                    <a class="page-link" href="/Idea/Index?term=@Model.Term&orderBy=@Model.OrderBy&currentPage=@(Model.CurrentPage-1)" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
@@ -92,18 +92,18 @@
             {
                 if (i == Model.CurrentPage)
                 {
-                    <li class="page-item"><a class="page-link active text-danger" href="/Idea/Index?term=@Model.Term&currentPage=@i">@i</a></li>
+                    <li class="page-item"><a class="page-link active text-danger" href="/Idea/Index?term=@Model.Term&orderBy=@Model.OrderBy&currentPage=@i">@i</a></li>
                 }
                 else
                 {
-                    <li class="page-item"><a class="page-link" href="/Idea/Index?term=@Model.Term&currentPage=@i">@i</a></li>
+                    <li class="page-item"><a class="page-link" href="/Idea/Index?term=@Model.Term&orderBy=@Model.OrderBy&currentPage=@i">@i</a></li>
                 }
             }
 
             @if (Model.CurrentPage < Model.TotalPages)
             {
                 <li class="page-item">
-                    <a class="page-link" href="/Idea/Index?term=@Model.Term&currentPage=@(Model.CurrentPage+1)" aria-label="Next">
+                    <a class="page-link" href="/Idea/Index?term=@Model.Term&orderBy=@Model.OrderBy&currentPage=@(Model.CurrentPage+1)" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>

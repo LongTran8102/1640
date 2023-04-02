@@ -101,7 +101,7 @@ namespace Project_1640.Controllers
             }
             else
             {
-                ViewBag.UsedRole = "This role is already used";
+                ViewBag.UsedRole = "This role is already in use";
             }
             return View(usedrole);
         }

@@ -21,6 +21,7 @@ namespace Project_1640.ViewModels
         public IQueryable<IdeaViewModel> Idea { get; set; }
 
         public string CreatedDateSortOrder { get; set; }
+        public string NameSortOrder { get; set; }
         public int PageSize { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }

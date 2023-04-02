@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Spreadsheet;
+using MailKit.Search;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,15 +25,24 @@ namespace Project_1640.Controllers
         }
 
         //GET Categories
-        public IActionResult Index(string term = "", int currentPage = 1)
+        public IActionResult Index(string term = "", int currentPage = 1,string orderBy="")
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
+            var cats = new CategoryViewModel();
+            cats.NameSort = string.IsNullOrEmpty(orderBy) ? "NameDesc" : "";
             var cate = from cat in _context.Category
                        where (term == "" || cat.CategoryName.ToLower().StartsWith(term))
                        select cat;
-            var cats = new CategoryViewModel();
+            switch (orderBy)
+            {
+                case "NameDesc":
+                    cate = cate.OrderByDescending(a => a.CategoryName);
+                    break;
+                default:
+                    cate = cate.OrderBy(a => a.CategoryName);
+                    break;
 
-
+            }
             var totalRecords = cate.Count();
             var pageSize = 5;
             var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
@@ -42,6 +52,7 @@ namespace Project_1640.Controllers
             cats.CurrentPage = currentPage;
             cats.TotalPages = totalPages;
             cats.Term = term;
+            cats.OrderBy = orderBy;
             return View(cats);
         }
 
@@ -158,7 +169,7 @@ namespace Project_1640.Controllers
             }
             else
             {
-                ViewBag.UsedCategory = "This category is already used";
+                ViewBag.UsedCategory = "This category is already in use";
             }
             return View(usedcategory);
         }
