@@ -78,7 +78,7 @@ namespace Project_1640.Areas.Identity.Pages.Account
             {
                 //Input email details
                 From = "luandtgcs200115@fpt.edu.vn",
-                Password = "Conso123!",
+                Password = "swsahvyremcmrcbz",
                 Body = "Please reset your password by <a href="+ $"{ callbackUrl }" + "> click here</a>",
             };
 

@@ -76,7 +76,7 @@ namespace Project_1640.Controllers
             ideaData.Term = term;
             ideaData.OrderBy = orderBy;
             return View(ideaData);
-        }       
+        }
         public IActionResult MostPopularIdeas(string sortReaction)
         {
             var pageSize = 5;
@@ -118,7 +118,7 @@ namespace Project_1640.Controllers
                                        IdeaDescription = idea.IdeaDescription,
                                        CreatedDate = idea.CreatedDate,
                                        TotalView = idea.TotalView,
-                                       TopicName=t.Name,
+                                       TopicName = t.Name,
 
                                    });
             ViewData["MostViewedIdea"] = String.IsNullOrEmpty(sortViewed) ? "" : "";
@@ -256,7 +256,7 @@ namespace Project_1640.Controllers
                 context.Ideas.Add(idea);
                 await context.SaveChangesAsync();
                 //Send Mail
-                //SendMailCreateIdea(emailData, idea);
+                SendMailCreateIdea(emailData, idea);
                 return RedirectToRoute(new { controller = "Topic", action = "Details", id });
             }
             else
@@ -411,52 +411,61 @@ namespace Project_1640.Controllers
             }
             //Format email form
             string BodyMessage =
-                "You had create a new idea in topic " + $"{topicName}" + " successfully\r\n\r\n" +
-                "<table style=\"border: 1px solid;\">\r\n" +
-                "   <tr style=\"border: 1px solid;\">\r\n " +
-                "       <td style=\"border: 1px solid;\">\r\n" +
-                "           Submitter\r\n" +
-                "       </td>\r\n" +
-                "       <td style=\"border: 1px solid;\">\r\n" +
-                $"         {user.Firstname}\r\n" +
-                "       </td>\r\n" +
-                "   </tr>\r\n" +
-                "   <tr style=\"border: 1px solid;\">\r\n " +
-                "       <td style=\"border: 1px solid;\">\r\n" +
-                "           Category\r\n" +
-                "       </td>\r\n" +
-                "       <td style=\"border: 1px solid;\">\r\n" +
-                $"         {categoryName}\r\n" +
-                "       </td>\r\n" +
-                "   </tr>\r\n" +
-                "   <tr style=\"border: 1px solid;\">\r\n " +
-                "       <td style=\"border: 1px solid;\">\r\n" +
-                "           Created Date\r\n" +
-                "       </td>\r\n" +
-                "       <td style=\"border: 1px solid;\">\r\n" +
-                $"         {idea.CreatedDate}\r\n" +
-                "       </td>\r\n" +
-                "   </tr>\r\n" +
-                "   <tr style=\"border: 1px solid;\">\r\n " +
-                "       <td style=\"border: 1px solid;\">\r\n" +
-                "           Idea Description\r\n" +
-                "       </td>\r\n" +
-                "       <td style=\"border: 1px solid;\">\r\n" +
-                $"         {idea.IdeaDescription}\r\n" +
-                "       </td>\r\n" +
-                "   </tr>\r\n" +
-                "   <tr style=\"border: 1px solid;\">\r\n " +
-                "       <td style=\"border: 1px solid;\">\r\n" +
-                "           File Path\r\n" +
-                "       </td>\r\n" +
-                "       <td style=\"border: 1px solid;\">\r\n" +
-                $"         {idea.FilePath}\r\n" +
-                "       </td>\r\n" +
-                "   </tr>\r\n" +
-                "</table>";
+                "You had create a new idea in topic " + $"{topicName}" + " successfully\r\n." +
+                    "<table style=\"border-collapse: collapse;\">\r\n" +
+                        "<tr>\r\n" +
+                            "<td style=\"border: 1px solid;font-style:bold\">\r\n" +
+                                "Submitter\r\n" +
+                            "</td>\r\n" +
+                            "<td style=\"border: 1px solid;\">\r\n" +
+                                $"{user.Firstname}\r\n" +
+                            "</td>\r\n" +
+                        "</tr>\r\n" +
+                        "<tr>\r\n" +
+                            "<td style=\"border: 1px solid;font-style:bold\">\r\n" +
+                                "Idea Name\r\n" +
+                            "</td>\r\n" +
+                            "<td style=\"border: 1px solid;\">\r\n" +
+                                $"{idea.IdeaName}\r\n" +
+                            "</td>\r\n" +
+                        "</tr>\r\n" +
+                        "<tr>\r\n" +
+                            "<td style=\"border: 1px solid;font-style:bold\">\r\n" +
+                                "Idea Category\r\n" +
+                            "</td>\r\n" +
+                            "<td style=\"border: 1px solid;\">\r\n" +
+                                $"{categoryName}\r\n" +
+                            "</td>\r\n" +
+                        "</tr>\r\n" +
+                        "<tr>\r\n" +
+                            "<td style=\"border: 1px solid;font-style:bold\">\r\n" +
+                                "Created Date\r\n" +
+                            "</td>\r\n" +
+                            "<td style=\"border: 1px solid;\">\r\n" +
+                                $"{idea.CreatedDate}\r\n" +
+                            "</td>\r\n" +
+                        "</tr>\r\n" +
+                        "<tr>\r\n" +
+                            "<td style=\"border: 1px solid;font-style:bold\">\r\n" +
+                                "Idea Description\r\n" +
+                            "</td>\r\n" +
+                            "<td style=\"border: 1px solid;\">\r\n" +
+                                $"{idea.IdeaDescription}\r\n" +
+                            "</td>\r\n" +
+                        "</tr>\r\n" +
+                        "<tr>\r\n" +
+                            "<td style=\"border: 1px solid;font-style:bold\">\r\n" +
+                                "Idea File Path\r\n" +
+                            "</td>\r\n" +
+                            "<td style=\"border: 1px solid;\">\r\n" +
+                                $"{idea.FilePath}\r\n" +
+                            "</td>\r\n" +
+                        "</tr>\r\n" +
+                    "</table>\r\n";
+
             //Input email details
             emailData.From = "luandtgcs200115@fpt.edu.vn";
-            emailData.Password = "Conso123!";
+            emailData.Password = "swsahvyremcmrcbz";
             emailData.Body = BodyMessage;
             var email = new MimeMessage();
             {

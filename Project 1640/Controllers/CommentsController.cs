@@ -209,10 +209,8 @@ namespace Project_1640.Controllers
                 return RedirectToAction("Details", "Idea", new { id = comment.IdeaId });
             }
             return RedirectToAction("Index", "Idea");
-
-
-
         }
+
         public void GetTopicIdFromComment(int id)
         {
             int IdeaId = 0;
@@ -278,12 +276,12 @@ namespace Project_1640.Controllers
             }
 
             //Format email form
-            string BodyMessage = "You had received a new comment in the idea " + $"{Idea.IdeaName}" + " in the topic " + $"{topicName}" + ". Did you read it?\r\n\r\n";
+            string BodyMessage = "You had received a new comment in the idea " + $"{Idea.IdeaName}" + " in the topic " + $"{topicName}" + ". Did you read it?";
 
             //Input email details
             emailData.To = User.Email;
             emailData.From = "luandtgcs200115@fpt.edu.vn";
-            emailData.Password = "Conso123!";
+            emailData.Password = "swsahvyremcmrcbz";
             emailData.Body = BodyMessage;
             var email = new MimeMessage();
             {
