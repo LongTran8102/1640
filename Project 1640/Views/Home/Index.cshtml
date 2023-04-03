@@ -32,7 +32,14 @@
         <thead class="bg-gradient bg-primary text-white">
             <tr>
                 <th>
-                    <a href="/Home/Index?term=@Model.Term&orderBy=@Model.NameSortOrder">@Html.DisplayName("Idea Name")</a>
+                    @if (@Model.OrderBy == "nameAscend")
+                    {
+                        <a style="text-decoration:none; color:white" href="/Home/Index?term=@Model.Term&orderBy=@Model.NameSortOrder">@Html.DisplayName("Idea Name")<i style="font-size:20px" class="bi bi-sort-alpha-down"></i></a>
+                    }
+                    else
+                    {
+                        <a style="text-decoration:none; color:white" href="/Home/Index?term=@Model.Term&orderBy=@Model.NameSortOrder">@Html.DisplayName("Idea Name")<i style="font-size:20px" class="bi bi-sort-alpha-up"></i></a>
+                    }                        
                 </th>
                 <th>
                     @Html.DisplayName("Idea Description")
@@ -41,7 +48,18 @@
                     @Html.DisplayName("File Path")
                 </th>
                 <th>
-                    <a href="/Home/Index?term=@Model.Term&orderBy=@Model.CreatedDateSortOrder">@Html.DisplayName("Created Date")</a>
+                    @if (Model.OrderBy == "dateAscend")
+                    {
+                        <a style="text-decoration:none; color:white" href="/Home/Index?term=@Model.Term&orderBy=@Model.CreatedDateSortOrder">
+                            @Html.DisplayName("Created Date")<i style="font-size:20px" class="bi bi-sort-numeric-down"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a style="text-decoration:none; color:white" href="/Home/Index?term=@Model.Term&orderBy=@Model.CreatedDateSortOrder">
+                            @Html.DisplayName("Created Date")<i style="font-size:20px" class="bi bi-sort-numeric-up"></i>
+                        </a>
+                    }
                 </th>
                 <th></th>
             </tr>

@@ -31,10 +31,10 @@ namespace Project_1640.Controllers
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
             var topicData = new TopicViewModel();
-            topicData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "CreatedDateDesc" : "";
-            topicData.NameSort = orderBy == "NameDesc" ? "NameAsc" : "NameDesc";
-            topicData.ClosureDateSort = orderBy == "CDateDesc" ? "CDateAsc" : "CDateDesc";
-            topicData.FinalClosureDateSort = orderBy == "FCDateDesc" ? "FCDateAsc" : "FCDateDesc";
+            topicData.NameSort = orderBy == "NameAsc" ? "NameDesc" : "NameAsc";
+            topicData.ClosureDateSort = string.IsNullOrEmpty(orderBy) ? "CDateAsc" : "";
+            topicData.FinalClosureDateSort = orderBy == "FCDateAsc" ? "FCDateDesc" : "FCDateAsc";
+
 
 
             var topic = from top in context.Topics

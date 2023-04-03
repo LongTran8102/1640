@@ -44,7 +44,7 @@ namespace Project_1640.Controllers
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
             var ideaData = new IdeaViewModel();
             ideaData.CreatedDateSortOrder = string.IsNullOrEmpty(orderBy) ? "dateAscend" : "";
-            ideaData.NameSortOrder = orderBy == "nameDesc" ? "nameAscend" : "nameDesc";
+            ideaData.NameSortOrder = orderBy == "nameAscend" ? "nameDesc" : "nameAscend";
             var ideas = (from idea in context.Ideas
                          where (term == "" || idea.IdeaName.ToLower().StartsWith(term))
                          select new Idea
@@ -89,7 +89,7 @@ namespace Project_1640.Controllers
         {
             var pageSize = 10;
             MostPopularIdeaViewModel ideaData = new MostPopularIdeaViewModel();
-            var mostLikeideas = (from idea in context.Ideas
+            var mostPopularideas = (from idea in context.Ideas
                                  join t in context.Topics on idea.TopicId equals t.Id.ToString()
                                  select new MostPopularIdeaViewModel
                                  {
@@ -107,10 +107,10 @@ namespace Project_1640.Controllers
             switch (sortReaction)
             {
                 default:
-                    mostLikeideas = mostLikeideas.OrderByDescending(a => a.TotalReaction);
+                    mostPopularideas = mostPopularideas.OrderByDescending(a => a.TotalReaction);
                     break;
             }
-            return View(mostLikeideas.Take(pageSize));
+            return View(mostPopularideas.Take(pageSize));
         }
         public IActionResult MostViewedIdeas(string sortViewed)
         {

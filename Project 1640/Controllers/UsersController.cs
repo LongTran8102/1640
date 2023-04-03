@@ -58,10 +58,10 @@ namespace Project_1640.Controllers
             userData.DepartmentSort = orderBy == "DepartmentAsc" ? "DepartmentDesc" : "DepartmentAsc";
             switch (orderBy)
             {
-                case "DepartmentAsc":
+                case "DepartmentDesc":
                     users = users.OrderByDescending(a => a.DepartmentName);
                     break;
-                case "DepartmentDesc":
+                case "DepartmentAsc":
                     users = users.OrderBy(a => a.DepartmentName);
                     break;
                 case "RolesDesc":

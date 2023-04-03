@@ -35,7 +35,15 @@
     <thead class="bg-gradient bg-primary text-white">
         <tr>
             <th>
-                <a href="/Departments/Index?term=@Model.Term&orderBy=@Model.NameSort">@Html.DisplayName("Department")
+                @if (@Model.NameSort == "")
+                {
+                    <a style="text-decoration:none; color:white" href="/Departments/Index?term=@Model.Term&orderBy=@Model.NameSort">@Html.DisplayName("Department")<i style="font-size:20px" class="bi bi-sort-alpha-up"></i></a>
+                }
+                else
+                {
+                    <a style="text-decoration:none; color:white" href="/Departments/Index?term=@Model.Term&orderBy=@Model.NameSort">@Html.DisplayName("Department")<i style="font-size:20px" class="bi bi-sort-alpha-down"></i></a>
+
+                }
             </th>
             <th></th>
         </tr>
@@ -47,8 +55,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DepartmentName)
                 </td>
-                <td class="text-center">
-                    <div class="btn-group border-start" role="button">
+                <td class="text-center">                   
                         <a asp-action="Edit" asp-route-id="@item.DepartmentId" class="btn btn-outline-primary rounded mx-3 align-middle">
                             <i class="bi bi-pencil-square align-middle" style="font-size:20px"></i>
                             Edit
@@ -57,7 +64,7 @@
                             <i class="bi bi-trash align-middle" style="font-size:20px"></i>
                             Delete
                         </a>
-                    </div>
+                    
                 </td>
             </tr>
         }

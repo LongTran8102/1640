@@ -41,13 +41,35 @@
             <thead class="bg-gradient bg-primary text-white">
                 <tr>
                     <th>
-                        <a href="/Topic/Index?term=@Model.Term&orderBy=@Model.NameSort">Topic Name</a>
+                        @if (@Model.NameSort == "NameDesc")
+                        {
+                            <a style="text-decoration:none; color:white" href="/Topic/Index?term=@Model.Term&orderBy=@Model.NameSort">Topic Name<i style="font-size:20px" class="bi bi-sort-alpha-down"></i></a>
+                        }
+                        else
+                        {
+                            <a style="text-decoration:none; color:white" href="/Topic/Index?term=@Model.Term&orderBy=@Model.NameSort">Topic Name<i style="font-size:20px" class="bi bi-sort-alpha-up"></i></a>
+                        }
+
                     </th>
                     <th>
-                        <a href="/Topic/Index?term=@Model.Term&orderBy=@Model.ClosureDateSort">Closure Date</a>
+                        @if (@Model.OrderBy == "CDateAsc")
+                        {
+                            <a style="text-decoration:none; color:white" href="/Topic/Index?term=@Model.Term&orderBy=@Model.ClosureDateSort">Closure Date<i style="font-size:20px" class="bi bi-sort-alpha-down"></i></a>
+                        }
+                    else
+                        {
+                            <a style="text-decoration:none; color:white" href="/Topic/Index?term=@Model.Term&orderBy=@Model.ClosureDateSort">Closure Date<i style="font-size:20px" class="bi bi-sort-alpha-up"></i></a>
+                        }
                     </th>
                     <th>
-                       <a href="/Topic/Index?term=@Model.Term&orderBy=@Model.FinalClosureDateSort">Final Closure Date</a>
+                        @if (@Model.FinalClosureDateSort == "FCDateDesc")
+                        {
+                            <a style="text-decoration:none; color:white" href="/Topic/Index?term=@Model.Term&orderBy=@Model.FinalClosureDateSort">Final Closure Date<i style="font-size:20px" class="bi bi-sort-alpha-down"></i></a>
+                        }
+                        else
+                        {
+                            <a style="text-decoration:none; color:white" href="/Topic/Index?term=@Model.Term&orderBy=@Model.FinalClosureDateSort">Final Closure Date<i style="font-size:20px" class="bi bi-sort-alpha-up"></i></a>
+                        }
                     </th>
                     <th></th>
                     <th></th>
