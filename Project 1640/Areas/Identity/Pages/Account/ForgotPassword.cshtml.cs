@@ -77,8 +77,8 @@ namespace Project_1640.Areas.Identity.Pages.Account
             Email emailData = new Email()
             {
                 //Input email details
-                From = "luandtgcs200115@fpt.edu.vn",
-                Password = "swsahvyremcmrcbz",
+                From = "ideacollectsystem@gmail.com",
+                Password = "ldcsuhtjqwjagfyf",
                 Body = "Please reset your password by <a href="+ $"{ callbackUrl }" + "> click here</a>",
             };
 

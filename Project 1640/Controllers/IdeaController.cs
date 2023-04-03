@@ -472,8 +472,8 @@ namespace Project_1640.Controllers
                     "</table>\r\n";
 
             //Input email details
-            emailData.From = "luandtgcs200115@fpt.edu.vn";
-            emailData.Password = "swsahvyremcmrcbz";
+            emailData.From = "ideacollectsystem@gmail.com";
+            emailData.Password = "ldcsuhtjqwjagfyf";
             emailData.Body = BodyMessage;
             var email = new MimeMessage();
             {
