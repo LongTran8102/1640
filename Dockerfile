@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /source
 COPY *.sln .
-COPY Project\ 1640/. ./Project_1640/
+COPY "Project 1640/." ./Project_1640/
 WORKDIR /source/Project_1640
 RUN dotnet publish -c release -o /app
 
