@@ -472,8 +472,8 @@ namespace Project_1640.Controllers
                     "</table>\r\n";
 
             //Input email details
-            emailData.From = "ideacollectsystem@gmail.com";
-            emailData.Password = "ldcsuhtjqwjagfyf";
+            emailData.From = "pplong95@gmail.com";
+            emailData.Password = "gtxsdbnorvyaapvq";
             emailData.Body = BodyMessage;
             var email = new MimeMessage();
             {

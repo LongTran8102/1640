@@ -77,22 +77,22 @@ namespace Project_1640.Areas.Identity.Pages.Account
             Email emailData = new Email()
             {
                 //Input email details
-                From = "ideacollectsystem@gmail.com",
-                Password = "ldcsuhtjqwjagfyf",
-                Body = "Please reset your password by <a href="+ $"{ callbackUrl }" + "> click here</a>",
+                From = "pplong95@gmail.com",
+                Password = "gtxsdbnorvyaapvq",
+                Body = "Please reset your password by <a href=" + $"{callbackUrl}" + "> click here</a>",
             };
 
             MimeMessage email = new MimeMessage();
-                email.From.Add(MailboxAddress.Parse(emailData.From));
-                email.To.Add(MailboxAddress.Parse(Input.Email));
-                email.Subject = "Recovery Passsword";
-                email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = emailData.Body };
+            email.From.Add(MailboxAddress.Parse(emailData.From));
+            email.To.Add(MailboxAddress.Parse(Input.Email));
+            email.Subject = "Recovery Passsword";
+            email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = emailData.Body };
 
             using var smtp = new SmtpClient();
-                smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-                smtp.Authenticate(emailData.From, emailData.Password);
-                smtp.Send(email);
-                smtp.Disconnect(true);
+            smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            smtp.Authenticate(emailData.From, emailData.Password);
+            smtp.Send(email);
+            smtp.Disconnect(true);
 
             return RedirectToPage("./ForgotPasswordConfirmation");
         }
