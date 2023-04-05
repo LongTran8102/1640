@@ -257,15 +257,32 @@ namespace Project_1640.Controllers
                 idea.CategoryId = model.CategoryId;
                 idea.UserId = userManager.GetUserId(HttpContext.User);
                 idea.CreatedDate = DateTime.Now;
-                if (model.AttachFile != null)
+
+                if (model.AttachFile.ContentType == "application/pdf" || model.AttachFile.ContentType == "application/msword"  || model.AttachFile.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
                 {
-                    idea.FilePath = UploadFile(model.AttachFile);
+                    if (model.AttachFile.Length <= 5242880)
+                    {
+                        if (model.AttachFile != null)
+                        {
+                            idea.FilePath = UploadFile(model.AttachFile);
+                        }
+                        context.Ideas.Add(idea);
+                        await context.SaveChangesAsync();
+                        //Send Mail
+                        SendMailCreateIdea(emailData, idea);
+                        return RedirectToRoute(new { controller = "Topic", action = "Details", id });
+                    }
+                    else
+                    {
+                        ViewBag.LargeFile = "Please try to use file under 5MB";
+                    }
+                    return View();
                 }
-                context.Ideas.Add(idea);
-                await context.SaveChangesAsync();
-                //Send Mail
-                SendMailCreateIdea(emailData, idea);
-                return RedirectToRoute(new { controller = "Topic", action = "Details", id });
+                else
+                {
+                    ViewBag.WrongType = "This file exension is not allowed";
+                }
+                return View();
             }
             else
             {
@@ -309,20 +326,35 @@ namespace Project_1640.Controllers
             idea.IdeaDescription = model.IdeaDescription;
             idea.CategoryId = model.CategoryId;
 
-            if (model.AttachFile != null)
+            if (model.AttachFile.ContentType == "application/pdf" || model.AttachFile.ContentType == "application/msword" || model.AttachFile.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
             {
-                if (idea.FilePath != null)
+                if (model.AttachFile.Length <= 5242880)
                 {
-                    string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
-                    System.IO.File.Delete(ExitingFile);
+                    if (model.AttachFile != null)
+                    {
+                        if (idea.FilePath != null)
+                        {
+                            string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
+                            System.IO.File.Delete(ExitingFile);
+                        }
+                        idea.FilePath = UploadFile(model.AttachFile);
+                    }
+                    var SelectedIdea = context.Ideas.Attach(idea);
+                    SelectedIdea.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+                    return RedirectToRoute(new { controller = "Idea", action = "Details", model.ID });
                 }
-                idea.FilePath = UploadFile(model.AttachFile);
+                else
+                {
+                    ViewBag.LargeFile = "Please try to use file under 5MB";
+                }
+                return View("Edit", model);
             }
-            var SelectedIdea = context.Ideas.Attach(idea);
-            SelectedIdea.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            context.SaveChanges();
-
-            return RedirectToRoute(new { controller = "Idea", action = "Details", model.ID });
+            else
+            {
+                ViewBag.WrongType = "This file exension is not allowed";
+            }
+            return View("Edit", model);
         }
 
         //GET Delete Idea

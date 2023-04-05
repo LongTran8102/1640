@@ -4,6 +4,7 @@
     ViewBag.Title = "Create Idea";
 }
 
+
 <form asp-controller="Idea" enctype="multipart/form-data" asp-action="Create" method="post">
     <div class="row pb-2">
         <h2 class="text-primary">Create New Idea</h2>
@@ -24,10 +25,12 @@
         <select asp-for=CategoryId asp-items="@ViewBag.CategoryList" class="form-select"><option disabled selected>--Please select category--</option></select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
-    <div class="form-group">
+    <div class="form-group"/>
         <label asp-for="AttachFile" class="form-label"></label>
-        <input asp-for="AttachFile" class="form-control" />
+        <input asp-for="AttachFile" class="form-control" accept="application/pdf,application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />/>
     </div>
+    <p class="text-danger">@ViewBag.LargeFile</p>
+    <p class="text-danger">@ViewBag.WrongType</p>
     <div class="form-group">
         <input asp-for="TermsConditions" type="checkbox" />
         <label asp-for="TermsConditions"></label>
@@ -39,6 +42,6 @@
             <i class="bi bi-arrow-left-short align-middle"></i>
             Back
         </a>
-        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <button onclick="OnClick" type="submit" class="btn btn-primary" style="width:150px">Create</button>
     </div>
 </form>
