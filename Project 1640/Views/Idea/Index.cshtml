@@ -7,23 +7,21 @@
 
 <div class="pt-4">
     <div class="">
-        <h2 class="text-primary">Idea List</h2>
-        <form asp-action="Index">
+        <h2 class="text-primary">All Idea List</h2>
+        <form asp-action="AllIdeas">
             <div class="row">
-                <div class="col-6" >
+                <div class="col-12 col-sm-6">
                     <input name="term" class="form-control" placeholder="Search by Idea Name" />
                 </div>
-                <div class="col-6">
+                <div class="col-12 mt-1 mt-sm-0 col-sm-6">
                     <button type="submit" class="btn btn-info">Search</button>
-                    <a asp-action="Index" class="btn btn-danger mx-3">
+                    <a asp-action="AllIdeas" class="btn btn-danger mx-3">
                         Back to Full List
                     </a>
                 </div>
             </div>
         </form>
-        
     </div>
-
 </div>
 <br />
 <br />
