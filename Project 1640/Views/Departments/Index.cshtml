@@ -37,11 +37,11 @@
             <th>
                 @if (@Model.NameSort == "")
                 {
-                    <a style="text-decoration:none; color:white" href="/Departments/Index?term=@Model.Term&orderBy=@Model.NameSort">@Html.DisplayName("Department")<i style="font-size:20px" class="bi bi-sort-alpha-up"></i></a>
+                    <a style="text-decoration:none; color:white" href="/Departments/Index?term=@Model.Term&orderBy=@Model.NameSort">@Html.DisplayName("Department Name")<i style="font-size:20px" class="bi bi-sort-alpha-up"></i></a>
                 }
                 else
                 {
-                    <a style="text-decoration:none; color:white" href="/Departments/Index?term=@Model.Term&orderBy=@Model.NameSort">@Html.DisplayName("Department")<i style="font-size:20px" class="bi bi-sort-alpha-down"></i></a>
+                    <a style="text-decoration:none; color:white" href="/Departments/Index?term=@Model.Term&orderBy=@Model.NameSort">@Html.DisplayName("Department Name")<i style="font-size:20px" class="bi bi-sort-alpha-down"></i></a>
 
                 }
             </th>
