@@ -420,7 +420,7 @@ namespace Project_1640.Controllers
         }
 
         //Send Mail After Creating Idea
-        public void SendMailCreateIdea(Email emailData, Idea idea)
+        private void SendMailCreateIdea(Email emailData, Idea idea)
         {
             //Take submiter details
             var userId = userManager.GetUserId(HttpContext.User);
@@ -504,8 +504,8 @@ namespace Project_1640.Controllers
                     "</table>\r\n";
 
             //Input email details
-            emailData.From = "pplong95@gmail.com";
-            emailData.Password = "gtxsdbnorvyaapvq";
+            emailData.From = "ideacollectsystem@gmail.com";
+            emailData.Password = "jkgfnwvzcdrymvpb";
             emailData.Body = BodyMessage;
             var email = new MimeMessage();
             {

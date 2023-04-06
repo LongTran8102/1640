@@ -242,7 +242,7 @@ namespace Project_1640.Controllers
             }
         }
         //Send Mail After Creating Idea
-        public void SendMailReceiveComment(Email emailData, int id)
+        private void SendMailReceiveComment(Email emailData, int id)
         {
             //Take topic's author details
             string userId = "";
@@ -280,8 +280,8 @@ namespace Project_1640.Controllers
 
             //Input email details
             emailData.To = User.Email;
-            emailData.From = "pplong95@gmail.com";
-            emailData.Password = "gtxsdbnorvyaapvq";
+            emailData.From = "ideacollectsystem@gmail.com";
+            emailData.Password = "jkgfnwvzcdrymvpb";
             emailData.Body = BodyMessage;
             var email = new MimeMessage();
             {

@@ -54,7 +54,7 @@ namespace Project_1640.Areas.Identity.Pages.Account
             public string Email { get; set; }
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        private async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
@@ -77,8 +77,8 @@ namespace Project_1640.Areas.Identity.Pages.Account
             Email emailData = new Email()
             {
                 //Input email details
-                From = "pplong95@gmail.com",
-                Password = "gtxsdbnorvyaapvq",
+                From = "ideacollectsystem@gmail.com",
+                Password = "jkgfnwvzcdrymvpb",
                 Body = "Please reset your password by <a href=" + $"{callbackUrl}" + "> click here</a>",
             };
 
