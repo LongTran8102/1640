@@ -25,7 +25,7 @@ namespace Project_1640.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
-
+        public static string LinkURL; 
         public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -54,7 +54,7 @@ namespace Project_1640.Areas.Identity.Pages.Account
             public string Email { get; set; }
         }
 
-        private async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
@@ -73,13 +73,20 @@ namespace Project_1640.Areas.Identity.Pages.Account
                 pageHandler: null,
                 values: new { area = "Identity", code },
                 protocol: Request.Scheme);
+            LinkURL = callbackUrl;
 
+            SendMail();
+
+            return RedirectToPage("./ForgotPasswordConfirmation");
+        }
+        private void SendMail()
+        {
             Email emailData = new Email()
             {
                 //Input email details
                 From = "ideacollectsystem@gmail.com",
-                Password = "jkgfnwvzcdrymvpb",
-                Body = "Please reset your password by <a href=" + $"{callbackUrl}" + "> click here</a>",
+                Password = "yebrddyiagyvjlqi",
+                Body = "Please reset your password by <a href=" + $"{LinkURL}" + "> click here</a>",
             };
 
             MimeMessage email = new MimeMessage();
@@ -93,8 +100,6 @@ namespace Project_1640.Areas.Identity.Pages.Account
             smtp.Authenticate(emailData.From, emailData.Password);
             smtp.Send(email);
             smtp.Disconnect(true);
-
-            return RedirectToPage("./ForgotPasswordConfirmation");
         }
     }
 }
