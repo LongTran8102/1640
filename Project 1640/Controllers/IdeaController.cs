@@ -257,15 +257,13 @@ namespace Project_1640.Controllers
                 idea.CategoryId = model.CategoryId;
                 idea.UserId = userManager.GetUserId(HttpContext.User);
                 idea.CreatedDate = DateTime.Now;
-
+                if (model.AttachFile != null)
+                {
                 if (model.AttachFile.ContentType == "application/pdf" || model.AttachFile.ContentType == "application/msword"  || model.AttachFile.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
                 {
                     if (model.AttachFile.Length <= 5242880)
                     {
-                        if (model.AttachFile != null)
-                        {
-                            idea.FilePath = UploadFile(model.AttachFile);
-                        }
+                        idea.FilePath = UploadFile(model.AttachFile);
                         context.Ideas.Add(idea);
                         await context.SaveChangesAsync();
                         //Send Mail
@@ -281,6 +279,8 @@ namespace Project_1640.Controllers
                 else
                 {
                     ViewBag.WrongType = "This file exension is not allowed";
+                }
+                return View();
                 }
                 return View();
             }
