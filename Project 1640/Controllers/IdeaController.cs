@@ -247,7 +247,7 @@ namespace Project_1640.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, Idea idea, int id)
         {
-            //Create Idea
+                        //Create Idea
             DropDownList();
             if (model.TermsConditions == true)
             {
@@ -257,19 +257,19 @@ namespace Project_1640.Controllers
                 idea.CategoryId = model.CategoryId;
                 idea.UserId = userManager.GetUserId(HttpContext.User);
                 idea.CreatedDate = DateTime.Now;
-                
-                if(model.AttachFile == null)
+
+                if (model.AttachFile == null)
                 {
-                    idea.FilePath = UploadFile(model.AttachFile);
                     context.Ideas.Add(idea);
                     await context.SaveChangesAsync();
                     //Send Mail
                     SendMailCreateIdea(emailData, idea);
                     return RedirectToRoute(new { controller = "Topic", action = "Details", id });
                 }
+                else
                 if (model.AttachFile != null)
                 {
-                    if (model.AttachFile.ContentType == "application/pdf" || model.AttachFile.ContentType == "application/msword"  || model.AttachFile.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+                    if (model.AttachFile.ContentType == "application/pdf" || model.AttachFile.ContentType == "application/msword" || model.AttachFile.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
                     {
                         if (model.AttachFile.Length <= 5242880)
                         {
