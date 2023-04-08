@@ -259,28 +259,28 @@ namespace Project_1640.Controllers
                 idea.CreatedDate = DateTime.Now;
                 if (model.AttachFile != null)
                 {
-                if (model.AttachFile.ContentType == "application/pdf" || model.AttachFile.ContentType == "application/msword"  || model.AttachFile.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-                {
-                    if (model.AttachFile.Length <= 5242880)
+                    if (model.AttachFile.ContentType == "application/pdf" || model.AttachFile.ContentType == "application/msword"  || model.AttachFile.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
                     {
-                        idea.FilePath = UploadFile(model.AttachFile);
-                        context.Ideas.Add(idea);
-                        await context.SaveChangesAsync();
-                        //Send Mail
-                        SendMailCreateIdea(emailData, idea);
-                        return RedirectToRoute(new { controller = "Topic", action = "Details", id });
+                        if (model.AttachFile.Length <= 5242880)
+                        {
+                            idea.FilePath = UploadFile(model.AttachFile);
+                            context.Ideas.Add(idea);
+                            await context.SaveChangesAsync();
+                            //Send Mail
+                            SendMailCreateIdea(emailData, idea);
+                            return RedirectToRoute(new { controller = "Topic", action = "Details", id });
+                        }
+                        else
+                        {
+                            ViewBag.LargeFile = "Please try to use file under 5MB";
+                        }
+                        return View();
                     }
                     else
                     {
-                        ViewBag.LargeFile = "Please try to use file under 5MB";
+                        ViewBag.WrongType = "This file exension is not allowed";
                     }
                     return View();
-                }
-                else
-                {
-                    ViewBag.WrongType = "This file exension is not allowed";
-                }
-                return View();
                 }
                 return View();
             }
