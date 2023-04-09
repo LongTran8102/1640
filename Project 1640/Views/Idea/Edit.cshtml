@@ -4,6 +4,10 @@
     ViewBag.Title = "Edit Idea";
 }
 <form asp-controller="Idea" enctype="multipart/form-data" asp-action="Edit" method="post">
+    <div class="row pb-2">
+        <h2 class="text-primary">Edit Idea</h2>
+        <hr />
+    </div>
     <input hidden asp-for="ID" />
     <div class="form-group">
         <label asp-for="IdeaName" class="form-label">Idea Name</label>

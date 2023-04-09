@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Presentation;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using DocumentFormat.OpenXml.Presentation;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -68,7 +69,7 @@ namespace Project_1640.Controllers
                     break;
                 case "dateAscend":
                     ideas = ideas.OrderBy(a => a.CreatedDate);
-                    break;                
+                    break;
                 default:
                     ideas = ideas.OrderByDescending(a => a.CreatedDate);
                     break;
@@ -90,18 +91,18 @@ namespace Project_1640.Controllers
             var pageSize = 10;
             MostPopularIdeaViewModel ideaData = new MostPopularIdeaViewModel();
             var mostPopularideas = (from idea in context.Ideas
-                                 join t in context.Topics on idea.TopicId equals t.Id.ToString()
-                                 select new MostPopularIdeaViewModel
-                                 {
-                                     IdeaId = idea.IdeaId,
-                                     IdeaName = idea.IdeaName,
-                                     IdeaDescription = idea.IdeaDescription,
-                                     CreatedDate = idea.CreatedDate,
-                                     TotalLike = idea.TotalLike,
-                                     TotalDislike = idea.TotalDislike,
-                                     TotalReaction = (int)(idea.TotalLike - idea.TotalDislike),
-                                     TopicName = t.Name,
-                                 });
+                                    join t in context.Topics on idea.TopicId equals t.Id.ToString()
+                                    select new MostPopularIdeaViewModel
+                                    {
+                                        IdeaId = idea.IdeaId,
+                                        IdeaName = idea.IdeaName,
+                                        IdeaDescription = idea.IdeaDescription,
+                                        CreatedDate = idea.CreatedDate,
+                                        TotalLike = idea.TotalLike,
+                                        TotalDislike = idea.TotalDislike,
+                                        TotalReaction = (int)(idea.TotalLike - idea.TotalDislike),
+                                        TopicName = t.Name,
+                                    });
 
             ViewData["MostPopularIdea"] = String.IsNullOrEmpty(sortReaction) ? "" : "";
             switch (sortReaction)
@@ -247,7 +248,7 @@ namespace Project_1640.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IdeaViewModel model, Email emailData, Idea idea, int id)
         {
-                        //Create Idea
+            //Create Idea
             DropDownList();
             if (model.TermsConditions == true)
             {
@@ -335,36 +336,46 @@ namespace Project_1640.Controllers
             idea.IdeaName = model.IdeaName;
             idea.IdeaDescription = model.IdeaDescription;
             idea.CategoryId = model.CategoryId;
-
-            if (model.AttachFile.ContentType == "application/pdf" || model.AttachFile.ContentType == "application/msword" || model.AttachFile.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+            if (model.AttachFile == null)
             {
-                if (model.AttachFile.Length <= 5242880)
+                context.Ideas.Update(idea);
+                context.SaveChanges();
+                return RedirectToRoute(new { controller = "Idea", action = "Details", model.ID });
+            }
+            else
+                if (model.AttachFile != null)
+            {
+                if (model.AttachFile.ContentType == "application/pdf" || model.AttachFile.ContentType == "application/msword" || model.AttachFile.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
                 {
-                    if (model.AttachFile != null)
+                    if (model.AttachFile.Length <= 5242880)
                     {
-                        if (idea.FilePath != null)
+                        if (model.AttachFile != null)
                         {
-                            string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
-                            System.IO.File.Delete(ExitingFile);
+                            if (idea.FilePath != null)
+                            {
+                                string ExitingFile = Path.Combine(webHostEnvironment.WebRootPath, "UserFiles", idea.FilePath);
+                                System.IO.File.Delete(ExitingFile);
+                            }
+                            idea.FilePath = UploadFile(model.AttachFile);
                         }
-                        idea.FilePath = UploadFile(model.AttachFile);
+                        var SelectedIdea = context.Ideas.Attach(idea);
+                        SelectedIdea.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        context.SaveChanges();
+                        return RedirectToRoute(new { controller = "Idea", action = "Details", model.ID });
                     }
-                    var SelectedIdea = context.Ideas.Attach(idea);
-                    SelectedIdea.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                    context.SaveChanges();
-                    return RedirectToRoute(new { controller = "Idea", action = "Details", model.ID });
+                    else
+                    {
+                        ViewBag.LargeFile = "Please try to use file under 5MB";
+                    }
+                    return View("Edit", model);
                 }
                 else
                 {
-                    ViewBag.LargeFile = "Please try to use file under 5MB";
+                    ViewBag.WrongType = "This file exension is not allowed";
                 }
                 return View("Edit", model);
             }
-            else
-            {
-                ViewBag.WrongType = "This file exension is not allowed";
-            }
-            return View("Edit", model);
+            return RedirectToRoute(new { controller = "Idea", action = "Details", model.ID });
         }
 
         //GET Delete Idea
