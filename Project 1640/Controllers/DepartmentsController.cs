@@ -141,7 +141,12 @@ namespace Project_1640.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Department == null)
+            var usedDepartment = await _context.Department
+                .FirstOrDefaultAsync(m => m.DepartmentId == id);
+            var count = _context.applicationUsers.Count(i => i.DepartmentId == id);
+            if (count == 0)
+            {
+                if (_context.Department == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Department'  is null.");
             }
@@ -152,6 +157,13 @@ namespace Project_1640.Controllers
             }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewBag.UsedDepartment = "This department is already in use";
+            }
+            return View(usedDepartment);
+
         }
 
         //Check department exist
