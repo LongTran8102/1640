@@ -84,8 +84,8 @@ namespace Project_1640.Areas.Identity.Pages.Account
             Email emailData = new Email()
             {
                 //Input email details
-                From = "ideacollectsystem@gmail.com",
-                Password = "yebrddyiagyvjlqi",
+                From = "ideacollectionsender@gmail.com",
+                Password = "obvzsinreznekrtn",
                 Body = "Please reset your password by <a href=" + $"{LinkURL}" + "> click here</a>",
             };
 
