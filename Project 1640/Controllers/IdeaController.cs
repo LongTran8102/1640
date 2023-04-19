@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MimeKit;
 using Project_1640.Data;
 using Project_1640.Migrations;
@@ -25,18 +27,20 @@ namespace Project_1640.Controllers
         private IHostingEnvironment oIHostingEnvironment;
         public readonly ApplicationDbContext context;
         public readonly UserManager<IdentityUser> userManager;
+        public readonly MailSettings mailSettings;
 
         public static CommentViewModel models = new CommentViewModel();
         public static string Topic_Id;
         public static DateTime Topic_ClosureDate;
         public static DateTime Topic_FinalClosureDate;
 
-        public IdeaController(IHostingEnvironment _IHostingEnvironment, IWebHostEnvironment _webHostEnvironment, ApplicationDbContext _context, UserManager<IdentityUser> _userManager)
+        public IdeaController(IHostingEnvironment _IHostingEnvironment, IWebHostEnvironment _webHostEnvironment, ApplicationDbContext _context, UserManager<IdentityUser> _userManager, IOptions<MailSettings> _mailSettings)
         {
             userManager = _userManager;
             webHostEnvironment = _webHostEnvironment;
             oIHostingEnvironment = _IHostingEnvironment;
             context = _context;
+            mailSettings = _mailSettings.Value;
         }
 
         //Pagination Page and Search
@@ -525,8 +529,8 @@ namespace Project_1640.Controllers
                     "</table>\r\n";
 
             //Input email details
-            emailData.From = "ideacollectionsender@gmail.com";
-            emailData.Password = "obvzsinreznekrtn";
+            emailData.From = mailSettings.Mail;
+            emailData.Password = mailSettings.Password;
             emailData.Body = BodyMessage;
             var email = new MimeMessage();
             {

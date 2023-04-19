@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MimeKit;
 using Project_1640.Data;
 using Project_1640.Models;
@@ -20,14 +21,16 @@ namespace Project_1640.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly MailSettings _mailSettings;
 
         public static DateTime Topic_FinalClosureDate;
         public static int Topic_Id;
 
-        public CommentsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public CommentsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IOptions<MailSettings> mailSettings)
         {
             _context = context;
             _userManager = userManager;
+            _mailSettings = mailSettings.Value;
         }
 
         //GET Comments
@@ -280,8 +283,8 @@ namespace Project_1640.Controllers
 
             //Input email details
             emailData.To = User.Email;
-            emailData.From = "ideacollectionsender@gmail.com";
-            emailData.Password = "obvzsinreznekrtn";
+            emailData.From = _mailSettings.Mail;
+            emailData.Password = _mailSettings.Password;
             emailData.Body = BodyMessage;
             var email = new MimeMessage();
             {

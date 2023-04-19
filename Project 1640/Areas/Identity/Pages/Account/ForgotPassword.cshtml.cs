@@ -18,6 +18,7 @@ using Project_1640.Models;
 using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.Extensions.Options;
 
 namespace Project_1640.Areas.Identity.Pages.Account
 {
@@ -25,11 +26,15 @@ namespace Project_1640.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
-        public static string LinkURL; 
-        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
+        public static string LinkURL;
+        private readonly MailSettings _mailSettings;
+
+        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender, IOptions<MailSettings> mailSettings)
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            _mailSettings = mailSettings.Value;
+
         }
 
         /// <summary>
@@ -84,8 +89,8 @@ namespace Project_1640.Areas.Identity.Pages.Account
             Email emailData = new Email()
             {
                 //Input email details
-                From = "ideacollectionsender@gmail.com",
-                Password = "obvzsinreznekrtn",
+                From = _mailSettings.Mail,
+                Password = _mailSettings.Password,
                 Body = "Please reset your password by <a href=" + $"{LinkURL}" + "> click here</a>",
             };
 
